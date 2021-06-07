@@ -77,3 +77,11 @@ h3 {
 .price {
     color: rgb(151, 151, 151);
 }
+
+@media screen and (max-width: 550px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
