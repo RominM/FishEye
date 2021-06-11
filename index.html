@@ -9,138 +9,209 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="logo/svg" href="FishEye_Photos/fav_logo.png">
 
-    <title>FishEyes</title>
+    <title>FishEye</title>
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <h1>
-                <img src="FishEye_Photos/logo.png" alt="logo FishEyes">
-            </h1>
-        </div>
-        <div class="hashtag">
-            <button>
-                <span>#Portrait</span>
-            </button>
-            <button>
-                <span>#Art</span>
-            </button>
-            <button>
-                <span>#Fashion</span>
-            </button>
-            <button>
-                <span>#Architecture</span>
-            </button>
-            <button>
-                <span>#Travel</span>
-            </button>
-            <button>
-                <span>#Sport</span>
-            </button>
-            <button>
-                <span>#Animals</span>
-            </button>
-            <button>
-                <span>#Events</span>
-            </button>
-        </div>
-        <div class="activePage">
-            <h2>Nos photographes</h2>
-        </div>
+    <div class="hidden">
+        <a href="#">Passer au contenu</a>
+    </div>
+
+    <!--HEADER-->
+    <header class="banner">
+        <a href="./index.html" class="logo">
+            <div>
+                <img src="FishEye_Photos/logo.png" alt="FishEye Home Page">
+            </div>
+        </a>
+
+        <nav aria-label="photographer categories">
+            <ul class="tagDesign">
+                <li>
+                    <a href="#"><span class="tag">#Portrait</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Art</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Fashion</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Architecture</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Travel</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Sport</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Animals</span></a>
+                </li>
+                <li>
+                    <a href="#"><span class="tag">#Events</span></a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
+    <!--MAIN-->
     <main>
-        <div class="cards">
-            <img src="FishEye_Photos/Mimi/Portrait_Nora.jpg" alt="Portrait Nora">
-            <h3>Mimi Keel</h3>
-            <div class="descipt">
-                <span class="local">London, UK</span>
-                <span class="depiction">Voir le beau dans le quotidien</span>
-                <span class="price">400€/jour</span>
-            </div>
-            <div>
-                <button>#portrait</button>
-                <button>#events</button>
-                <button>#travel</button>
-                <button>#animals</button>
-            </div>
+        <div class="mainHeader">
+            <h1>Nos photographes</h1>
         </div>
 
-        <div class="cards">
-            <img src="FishEye_Photos/Ellie Rose/Architecture_Horseshoe.jpg" alt="Architecture Horseshoe">
-            <h3>Ellie-Rose Wilkens</h3>
-            <div class="descipt">
-                <span class="local">Paris, France</span>
-                <span class="depiction">Travaille sur des compositions complexes</span>
-                <span class="price">250€/jour</span>
+        <div class="mainContent">
+            <div class="cards">
+                <a href="#" class="contentLink">
+                    <img src="FishEye_Photos/Mimi/Portrait_Nora.jpg" alt="Portrait Nora">
+                    <h2>Mimi Keel</h2>
+                    <p class="descipt">
+                        <span class="local">London, UK</span>
+                        <span class="depiction">Voir le beau dans le quotidien</span>
+                        <span class="price">400€/jour</span>
+                    </p>
+                </a>
+                <div class="tagLinks">
+                    <ul class="tagDesign">
+                        <li>
+                            <a href="#"><span class="tag">#Portrait</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Events</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Travel</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Animals</span></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <button>#sports</button>
-                <button>#architecture</button>
+
+            <div class="cards">
+                <a href="#" class="contentLink">
+                    <img src="FishEye_Photos/Ellie Rose/Architecture_Horseshoe.jpg" alt="Architecture Horseshoe">
+                    <h2>Ellie-Rose Wilkens</h2>
+                    <p class="descipt">
+                        <span class="local">Paris, France</span>
+                        <span class="depiction">Travaille sur des compositions complexes</span>
+                        <span class="price">250€/jour</span>
+                    </p>
+                </a>
+                <div class="tagLinks">
+                    <ul class="tagDesign">
+                        <li>
+                            <a href="#"><span class="tag">#Sport</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Architecture</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cards">
+                <a href="#" class="contentLink">
+                    <img src="FishEye_Photos/Tracy/Fashion_Urban_Jungle.jpg" alt="Fashion Urban Jungle">
+                    <h2>Tracy Galindo</h2>
+                    <p class="descipt">
+                        <span class="local">Montreal, Canada</span>
+                        <span class="depiction">Photographe freelance</span>
+                        <span class="price">500€/jour</span>
+                    </p>
+                </a>
+                <div class="tagLinks">
+                    <ul class="tagDesign">
+                        <li>
+                            <a href="#"><span class="tag">#Art</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Fashion</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Events</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cards">
+                <a href="#" class="contentLink">
+                    <img src="FishEye_Photos/Nabeel/Travel_Outdoor_Baths.jpg" alt="Travel Outdoor Baths">
+                    <h2>Nabeel Bradford</h2>
+                    <p class="descipt">
+                        <span class="local">Mexico City, Mexico</span>
+                        <span class="depiction">Je vais toujours de l'avant</span>
+                        <span class="price">350€/jour</span>
+                    </p>
+                </a>
+                <div class="tagLinks">
+                    <ul class="tagDesign">
+                        <li>
+                            <a href="#"><span class="tag">#Travel</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Portrait</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cards">
+                <a href="#" class="contentLink">
+                    <img src="FishEye_Photos/Rhode/Fashion_Melody_Red_on_Stripes.jpg"
+                        alt="Fashion Melody Red on Stripes">
+                    <h2>Rhode Dubois</h2>
+                    <p class="descipt">
+                        <span class="local">Barcelona, Spain</span>
+                        <span class="depiction">Créatrice de souvenirs</span>
+                        <span class="price">375€/jour</span>
+                    </p>
+                </a>
+                <div class="tagLinks">
+                    <ul class="tagDesign">
+                        <li>
+                            <a href="#"><span class="tag">#Sport</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Fashion</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Events</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Animals</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cards">
+                <a href="#" class="contentLink">
+                    <img src="FishEye_Photos/Marcel/Travel_Tower.jpg" alt="Travel Tower">
+                    <h2>Marcel Nikolic</h2>
+                    <p class="descipt">
+                        <span class="local">Berlin, Germany</span>
+                        <span class="depiction">Toujours à la recherche de LA photo</span>
+                        <span class="price">300€/jour</span>
+                    </p>
+                </a>
+                <div class="tagLinks">
+                    <ul class="tagDesign">
+                        <li>
+                            <a href="#"><span class="tag">#Travel</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="tag">#Architecture</span></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-
-        <div class="cards">
-            <img src="FishEye_Photos/Tracy/Fashion_Urban_Jungle.jpg" alt="Fashion Urban Jungle">
-            <h3>Tracy Galindo</h3>
-            <div class="descipt">
-                <span class="local">Montreal, Canada</span>
-                <span class="depiction">Photographe freelance</span>
-                <span class="price">500€/jour</span>
-            </div>
-            <div>
-                <button>#art</button>
-                <button>#fashion</button>
-                <button>events</button>
-            </div>
-        </div>
-
-        <div class="cards">
-            <img src="FishEye_Photos/Nabeel/Travel_Outdoor_Baths.jpg" alt="Travel Outdoor Baths">
-            <h3>Nabeel Bradford</h3>
-            <div class="descipt">
-                <span class="local">Mexico City, Mexico</span>
-                <span class="depiction">Je vais toujours de l'avant</span>
-                <span class="price">350€/jour</span>
-            </div>
-            <div>
-                <button>#travel</button>
-                <button>portraits</button>
-            </div>
-        </div>
-
-        <div class="cards">
-            <img src="FishEye_Photos/Rhode/Fashion_Melody_Red_on_Stripes.jpg" alt="Fashion Melody Red on Stripes">
-            <h3>Rhode Dubois</h3>
-            <div class="descipt">
-                <span class="local">Barcelona, Spain</span>
-                <span class="depiction">Créatrice de souvenirs</span>
-                <span class="price">375€/jour</span>
-            </div>
-            <div>
-                <button>#sport</button>
-                <button>#fashion</button>
-                <button>#events</button>
-                <button>#animals</button>
-            </div>
-        </div>
-
-        <div class="cards">
-            <img src="FishEye_Photos/Marcel/Travel_Tower.jpg" alt="Travel Tower">
-            <h3>Marcel Nikolic</h3>
-            <div class="descipt">
-                <span class="local">Berlin, Germany</span>
-                <span class="depiction">Toujours à la recherche de LA photo</span>
-                <span class="price">300€/jour</span>
-            </div>
-            <div>
-                <button>#travel</button>
-                <button>#architecture</button>
-            </div>
-        </div>
-
     </main>
+    <script src="app.js"></script>
 </body>
 
 </html>
