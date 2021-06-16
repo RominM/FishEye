@@ -18,6 +18,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
 /********CARDS********/
 
 .cards {
@@ -32,7 +33,7 @@
     width: 100%;
 }
 
-.contentLink img {
+.cards img, .imgPhoto img {
     width: 250px;
     height: 250px;
     margin: 10px;
@@ -53,6 +54,20 @@ h2 {
 .price {
     color: #757575;
 }
+
+
+
+
+
+.photographerContent {
+    display: flex;
+    background-color: #FAFAFA;
+}
+
+
+
+
+
 
 
 
