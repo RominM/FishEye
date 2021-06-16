@@ -1,0 +1,37 @@
+//___________________________
+//HEADER_____________________
+
+.banner {
+    display: grid;
+    grid-template-columns: 15% 60% 28%;
+    padding: 25px 0px 25px 10px;
+}
+
+.logo img {
+    grid-column-start: 1;
+}
+
+.topNav {
+    grid-column-start: 2;
+}
+
+.tagDesign {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    &__tag {
+        border: solid 1px #C4C4C4;
+        border-radius: 20px;
+        padding: 0 8px;
+        margin: 2px;
+    }
+}    
+
+.mainHeader h1 {
+    grid-column-start: 3;
+    margin: auto;
+    font-size: 2em;
+    color: $firebrick;
+}
+
+

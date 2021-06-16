@@ -1,0 +1,23 @@
+{
+  "name": "rominmanogil_06_07062021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "sass": "^1.34.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "sass --watch ./sass/master.scss:./css/style.css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RominM/RominManogil_06_07062021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RominM/RominManogil_06_07062021/issues"
+  },
+  "homepage": "https://github.com/RominM/RominManogil_06_07062021#readme"
+}

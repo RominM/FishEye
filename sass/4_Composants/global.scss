@@ -1,0 +1,29 @@
+//__________________________
+//ROOT______________________
+
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    color: $firebrick;
+}
+
+span {
+    display: block;
+}
+
+.hidden {
+    display: none;
+    background-color: #da8775;
+    border-radius: 5px;
+    height: 30px;
+    width: 182px;
+    margin: auto;
+    text-align: center;
+}
+
+.hidden a {
+    color: #000;
+    font-family: sans-serif;
+}
