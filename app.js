@@ -3,9 +3,9 @@ fetch("./data.json")// le 'fetch' est une promesse mais ne donnera la reponse qu
     .then(response => { 
         return response.json()
     })
-    .then(reponse2 => {
+    .then(response2 => {
 
-        init(reponse2);
+        init(response2);
     })
 
 // tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
@@ -13,7 +13,7 @@ const init = (data) => {
 
     //boucle pour chaque photographes
     data.photographers.forEach(photographer => {
-
+        console.log(photographer.name);
         // element du DOM necessaire
         const mainContent = document.querySelector('.mainContent');
 
