@@ -21,10 +21,18 @@
             justify-content: center;
             flex-wrap: wrap;
             &__tag {
-                border: solid 1px #C4C4C4;
+                border: solid 1px $lightGrey;
                 border-radius: 20px;
                 padding: 0 8px;
                 margin: 2px;
+                color: $firebrick;
+                cursor: pointer;
+                transition: .3s;
+            }
+            &__tag:hover {
+                box-shadow: $lightGrey 2px 2px 5px 2px;
+                transform: scale3d(2 2);
+                transform: translateY(-4px);
             }
         }    
     }
