@@ -3,35 +3,41 @@
 
 .banner {
     display: grid;
-    grid-template-columns: 15% 60% 28%;
+    grid-template-columns: auto auto auto;
     padding: 25px 0px 25px 10px;
-}
-
-.logo img {
-    grid-column-start: 1;
-}
-
-.topNav {
-    grid-column-start: 2;
-}
-
-.tagDesign {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    &__tag {
-        border: solid 1px #C4C4C4;
-        border-radius: 20px;
-        padding: 0 8px;
-        margin: 2px;
+    .logo {
+        max-width: 260px;
+        min-width: 150px;
+        img {
+            width: 100%;
+        }
     }
-}    
-
-.mainHeader h1 {
-    grid-column-start: 3;
-    margin: auto;
-    font-size: 2em;
-    color: $firebrick;
+    .topNav {
+        .tagDesign {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            &__tag {
+                border: solid 1px #C4C4C4;
+                border-radius: 20px;
+                padding: 0 8px;
+                margin: 2px;
+            }
+        }    
+    }
+    .mainHeader {
+        max-width: 260px;
+        min-width: 150px;
+        margin: auto 20px;
+        color: $firebrick;
+        h1 {
+            font-size: 4vh;
+        }
+    }
 }
+
+
+
+
 
 

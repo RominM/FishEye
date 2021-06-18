@@ -1,0 +1,42 @@
+
+.mainContent {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/********CARDS********/
+
+.cards {
+    width: 30%;
+    min-width: 350px;
+    text-align: center;
+    margin: auto;
+
+}
+
+.contentLink {
+    width: 100%;
+}
+
+.cards img, .imgPhoto img {
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+h2 {
+    margin: 15px;
+    font-size: 2em;
+    color: #D3573C;
+}
+
+.depiction{
+    color: #000;
+}
+
+.price {
+    color: #757575;
+}
