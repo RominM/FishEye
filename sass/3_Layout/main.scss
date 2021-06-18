@@ -12,11 +12,13 @@
     min-width: 350px;
     text-align: center;
     margin: auto;
-
-}
-
-.contentLink {
-    width: 100%;
+    margin-bottom: 50px;
+    h2 {
+        margin: 15px;
+        font-size: 2em;
+        color: #D3573C;
+        cursor: pointer;
+    }
 }
 
 .cards img, .imgPhoto img {
@@ -25,18 +27,20 @@
     margin: 10px;
     border-radius: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
 
-h2 {
-    margin: 15px;
-    font-size: 2em;
-    color: #D3573C;
+.descript {
+    cursor: pointer;
+    line-height: 1.5em;
+    .local {
+        color: firebrick;
+    }
+    .depiction{
+        color: #000;
+    }
+    .price {
+        color: darkGrey;
+    }
 }
 
-.depiction{
-    color: #000;
-}
-
-.price {
-    color: #757575;
-}

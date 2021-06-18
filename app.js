@@ -34,7 +34,7 @@ const init = (data) => {
         //___________
         //CARDS______
         card.classList.add('cards');
-        image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
+        card.id = photographer.id;        image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
         image.alt = 'photo portrait de ' + photographer.name;
         nameTitle.innerHTML = photographer.name;
         para.classList.add('descript');

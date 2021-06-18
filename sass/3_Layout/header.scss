@@ -4,15 +4,18 @@
 .banner {
     display: grid;
     grid-template-columns: auto auto auto;
-    padding: 25px 0px 25px 10px;
+    padding: 30px 10px 30px 10px;
     .logo {
+        grid-column: 1;
         max-width: 260px;
-        min-width: 150px;
+        min-width: 180px;
         img {
             width: 100%;
         }
     }
     .topNav {
+        margin: auto;
+        grid-column: 2;
         .tagDesign {
             display: flex;
             justify-content: center;
@@ -26,12 +29,12 @@
         }    
     }
     .mainHeader {
+        grid-column: 3;
         max-width: 260px;
-        min-width: 150px;
         margin: auto 20px;
         color: $firebrick;
         h1 {
-            font-size: 4vh;
+            font-size: 1.5em;
         }
     }
 }
