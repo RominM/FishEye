@@ -28,8 +28,6 @@ const init = (data) => {
       //__________//create
       //TAGS______
       const ul = document.createElement('ul');
-      const li = document.createElement('li')
-      const tag = document.createElement('span');
 
       //___________//settings
       //CARDS______
@@ -48,8 +46,6 @@ const init = (data) => {
       //__________//settings
       //TAGS______
       ul.classList.add('tagDesign');
-      tag.classList.add('tagDesign__tag');
-      tag.innerHTML = photographer.tags
       /*********inDOM*********/
       mainContent.append(card);
 
@@ -62,9 +58,19 @@ const init = (data) => {
       para.append(gimmick);
       para.append(price);
       //__________//indent
-      //TAGS______
+      //TAGS______.
+      for(let i=0; i<photographer.tags.length; i++){
+         const li = document.createElement('li')
+         const tag = document.createElement('span');
+
+         tag.classList.add('tagDesign__tag');
+         tag.innerHTML = photographer.tags[i];
+   
+         li.append(tag);
+         ul.append(li);
+      }
+
+      console.log(photographer.tags);
       card.append(ul);
-      ul.append(li);
-      li.append(tag);
    })
 }

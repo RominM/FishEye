@@ -16,25 +16,6 @@
     .topNav {
         margin: auto;
         grid-column: 2;
-        .tagDesign {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            &__tag {
-                border: solid 1px $lightGrey;
-                border-radius: 20px;
-                padding: 0 8px;
-                margin: 2px;
-                color: $firebrick;
-                cursor: pointer;
-                transition: .3s;
-            }
-            &__tag:hover {
-                box-shadow: $lightGrey 2px 2px 5px 2px;
-                transform: scale3d(2 2);
-                transform: translateY(-4px);
-            }
-        }    
     }
     .mainHeader {
         grid-column: 3;
@@ -46,6 +27,25 @@
         }
     }
 }
+.tagDesign {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .tagDesign__tag {
+        border: solid 1px $lightGrey;
+        border-radius: 20px;
+        padding: 0 8px;
+        margin: 2px;
+        color: $firebrick;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .tagDesign__tag:hover {
+        box-shadow: $lightGrey 2px 2px 5px 2px;
+        transform: scale3d(2 2);
+        transform: translateY(-4px);
+    }
+}    
 
 
 
