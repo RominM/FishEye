@@ -26,6 +26,7 @@ const init = (data) => {
       const place = document.createElement('span');
       const gimmick = document.createElement('span');
       const price = document.createElement('span');
+      // const mainFlux = document.createElement('section');
       //__________//create
       //TAGS______
       const ul = document.createElement('ul');
@@ -47,6 +48,7 @@ const init = (data) => {
       gimmick.innerHTML = photographer.tagline;
       price.classList.add('price');
       price.innerHTML = photographer.price + '€/jour';
+      // mainFlux.classList.add('mainFlux');
       //__________//settings
       //TAGS______
       ul.classList.add('tagDesign');
@@ -63,6 +65,7 @@ const init = (data) => {
       para.append(place);
       para.append(gimmick);
       para.append(price);
+      // card.append(mainFlux);
       //__________//indent
       //TAGS______.
       for(let i=0; i<photographer.tags.length; i++){
@@ -70,7 +73,7 @@ const init = (data) => {
          const tag = document.createElement('span');
 
          tag.classList.add('tagDesign__tag');
-         tag.innerHTML = photographer.tags[i];
+         tag.innerHTML = '#' + photographer.tags[i];
    
          li.append(tag);
          ul.append(li);
@@ -78,13 +81,13 @@ const init = (data) => {
       blockFlex.append(ul);
 
 //**************************************************************************************/
-
       const photographerPageActive = () => {
          // mainContent.style.zIndex = -1;
          // mainContent.style.opacity = 0.3;
          card.className = 'card2';
          blockFlex.className = 'blockFlex2';
          contact.style.display = 'block';
+         // mainFlux.style.display = 'block';
       }
       card.addEventListener('click', () => {
          photographerPageActive();

@@ -7,97 +7,21 @@
     z-index: 0;
 }
 
-/********CARDS********/
-
-.cards, .card2 {
-    position: relative;
-    display: block;
-    width: 30%;
-    min-width: 350px;
-    text-align: center;
-    margin: auto;
-    margin-bottom: 50px;
-    transition: 0.3s;
-    padding-bottom: 10px;
-    padding-top: 5px;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    z-index: 0;
-    h2 {
-        margin: auto;
-        font-size: 2em;
-        color: #D3573C;
-        cursor: pointer;
-    }
-    .descript {
-        line-height: 1.5em;
-        .local {
-            color: firebrick;
-        }
-        .depiction{
-            color: #000;
-        }
-        .price {
-            color: darkGrey;
-        }
-    }
-    img, .imgPhoto img {
-        width: 250px;
-        height: 250px;
-        margin: 10px;
-        border-radius: 100%;
-        object-fit: cover;
-        transition: .3s;
-    }
-}
-.cards:hover {
-    border-radius: 5px;
-    box-shadow: 2px 10px 20px $lightGrey;
-    transform: scale(1.1);
-}
-
-.cards:hover img {
-    transform: scale(1.05);
-}
-
-.contact-btn {
-    position: absolute;
-    top : 35%;
-    left: 40%;
-    transform: translate(-65%,-60%);
+.hidden {
     display: none;
-    width: 120px;
-    height: 50px;
-    background-color: $firebrick;
-    color: #fff;
-    border: none;
+    background-color: #da8775;
     border-radius: 5px;
-    cursor: pointer;
-}
-
-.blockFlex {
-    line-height: 1.7;
-}
-
-.blockFlex2 {
-    line-height: 2;
-    text-align: start;
-    margin: auto 0;
-}
-
-.card2 {
-    position: absolute;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    z-index: 201;
-    width: 90%;
+    height: 30px;
+    width: 182px;
     margin: auto;
-    padding-left: 50px;
-    padding-right: 50px;
-    background-color: #FAFAFA;
-    border-radius: 7px;
+    text-align: center;
 }
 
+.hidden a {
+    color: #000;
+    font-family: sans-serif;
+}
 
+.mainFlux {
+    display: none;
+}
