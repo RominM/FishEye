@@ -4,7 +4,6 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       return response.json()
    })
    .then(response2 => {
-
       init(response2);
    })
 
@@ -20,6 +19,8 @@ const init = (data) => {
       //CARDS______
       const card = document.createElement('div');
       const image = document.createElement('img');
+      const contact = document.createElement('button');
+      const blockFlex = document.createElement('div');
       const nameTitle = document.createElement('h2');
       const para = document.createElement('p');
       const place = document.createElement('span');
@@ -28,13 +29,16 @@ const init = (data) => {
       //__________//create
       //TAGS______
       const ul = document.createElement('ul');
-
+//**************************************************************************************/
       //___________//settings
       //CARDS______
       card.classList.add('cards');
       card.id = photographer.id;
       image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
       image.alt = 'photo portrait de ' + photographer.name;
+      contact.classList.add('contact-btn');
+      contact.innerHTML = 'Contactez-moi'
+      blockFlex.classList.add('blockFlex');
       nameTitle.innerHTML = photographer.name;
       para.classList.add('descript');
       place.classList.add('local');
@@ -48,12 +52,14 @@ const init = (data) => {
       ul.classList.add('tagDesign');
       /*********inDOM*********/
       mainContent.append(card);
-
+//**************************************************************************************/
       //___________//indent
       //CARDS______
       card.append(image);
-      card.append(nameTitle);
-      card.append(para);
+      card.append(contact);
+      card.append(blockFlex);
+      blockFlex.append(nameTitle);
+      blockFlex.append(para);
       para.append(place);
       para.append(gimmick);
       para.append(price);
@@ -69,8 +75,23 @@ const init = (data) => {
          li.append(tag);
          ul.append(li);
       }
+      blockFlex.append(ul);
 
-      console.log(photographer.tags);
-      card.append(ul);
+//**************************************************************************************/
+
+      const photographerPageActive = () => {
+         // mainContent.style.zIndex = -1;
+         // mainContent.style.opacity = 0.3;
+         card.className = 'card2';
+         blockFlex.className = 'blockFlex2';
+         contact.style.display = 'block';
+      }
+      card.addEventListener('click', () => {
+         photographerPageActive();
+         // card.style.border = 'solid red 2px'
+      })
    })
 }
+
+
+
