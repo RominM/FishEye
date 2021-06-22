@@ -1,16 +1,16 @@
 fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse que lorsqu'il aura recupérer les données.
-// il n'empeche, cependant, pas la lecture du fichier
-//ici, le fetch demande des information concernant le fichier 'data.json"
-   .then(response => {//ici sera decrit sa reponse
+   // il n'empeche, cependant, pas la lecture du fichier
+   //ici, le fetch demande des information concernant le fichier 'data.json"
+   .then(response => { //ici sera decrit sa reponse
       return response.json()
-   })//en attendant cette reponse, on lui demande d'initialiser la response2
+   }) //en attendant cette reponse, on lui demande d'initialiser la response2
    .then(response2 => {
       init(response2);
    })
 
-   
-   // tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
-   const init = (data) => {
+
+// tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
+const init = (data) => {
    console.log(data);
    //boucle pour chaque photographes
    data.photographers.forEach(photographer => {
@@ -38,7 +38,7 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       //__________//create
       //TAGS______
       const ul = document.createElement('ul');
-//**************************************************************************************/
+      //**************************************************************************************/
       //___________//settings
       //HEADER_____
       header.classList.add('banner');
@@ -46,7 +46,7 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       logo.scr = "FishEye_Photos/logo.png";
       logo.alt = "FishEye Home Page";
       nav.classList.add('topNav');
-      nav.ariaLabel = "photographer categories"; 
+      nav.ariaLabel = "photographer categories";
       //___________//settings
       //CARDS______
       card.classList.add('cards');
@@ -71,7 +71,7 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       /*********inDOM*********/
       mainContent.append(card);
 
-//**************************************************************************************/
+      //**************************************************************************************/
       //___________//indent
       //HEADER_____
       header.append(linkHome);
@@ -91,19 +91,80 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       card.append(mainFlux);
       //__________//indent
       //TAGS______
-      for(let i=0; i<photographer.tags.length; i++){
+      for (let i = 0; i < photographer.tags.length; i++) {
          const li = document.createElement('li')
          const tag = document.createElement('span');
 
          tag.classList.add('tagDesign__tag');
          tag.innerHTML = '#' + photographer.tags[i];
-   
+
          li.append(tag);
          ul.append(li);
       }
       blockFlex.append(ul);
-      
-//**************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // data.media.forEach(media => {
+
+          // const i = media
+          // console.log(i);
+   
+          //_________//indent
+          //MEDIA____
+      //    for (let i = 0; i < media.photographerId; i++) {
+   
+      //       console.log(media.photographerId);
+             // console.log(data.media[i].photographerId); //notre inconnue (ce dont on a besoin!!
+   
+   
+             // console.log(media.photographerId);
+      //       const album = document.createElement('div');
+      //       const photo = document.createElement('img');
+   
+      //       album.classList.add('album');
+      //       photo.classList.add('pic');
+   
+      //       mainFlux.append(album);
+      //       album.append(photo);
+      //    }
+      // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   //**************************************************************************************/
       const photographerPageActive = () => {
          // mainContent.style.zIndex = -1;
          // mainContent.style.opacity = 0.3;
@@ -118,32 +179,5 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       })
    })
 
-   data.media.forEach(photographerId => {
-      console.log(data.media[0].photographerId); //Id du 1er photographe
-      
-      //_________//indent
-      //MEDIA____
-      for(let i=0; i<media.photographerId; i++){
-         
-         console.log(media.photographerId);
-         const album = document.createElement('div');
-         const photo = document.createElement('img');
 
-         album.classList.add('album');
-         photo.classList.add('pic');
-         photo.src = data.media[i].image;
-
-         mainFlux.append(album);
-         album.append(photo)
-         }
-      
-      
-   });
-
-   
 }
-
-
-
-
-
