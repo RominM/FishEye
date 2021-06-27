@@ -17,13 +17,16 @@ const data = JSON.parse(dataFromLocalStorage);
 const medias = [];
 
 data.media.forEach(media => {
-    if (media.photographerId == url_id){
+    if (media.photographerId == url_id){ // si (l'id des chaque media a le même id que l'url)
         medias.push(media); // tri les media qui ont le même id que l'url
-    }
+        }
+    // if (media.photographerId == url_id) {
+    //     photographe = photographers.name;
+    // }
 })
 
-
 //**************************************************************************************/
+
 //DOM element
 const body = document.body;
 
@@ -49,17 +52,22 @@ linkHome.append(logo);
 //========================================================
 //MEDIA ==================================>>>
 
+const nomDuPhotographe = data.photographers[numero_du_tableau_photographe].name;
+numero_du_tableau_photographe = maVariable;
+// exemple >>> data.photographers[0].name > return "Mimi Keel"
+//             data.photographers[3].name > return "Nabeel Bradford"
+photo.src = "./FishEye_Photos/" + nomDuPhotographe + "/" + media.image;
+
 // data.photographers.forEach(photographer => {
 
     medias.forEach(media => {
-        console.log('coucou');
         //_________//create
         //ALBUM____
         const pic = document.createElement('img');
         //_________//setting
         //ALBUM____
-        pic.id = photographer.name;
-        pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
+        // console.log(photographer.name);
+        // pic.id = photographer.name;
         pic.classList.add('pic');
         pic.alt = media.title;
         //_________//indent

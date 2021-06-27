@@ -36,7 +36,6 @@ const mainContent = document.querySelector('.mainContent');
 
 // tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
 const init = (data) => {
-   console.log(data);
    //boucle pour chaque photographes
    data.photographers.forEach(photographer => {
 
