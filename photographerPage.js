@@ -48,6 +48,99 @@ body.append(head);
 head.append(linkHome);
 linkHome.append(logo);
 
+//==================================================
+
+//MAIN________
+//__________//create
+const main = document.createElement('main');
+//PHOTOGRAPHE
+const photographerArea = document.createElement('div');
+const nameTitle = document.createElement('h2');
+const para = document.createElement('p');
+const place = document.createElement('span');
+const gimmick = document.createElement('span');
+const contact = document.createElement('button');
+//FILTERS
+const filter = document.createElement('div');
+const sortBy = document.createElement('div');
+const select = document.createElement('div');
+const arrow = document.createElement('span');
+const popChoice = document.createElement('span');
+const dateChoice = document.createElement('span');
+const titleChoice = document.createElement('span'); 
+const split1 = document.createElement('br');
+const split2 = document.createElement('br');
+//ALBUM
+const album = document.createElement('div');
+const pic = document.createElement('img');
+//==================================================
+//_________//settings
+//PHOTOGRAPHE
+photographerArea.classList.add('photoFrame');
+// nameTitle.innerHTML = photographer.name;
+para.classList.add('descript');
+place.classList.add('local');
+// place.innerHTML = photographer.city + ', ' + photographer.country;
+gimmick.classList.add('depiction');
+// gimmick.innerHTML = photographer.tagline;
+contact.classList.add('contact');
+contact.innerHTML = "Contactez-moi";
+//FILTERS
+filter.classList.add('filter');
+sortBy.classList.add('sortBy');
+sortBy.innerHTML = "Trier par";
+select.classList.add('select');
+arrow.classList.add('arrow');
+popChoice.classList.add('choice');
+popChoice.innerHTML = "Popularité";
+dateChoice.classList.add('choice');
+dateChoice.innerHTML = "Date";
+titleChoice.classList.add('choice');
+titleChoice.innerHTML = "Titre";
+//ALBUM
+album.classList.add('album');
+//==================================================
+//_________//indent
+body.append(main);
+//==================================================
+main.append(photographerArea);
+main.append(filter);
+main.append(album);
+//==================================================
+filter.append(sortBy);
+filter.append(select);
+filter.append(arrow);
+select.append(popChoice);
+select.append(split1);
+select.append(dateChoice);
+select.append(split2);
+select.append(titleChoice);
+//==================================================
+photographerArea.append(nameTitle);
+photographerArea.append(para);
+photographerArea.append(contact);
+para.append(place);
+para.append(gimmick);
+//==================================================
+album.append(pic);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //___________________________________
 //FROMULAIRE_________________________
 //__________//create

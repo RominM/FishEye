@@ -1,0 +1,32 @@
+
+.filter {
+    position: relative;
+    border: solid;
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.arrow::before, .arrow::after {
+    position: absolute;
+    content: "";
+    width: 3px;
+    height: 100%;
+    background-color: #000;
+}
+
+.arrow::before {
+    transform: rotate(45deg);
+}
+
+.arrow::after {
+    transform: rotate(-45deg);
+}
