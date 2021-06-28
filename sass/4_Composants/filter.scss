@@ -2,21 +2,22 @@
 .filter {
     position: relative;
     border: solid;
-    width: 170px;
+    width: 250px;
     display: flex;
     justify-content: space-between;
-}
-
-.arrow {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 15px;
-    height: 15px;
+    .arrow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(100%,100%);
+        width: 15px;
+        height: 15px;
+    }
 }
 
 .arrow::before, .arrow::after {
     position: absolute;
+    left: 25px;
     content: "";
     width: 3px;
     height: 100%;
