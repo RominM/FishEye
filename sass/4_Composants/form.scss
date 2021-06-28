@@ -1,0 +1,89 @@
+.bground {
+    text-align: center;
+    background-color: #DB8876;
+    width: 75%;
+    max-width: 670px;
+    height: 700px;
+    margin: auto;
+    border-radius: 3px;
+    .content {
+        position: relative;
+        display: flex;
+        margin: 50px;
+        margin-left: 30px;
+        padding-top: 25px;
+    }
+    .cross {
+        position: absolute;
+        right: -25px;
+        top: 20px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        transform: scale(0.7);
+    }
+    
+    .cross:before,
+    .cross:after {
+        position: absolute;
+        left: 15px;
+        content: "";
+        height: 100%;
+        width: 3px;
+        background-color: #fff;
+    }
+    
+    .cross:before {
+        transform: rotate(45deg);
+    }
+    
+    .cross:after {
+        transform: rotate(-45deg);
+    }
+    .title {
+        font-size: 4vw;
+    }
+}
+
+.modalBody {
+    text-align: start;
+}
+
+.form-data {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 3px;
+    height: 40px;
+    font-size: 1.2em;
+    outline: none;
+}
+
+textarea {
+    height: 170px;
+    overflow-wrap: break-word;
+    font-size: 19px;
+}
+
+.button {
+    border: none;
+    margin: 25px 35px;
+    border-radius: 5px;
+    width: 170px;
+    height: 69px;
+    background-color: #901C1C;
+    color: #fff;
+    font-size: 1.5vw;
+    cursor: pointer;
+}

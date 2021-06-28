@@ -16,6 +16,7 @@ const mainContent = document.querySelector('.mainContent');
 //HEADER_____
 // const header = document.createElement('header');
 // const linkHome = document.createElement('a');
+// const h1 = document.createElement('h1');
 // const logo = document.createElement('img');
 // const nav = document.createElement('nav');
 //___________//settings
@@ -90,6 +91,7 @@ const init = (data) => {
       para.append(gimmick);
       para.append(price);
       card.append(mainFlux);
+
       //__________//indent
       //TAGS______
       for (let i = 0; i < photographer.tags.length; i++) {
@@ -105,3 +107,5 @@ const init = (data) => {
       blockFlex.append(ul);
    })
 }
+
+
