@@ -17,9 +17,9 @@ const data = JSON.parse(dataFromLocalStorage);
 const medias = [];
 
 data.media.forEach(media => {
-    if (media.photographerId == url_id){ // si (l'id des chaque media a le même id que l'url)
+    if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
         medias.push(media); // tri les media qui ont le même id que l'url
-        }
+    }
     // if (media.photographerId == url_id) {
     //     photographe = photographers.name;
     // }
@@ -55,11 +55,13 @@ linkHome.append(logo);
 const main = document.createElement('main');
 //PHOTOGRAPHE
 const photographerArea = document.createElement('div');
+const zoneTxt = document.createElement('div');
 const nameTitle = document.createElement('h2');
 const para = document.createElement('p');
 const place = document.createElement('span');
 const gimmick = document.createElement('span');
 const contact = document.createElement('button');
+const image = document.createElement('img');
 //FILTERS
 const filter = document.createElement('div');
 const sortBy = document.createElement('div');
@@ -67,9 +69,9 @@ const select = document.createElement('div');
 const arrow = document.createElement('span');
 const popChoice = document.createElement('span');
 const dateChoice = document.createElement('span');
-const titleChoice = document.createElement('span'); 
-const split1 = document.createElement('br');
-const split2 = document.createElement('br');
+const titleChoice = document.createElement('span');
+const split1 = document.createElement('hr');
+const split2 = document.createElement('hr');
 //ALBUM
 const album = document.createElement('div');
 const pic = document.createElement('img');
@@ -85,6 +87,8 @@ gimmick.classList.add('depiction');
 // gimmick.innerHTML = photographer.tagline;
 contact.classList.add('contact');
 contact.innerHTML = "Contactez-moi";
+image.src = "FishEye_Photos/Photographers ID Photos/" // + photographer.portrait;
+image.alt = 'photo portrait de ' //+ photographer.name;
 //FILTERS
 filter.classList.add('filter');
 sortBy.classList.add('sortBy');
@@ -109,21 +113,22 @@ main.append(album);
 //==================================================
 filter.append(sortBy);
 filter.append(select);
-filter.append(arrow);
+select.append(arrow);
 select.append(popChoice);
 select.append(split1);
 select.append(dateChoice);
 select.append(split2);
 select.append(titleChoice);
 //==================================================
-photographerArea.append(nameTitle);
-photographerArea.append(para);
+photographerArea.append(zoneTxt);
 photographerArea.append(contact);
+photographerArea.append(image);
+zoneTxt.append(nameTitle);
+zoneTxt.append(para);
 para.append(place);
 para.append(gimmick);
 //==================================================
 album.append(pic);
-
 
 
 
@@ -271,24 +276,42 @@ txtFree.append(inpTxtFree);
 //     })
 // // })
 
+var state = {
+    firstName: {
+        data: '',
+    },
+    lastName: {
+        data: '',
+    },
+    email: {
+        data: '',
+    },
+    txtFree: {
+        data: '',
+    }
+}
 
 
+const checkFirstname = () => {
+    state.firstName.data = firstname.Value;
+}
 
+const closeForm = () => {
+    bground.style.display = "none";
+    main.style.opacity = 1;
+}
 
+const openForm = () => {
+    bground.style.display = "block";
+    main.style.opacity = 0.3;
+}
 
+const validForm = () => {
+    bground.style.display = "none";
+    main.style.opacity = 1;
+    console.log(state);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+contact.addEventListener('click', openForm);
+cross.addEventListener('click', closeForm);
+sendBtn.addEventListener('click', validForm);

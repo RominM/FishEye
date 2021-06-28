@@ -1,17 +1,43 @@
 
 .filter {
     position: relative;
-    border: solid;
-    width: 250px;
+    width: 90%;
+    margin: auto;
     display: flex;
-    justify-content: space-between;
+    .sortBy, .select {
+        font-size: 1.2em;
+        margin-right: 40px;
+    }
+    .select {
+        position: relative;
+        width: 150px;
+        background-color: $firebrick;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 2px 2px 12px $darkGrey;
+        .choice {
+            width: 25px;
+            padding: 17px 15px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        hr {
+            width: 80%;
+            margin: auto;
+        }
+        .choice:hover {
+            transform: translate(10px);
+            // transition-timing-function: ease-in-out;
+            transition: .3s;
+        }
+    }
     .arrow {
         position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(100%,100%);
-        width: 15px;
-        height: 15px;
+        top: 12%;
+        right: 25%;
+        width: 10px;
+        height: 10px;
+        cursor: pointer;
     }
 }
 
@@ -21,11 +47,13 @@
     content: "";
     width: 3px;
     height: 100%;
-    background-color: #000;
+    background-color: #fff;
 }
 
 .arrow::before {
     transform: rotate(45deg);
+    position: absolute;
+    left: 200%;
 }
 
 .arrow::after {

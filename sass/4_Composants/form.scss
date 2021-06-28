@@ -1,10 +1,13 @@
 .bground {
     display: none;
-    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     background-color: #DB8876;
     width: 75%;
     max-width: 590px;
-    height: 700px;
+    height: 730px;
     margin: auto;
     border-radius: 3px;
     .content {
