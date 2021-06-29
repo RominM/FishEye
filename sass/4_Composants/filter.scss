@@ -11,8 +11,8 @@
     .select {
         position: relative;
         width: 150px;
+        height: 50px;
         background-color: $firebrick;
-        color: #fff;
         border-radius: 5px;
         box-shadow: 2px 2px 12px $darkGrey;
         .choice {
@@ -20,8 +20,12 @@
             padding: 17px 15px;
             cursor: pointer;
             transition: .3s;
+            a {
+                color: #fff;
+            }
         }
         hr {
+            display: none;
             width: 80%;
             margin: auto;
         }
@@ -31,17 +35,29 @@
             transition: .3s;
         }
     }
-    .arrow {
+    .arrowDown {
         position: absolute;
-        top: 12%;
-        right: 25%;
+        top: 20px;
+        right: 3px;
         width: 10px;
         height: 10px;
         cursor: pointer;
+        transform: rotate(180deg);
+        transition: .3s;
+    }
+    .arrowUp{
+        display: none;
+        position: absolute;
+        top: 20px;
+        right: 41px;
+        width: 10px;
+        height: 10px;
+        cursor: pointer;
+        transition: .3s;
     }
 }
 
-.arrow::before, .arrow::after {
+.arrowDown::before, .arrowDown::after, .arrowUp::before, .arrowUp::after {
     position: absolute;
     left: 25px;
     content: "";
@@ -50,12 +66,14 @@
     background-color: #fff;
 }
 
-.arrow::before {
+.arrowDown::before, .arrowUp::before{
     transform: rotate(45deg);
     position: absolute;
     left: 200%;
 }
 
-.arrow::after {
+.arrowDown::after, .arrowUp::after {
     transform: rotate(-45deg);
 }
+
+

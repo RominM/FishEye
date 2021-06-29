@@ -65,11 +65,15 @@ const image = document.createElement('img');
 //FILTERS
 const filter = document.createElement('div');
 const sortBy = document.createElement('div');
-const select = document.createElement('div');
-const arrow = document.createElement('span');
-const popChoice = document.createElement('span');
-const dateChoice = document.createElement('span');
-const titleChoice = document.createElement('span');
+const select = document.createElement('ul');
+const arrowDown = document.createElement('span');
+const arrowUp = document.createElement('span');
+const popChoice = document.createElement('li');
+const linkPop = document.createElement('a');
+const dateChoice = document.createElement('li');
+const linkDate = document.createElement('a');
+const titleChoice = document.createElement('li');
+const linkTitle = document.createElement('a');
 const split1 = document.createElement('hr');
 const split2 = document.createElement('hr');
 //ALBUM
@@ -94,13 +98,17 @@ filter.classList.add('filter');
 sortBy.classList.add('sortBy');
 sortBy.innerHTML = "Trier par";
 select.classList.add('select');
-arrow.classList.add('arrow');
+arrowDown.classList.add('arrowDown');
+arrowUp.classList.add('arrowUp');
 popChoice.classList.add('choice');
-popChoice.innerHTML = "Popularité";
+linkPop.innerHTML = "Popularité";
+linkPop.href = "#";
 dateChoice.classList.add('choice');
-dateChoice.innerHTML = "Date";
+linkDate.innerHTML = "Date";
+linkDate.href = "#";
 titleChoice.classList.add('choice');
-titleChoice.innerHTML = "Titre";
+linkTitle.innerHTML = "Titre";
+linkTitle.href = "#";
 //ALBUM
 album.classList.add('album');
 //==================================================
@@ -113,12 +121,16 @@ main.append(album);
 //==================================================
 filter.append(sortBy);
 filter.append(select);
-select.append(arrow);
+select.append(arrowDown);
+select.append(arrowUp);
 select.append(popChoice);
+popChoice.append(linkPop);
 select.append(split1);
 select.append(dateChoice);
+dateChoice.append(linkDate);
 select.append(split2);
 select.append(titleChoice);
+titleChoice.append(linkTitle);
 //==================================================
 photographerArea.append(zoneTxt);
 photographerArea.append(contact);
@@ -244,9 +256,23 @@ email.append(inpEmail);
 txtFree.append(labTxtFree);
 txtFree.append(inpTxtFree);
 
-
-
-
+//MENU DEROULANT
+const menuOn = () => {
+    select.style.height = "160px";
+    arrowDown.style.display = "none";
+    arrowUp.style.display = "block";
+    split1.style.display = "block";
+    split2.style.display = "block";
+}
+const menuOff = () => {
+    select.style.height = "50px";
+    arrowDown.style.display = "block";
+    arrowUp.style.display = "none";
+    split1.style.display = "none";
+    split2.style.display = "none";
+}
+arrowDown.addEventListener('click', menuOn);
+arrowUp.addEventListener('click', menuOff);
 
 //**************************************************************************************/
 //========================================================
