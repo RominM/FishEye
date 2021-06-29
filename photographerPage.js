@@ -79,6 +79,10 @@ const split2 = document.createElement('hr');
 //ALBUM
 const album = document.createElement('div');
 const pic = document.createElement('img');
+const picSubtitle = document.createElement('div');
+const nameImg = document.createElement('span');
+const like = document.createElement('div');
+const heart = document.createElement('img');
 //==================================================
 //_________//settings
 //PHOTOGRAPHE
@@ -111,6 +115,13 @@ linkTitle.innerHTML = "Titre";
 linkTitle.href = "#";
 //ALBUM
 album.classList.add('album');
+// pic.src = "";
+picSubtitle.classList.add('subtitle');
+nameImg.classList.add('nameImg');
+// nameImg.innerHTML = "";
+like.classList.add('like');
+heart.classList.add('heart');
+heart.src = "./FishEye_Photos/heart-solid.svg";
 //==================================================
 //_________//indent
 body.append(main);
@@ -141,6 +152,10 @@ para.append(place);
 para.append(gimmick);
 //==================================================
 album.append(pic);
+album.append(picSubtitle);
+picSubtitle.append(nameTitle);
+picSubtitle.append(like);
+picSubtitle.append(heart);
 
 
 

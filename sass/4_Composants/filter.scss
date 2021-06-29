@@ -30,8 +30,7 @@
             margin: auto;
         }
         .choice:hover {
-            transform: translate(10px);
-            // transition-timing-function: ease-in-out;
+            transform: translate(7px);
             transition: .3s;
         }
     }
@@ -75,5 +74,3 @@
 .arrowDown::after, .arrowUp::after {
     transform: rotate(-45deg);
 }
-
-

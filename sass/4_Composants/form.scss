@@ -7,13 +7,13 @@
     background-color: #DB8876;
     width: 75%;
     max-width: 590px;
-    height: 730px;
+    height: auto;
     margin: auto;
     border-radius: 3px;
     .content {
         position: relative;
         display: flex;
-        margin: 50px;
+        margin: 25px;
         margin-left: 30px;
         padding-top: 25px;
         .cross {
@@ -42,7 +42,7 @@
             transform: rotate(-45deg);
         }
         .title {
-            font-size: 4vw;
+            font-size: 4em;
         }
     }
     .modalBody {
@@ -80,7 +80,7 @@
         height: 69px;
         background-color: #901C1C;
         color: #fff;
-        font-size: 2vw;
+        font-size: 1em;
         cursor: pointer;
     }
 }
