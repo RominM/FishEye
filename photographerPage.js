@@ -22,6 +22,52 @@ data.media.forEach(media => {
     }
 })
 
+let photographer;
+
+data.photographers.forEach(details => {
+    if(details.id == url_id) {
+        photographer = details;
+    }
+    console.log(photographer);
+})
+
+// for(let i = 0; i < data.photographers.length; i++){
+//     if(data.photographers[i].id == url_id){
+//         photographer = data.photographers[i]
+//     }
+// }
+
+// for(let i = 0; i < data.photographers.length; i++){
+//     let details = data.photographers[i];
+
+//     if(details.id == url_id){
+//         photographer = details;
+//     }
+// }
+
+// class Voiture{
+//     constructor(marque, couleur, ch){
+//         this.marque = marque;
+//         this.couleur = couleur;
+//         this.ch = ch;
+//     }
+//     changeCouleur(newColor){
+//         this.couleur = newColor
+//     }
+//     changeCh(newCh){
+//         this.ch = newCh;
+//     }
+//     color(){
+//         return this.couleur;
+//     }
+// }
+
+// const maVoiture = new Voiture('peugeot','rose',6);
+// maVoiture.changeCouleur('Bleu');
+// maVoiture.changeCouleur('Rouge');
+// maVoiture.changeCh(120);
+// console.log(maVoiture.color());
+
 //**************************************************************************************/
 
 // ========================//
