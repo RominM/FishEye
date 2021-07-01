@@ -130,6 +130,8 @@ const para = document.createElement('p');
 const place = document.createElement('span');
 const gimmick = document.createElement('span');
 const contact = document.createElement('button');
+const contact2 = document.createElement('button');
+const photographerFace = document.createElement('div');
 const image = document.createElement('img');
 //FILTERS_____
 const filter = document.createElement('div');
@@ -157,7 +159,7 @@ const album = document.createElement('div');
 const bground = document.createElement('section');
 const content = document.createElement('div');
 const cross = document.createElement('span');
-const titleName = document.createElement('span');
+const contactMe = document.createElement('span');
 const up = document.createElement('br');
 const photographerName = document.createElement('h3');
 const modalbg = document.createElement('div');
@@ -202,7 +204,10 @@ place.innerHTML = photographer.city + ', ' + photographer.country;
 gimmick.classList.add('depiction');
 gimmick.innerHTML = photographer.tagline;
 contact.classList.add('contact');
+contact2.classList.add('contact2');
 contact.innerHTML = "Contactez-moi";
+contact2.innerHTML = "Contactez-moi";
+photographerFace.classList.add('photographerFace');
 image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
 image.alt = 'photo portrait de ' + photographer.name;
 //FILTERS______
@@ -236,11 +241,12 @@ album.classList.add('album');
 bground.classList.add('bground');
 content.classList.add('content');
 cross.classList.add('cross');
-titleName.classList.add('title');
+contactMe.classList.add('contactMe');
 // photographerId.innerHTML = photographers.name;
 modalbg.classList.add('modalBody');
 //FORM_______
 form.id = "send";
+contactMe.innerHTML = "Contactez-moi "; 
 //==================================================
 firstname.classList.add('form-data');
 lastname.classList.add('form-data');
@@ -299,7 +305,9 @@ titleChoice.append(linkTitle);
 //================================
 photographerArea.append(zoneTxt);
 photographerArea.append(contact);
-photographerArea.append(image);
+photographerArea.append(contact2);
+photographerArea.append(photographerFace);
+photographerFace.append(image);
 zoneTxt.append(nameTitle);
 zoneTxt.append(para);
 para.append(place);
@@ -314,7 +322,7 @@ para.append(gimmick);
 bground.append(content);
 bground.append(modalbg);
 content.append(cross);
-content.append(titleName);
+content.append(contactMe);
 content.append(up);
 content.append(photographerName);
 //================================
@@ -345,6 +353,10 @@ txtFree.append(inpTxtFree);
 
 
 
+const titleName = document.createElement('span');
+photographerName.classList.add('titleName');
+photographerName.innerHTML = photographer.name;
+content.append(photographerName);
 
 
 
@@ -375,9 +387,6 @@ medias.forEach(media => {
     heart.classList.add('heart');
     heartImg.src = "./FishEye_Photos/heart-solid.svg";
     heartImg.alt = media.likes + " like";
-
-    titleName.innerHTML = "Contactez-moi " + photographer.name;
-
 
     album.append(albumPhoto);
     albumPhoto.append(divPhoto);
@@ -474,6 +483,7 @@ arrowDown.addEventListener('click', menuOn);
 arrowUp.addEventListener('click', menuOff);
 //FORM_context___
 contact.addEventListener('click', openForm);
+contact2.addEventListener('click', openForm);
 cross.addEventListener('click', closeForm);
 //CHECK_form_____
 //============================================
