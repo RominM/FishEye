@@ -28,8 +28,9 @@ data.photographers.forEach(details => {
     if(details.id == url_id) {
         photographer = details;
     }
-    console.log(photographer);
+
 })
+
 
 // for(let i = 0; i < data.photographers.length; i++){
 //     if(data.photographers[i].id == url_id){
@@ -45,28 +46,65 @@ data.photographers.forEach(details => {
 //     }
 // }
 
-// class Voiture{
-//     constructor(marque, couleur, ch){
-//         this.marque = marque;
-//         this.couleur = couleur;
-//         this.ch = ch;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+// class MaClass{
+//     constructor(param1, param2, param3){
+//         this.param1 = param1;
+//         this.param2 = param2;
+//         this.param3 = param3;
 //     }
-//     changeCouleur(newColor){
-//         this.couleur = newColor
+//     changeParam1(newParam1){
+//         this.param1 = newParam1;
 //     }
-//     changeCh(newCh){
-//         this.ch = newCh;
+//     changeParam3(newparam3){
+//         this.param3 = newparam3;
 //     }
-//     color(){
-//         return this.couleur;
+//     unNomParam(){
+//         return this.param1;
 //     }
 // }
 
-// const maVoiture = new Voiture('peugeot','rose',6);
-// maVoiture.changeCouleur('Bleu');
-// maVoiture.changeCouleur('Rouge');
-// maVoiture.changeCh(120);
-// console.log(maVoiture.color());
+// const maConst = new MaClass('string','string',number);
+
+// maConst.changeParam1('newString');
+// maConst.changeParam1('newString2');
+// maConst.changeParam3(newNumber);
+
+// console.log(maConst. unNomParam());
 
 //**************************************************************************************/
 
@@ -109,12 +147,12 @@ const split1 = document.createElement('hr');
 const split2 = document.createElement('hr');
 //ALBUM______
 const album = document.createElement('div');
-const pic = document.createElement('img');
-const picSubtitle = document.createElement('div');
-const nameImg = document.createElement('span');
-const like = document.createElement('div');
-const heart = document.createElement('div');
-const heartImg = document.createElement('img');
+// const pic = document.createElement('img');
+// const picSubtitle = document.createElement('div');
+// const nameImg = document.createElement('span');
+// const like = document.createElement('div');
+// const heart = document.createElement('div');
+// const heartImg = document.createElement('img');
 //BG_FORM____
 const bground = document.createElement('section');
 const content = document.createElement('div');
@@ -156,16 +194,17 @@ logo.src = "FishEye_Photos/logo.png";
 //____________
 //PHOTOGRAPHE_
 photographerArea.classList.add('photoFrame');
-// nameTitle.innerHTML = photographer.name;
+zoneTxt.classList.add('zoneTxt');
+nameTitle.innerHTML = photographer.name;
 para.classList.add('descript');
 place.classList.add('local');
-// place.innerHTML = photographer.city + ', ' + photographer.country;
+place.innerHTML = photographer.city + ', ' + photographer.country;
 gimmick.classList.add('depiction');
-// gimmick.innerHTML = photographer.tagline;
+gimmick.innerHTML = photographer.tagline;
 contact.classList.add('contact');
 contact.innerHTML = "Contactez-moi";
-image.src = "FishEye_Photos/Photographers ID Photos/" // + photographer.portrait;
-image.alt = 'photo portrait de ' //+ photographer.name;
+image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
+image.alt = 'photo portrait de ' + photographer.name;
 //FILTERS______
 filter.classList.add('filter');
 sortBy.classList.add('sortBy');
@@ -184,21 +223,20 @@ linkTitle.innerHTML = "Titre";
 linkTitle.href = "#";
 //ALBUM_____
 album.classList.add('album');
-// pic.src = "";
-picSubtitle.classList.add('subtitle');
-nameImg.classList.add('nameImg');
-// nameImg.innerHTML = "";
-like.classList.add('like');
-// like.innerHTML = media.likes
-heart.classList.add('heart');
-heartImg.src = "./FishEye_Photos/heart-solid.svg";
-heartImg.alt = //media.likes + "like";
+// // pic.src = "";
+// picSubtitle.classList.add('subtitle');
+// nameImg.classList.add('nameImg');
+// // nameImg.innerHTML = "";
+// like.classList.add('like');
+// // like.innerHTML = media.likes
+// heart.classList.add('heart');
+// heartImg.src = "./FishEye_Photos/heart-solid.svg";
+// // heartImg.alt = media.likes + "like";
 //BG_FORM____
 bground.classList.add('bground');
 content.classList.add('content');
 cross.classList.add('cross');
 titleName.classList.add('title');
-titleName.innerHTML = "Contactez-moi";
 // photographerId.innerHTML = photographers.name;
 modalbg.classList.add('modalBody');
 //FORM_______
@@ -230,7 +268,7 @@ inpTxtFree.type = "textarea";
 // inpTxtFree.cols= "50";
 //==================================================
 sendBtn.type = "submit";
-sendBtn.classList = "button";
+sendBtn.classList = "send";
 sendBtn.innerHTML = "Envoyer";
 
 //___________//indent
@@ -267,12 +305,11 @@ zoneTxt.append(para);
 para.append(place);
 para.append(gimmick);
 //================================
-album.append(pic);
-album.append(picSubtitle);
-picSubtitle.append(nameTitle);
-picSubtitle.append(like);
-picSubtitle.append(heart);
-heart.append(heartImg);
+// album.append(pic);
+// album.append(picSubtitle);
+// picSubtitle.append(like);
+// picSubtitle.append(heart);
+// heart.append(heartImg);
 //================================
 bground.append(content);
 bground.append(modalbg);
@@ -296,6 +333,63 @@ email.append(inpEmail);
 txtFree.append(labTxtFree);
 txtFree.append(inpTxtFree);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+medias.forEach(media => {
+
+    const albumPhoto = document.createElement('div');
+    const divPhoto = document.createElement('div');
+
+    const pic = document.createElement('img');
+    const picSubtitle = document.createElement('div');
+    const nameImg = document.createElement('span');
+    const blockLike = document.createElement('div');
+    const like = document.createElement('div');
+    const heart = document.createElement('div');
+    const heartImg = document.createElement('img');
+
+    albumPhoto.classList.add('albumPhoto');
+    divPhoto.classList.add('divPhoto');
+    pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
+    picSubtitle.classList.add('subtitle');
+    nameImg.classList.add('nameImg');
+    nameImg.innerHTML = media.title;
+    blockLike.classList.add('blockLike');
+    like.classList.add('like');
+    like.innerHTML = media.likes
+    heart.classList.add('heart');
+    heartImg.src = "./FishEye_Photos/heart-solid.svg";
+    heartImg.alt = media.likes + " like";
+
+    titleName.innerHTML = "Contactez-moi " + photographer.name;
+
+
+    album.append(albumPhoto);
+    albumPhoto.append(divPhoto);
+    divPhoto.append(pic);
+    albumPhoto.append(picSubtitle);
+    picSubtitle.append(nameImg);
+    picSubtitle.append(blockLike);
+    blockLike.append(like);
+    blockLike.append(heart);
+    heart.append(heartImg);
+
+    })
 //============//
 //   STATE    //
 //============//
@@ -340,15 +434,23 @@ const menuOff = () => {
 const checkFirstname = () => {
     state.firstName.data = inpFirstname.value;
 }
+firstname.addEventListener('input', checkFirstname);
+
 const checkLastname = () => {
     state.lastName.data = inpLastname.value;
 }
+lastname.addEventListener('input', checkLastname);
+
 const checkEmail = () => {
     state.email.data = inpEmail.value;
 }
+email.addEventListener('input', checkEmail);
+
 const checkTxtFree = () => {
     state.txtFree.data = inpTxtFree.value;
 }
+txtFree.addEventListener('input', checkTxtFree);
+
 //__________________//context
 const closeForm = () => {
     bground.style.display = "none";
@@ -384,4 +486,6 @@ sendBtn.addEventListener('click', (event) => {
     checkLastname();
     checkEmail();
     checkTxtFree();
+
+    closeForm();
 })

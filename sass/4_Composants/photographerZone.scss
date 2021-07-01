@@ -8,14 +8,35 @@ main {
     display: flex;
     justify-content: space-between;
     width: 90%;
-    height: 200px;
     margin: 0px auto 50px;
     background-color: #FAFAFA;
-    text-align: center;
+    img {
+        width: 250px;
+        height: 250px;
+        margin: 10px;
+        border-radius: 100%;
+        object-fit: cover;
+        transition: .3s;
+    }
+    .zoneTxt {
+        min-width: 200px;
+        margin: auto 10px;
+        h2 {
+            font-size: 3.5em;
+        }
+        .descript {
+            font-size: 1.2em;
+            line-height: 2em;
+        }
+    }
 }
+
+
 
 .contact {
     border: none;
+    width: 150px;
+    margin: auto 0px;
     height: 50px;
     border-radius: 3px;
     background-color: $firebrick;

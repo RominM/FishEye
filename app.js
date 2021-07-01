@@ -9,33 +9,33 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       init(response2);
    })
 
-/**
- * @param domElement
- */
-class CreateDOMElement {
-   constructor(domElement, className, id, src) {
-      this.domElement = domElement;
-      this.className = className;
+// /**
+//  * @param domElement
+//  */
+// class CreateDOMElement {
+//    constructor(domElement, className, id, src) {
+//       this.domElement = domElement;
+//       this.className = className;
 
-      const elem = document.createElement(this.domElement);
-      elem.classList.add(this.className);
-      return elem;
-   }
-}
+//       const elem = document.createElement(this.domElement);
+//       elem.classList.add(this.className);
+//       return elem;
+//    }
+// }
 
-class CreateHeader {
-   constructor() {
-   const header = new domElement('header');
-   const linkHome = new domElement('a');
-   const h1 = new domElement('h1');
-   const logo = new domElement('img');
-   const nav = new domElement('nav');
-   }
-}
+// class CreateHeader {
+//    constructor() {
+//    const header = new domElement('header');
+//    const linkHome = new domElement('a');
+//    const h1 = new domElement('h1');
+//    const logo = new domElement('img');
+//    const nav = new domElement('nav');
+//    }
+// }
 
 
-const image = new CreateDOMElement('img', 'logo');
-const div = new CreateDOMElement('div', 'bground');
+// const image = new CreateDOMElement('img', 'logo');
+// const div = new CreateDOMElement('div', 'bground');
 
 //creer un fichier DOMElement
 
