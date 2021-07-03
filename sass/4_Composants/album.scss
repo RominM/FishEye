@@ -1,7 +1,9 @@
 .album {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    width: 92%;
+    margin: auto;
     .albumPhoto {
         padding: 35px;
         .divPhoto img {
@@ -11,6 +13,11 @@
             border-radius: 5px;
             margin-bottom: 12px;
             box-shadow: 2px 2px 10px 2px $lightGrey;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .divPhoto img:hover {
+            transform: scale(1.03);
         }
     }
     .subtitle {

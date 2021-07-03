@@ -140,10 +140,15 @@ const nameTitle = document.createElement('h2');
 const para = document.createElement('p');
 const place = document.createElement('span');
 const gimmick = document.createElement('span');
+const divTitle = document.createElement('div');
 const contact = document.createElement('button');
 const contact2 = document.createElement('button');
 const photographerFace = document.createElement('div');
 const image = document.createElement('img');
+const blockFlex = document.createElement('div');
+//__________//create
+//TAGS______
+const ul = document.createElement('ul');
 //_____________//settings
 //PHOTOGRAPHE__
 photographerArea.classList.add('photoFrame');
@@ -154,6 +159,7 @@ place.classList.add('local');
 place.innerHTML = photographer.city + ', ' + photographer.country;
 gimmick.classList.add('depiction');
 gimmick.innerHTML = photographer.tagline;
+divTitle.classList.add('divTitle');
 contact.classList.add('contact');
 contact2.classList.add('contact2');
 contact.innerHTML = "Contactez-moi";
@@ -161,19 +167,38 @@ contact2.innerHTML = "Contactez-moi";
 photographerFace.classList.add('photographerFace');
 image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
 image.alt = 'photo portrait de ' + photographer.name;
-//___________//indent
+blockFlex.classList.add('blockFlex');
+//__________//settings
+//TAGS______
+ul.classList.add('tagDesign');//___________//indent
 //PHOTOGRAPHE__
 body.append(main);
 main.append(photographerArea);
 photographerArea.append(zoneTxt);
-photographerArea.append(contact);
 photographerArea.append(contact2);
 photographerArea.append(photographerFace);
 photographerFace.append(image);
-zoneTxt.append(nameTitle);
+zoneTxt.append(divTitle);
+divTitle.append(nameTitle);
+divTitle.append(contact);
 zoneTxt.append(para);
-para.append(place);
 para.append(gimmick);
+para.append(place);
+zoneTxt.append(blockFlex);
+blockFlex.append(ul);
+//__________//indent
+      //TAGS______
+      for (let i = 0; i < photographer.tags.length; i++) {
+         const li = document.createElement('li')
+         const tag = document.createElement('span');
+
+         tag.classList.add('tagDesign__tag');
+         tag.innerHTML = '#' + photographer.tags[i];
+
+         li.append(tag);
+         ul.append(li);
+      }
+      blockFlex.append(ul);
 //_____________//create
 //FILTERS_____
 const filter = document.createElement('div');
