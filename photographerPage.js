@@ -377,7 +377,7 @@ medias.forEach(media => {
 
     albumPhoto.classList.add('albumPhoto');
     divPhoto.classList.add('divPhoto');
-    pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
+    pic.src = "FishEye_Photos/" + photographer.name + "/" + media.image;
     picSubtitle.classList.add('subtitle');
     nameImg.classList.add('nameImg');
     nameImg.innerHTML = media.title;
