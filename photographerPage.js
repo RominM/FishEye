@@ -1,9 +1,9 @@
 // Parametrage de la récuperation de l'id à partir de l'url
 //========================================================
 const paramUrl = (param) => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.get(param);
+   const queryString = window.location.search;
+   const urlParams = new URLSearchParams(queryString);
+   return urlParams.get(param);
 }
 const url_id = paramUrl('id');
 
@@ -15,22 +15,21 @@ const data = JSON.parse(dataFromLocalStorage);
 // Récuperation des photos via une boucle puis stockage dans un tableau
 //=====================================================================
 const medias = [];
-
+//Récupération des medias en fonction de l'in du photographe
 data.media.forEach(media => {
-    if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
-        medias.push(media); // tri les media qui ont le même id que l'url
-    }
+   if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
+      medias.push(media); // tri les media qui ont le même id que l'url
+   }
 })
-
+//=====================================================================
 let photographer;
-
+//Récupération des datas du photographe
 data.photographers.forEach(details => {
-    if(details.id == url_id) {
-        photographer = details;
-    }
+   if (details.id == url_id) {
+      photographer = details;
+   }
 
 })
-
 
 // for(let i = 0; i < data.photographers.length; i++){
 //     if(data.photographers[i].id == url_id){
@@ -45,41 +44,9 @@ data.photographers.forEach(details => {
 //         photographer = details;
 //     }
 // }
+//=====================================================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+//******************** CLASS *********************/
 
 // class MaClass{
 //     constructor(param1, param2, param3){
@@ -106,7 +73,35 @@ data.photographers.forEach(details => {
 
 // console.log(maConst. unNomParam());
 
-//**************************************************************************************/
+
+// class CreateDOMElement {
+//    constructor(domElement, className, id, src, inneerHTML, href, type) {
+//       this.domElement = domElement;
+//       this.className = className;
+//       this.id = id;
+//       this.src = src;
+//       this.inneerHTML = inneerHTML;
+//       this.href = href;
+//       this.type = type;
+
+//       const elem = document.createElement(this.domElement);
+//       elem.classList.add(this.className);
+//       return elem;
+//    }
+// }
+
+// class CreateHeader {
+//    constructor() {
+//       const header = new domElement('header');
+//       const linkHome = new domElement('a');
+//       const h1 = new domElement('h1');
+//       const logo = new domElement('img');
+//       const nav = new domElement('nav');
+//    }
+// }
+//=====================================================================
+
+//**********************************************************/
 
 // ========================//
 //       DOM CREATION      //
@@ -114,15 +109,31 @@ data.photographers.forEach(details => {
 
 //DOM element
 const body = document.body;
+//************************ HEADER *************************/
 //_____________//create
 //HEADER_______
 const head = document.createElement('header');
 const section = document.createElement('section');
 const linkHome = document.createElement('a');
 const logo = document.createElement('img');
-//MAIN________
+//_____________//settings
+//HEADER_______
+head.classList.add('banner');
+section.classList.add('presentation');
+linkHome.classList.add('logo');
+linkHome.href = "./index.html";
+logo.alt = "FishEye Home Page";
+logo.src = "FishEye_Photos/logo.png";
+//___________//indent
+//HEADER_______
+body.append(head);
+//=====================
+head.append(linkHome);
+linkHome.append(logo);
+//************************ MAIN *************************/
 const main = document.createElement('main');
-//PHOTOGRAPHE_
+//_____________//create
+//PHOTOGRAPHE__
 const photographerArea = document.createElement('div');
 const zoneTxt = document.createElement('div');
 const nameTitle = document.createElement('h2');
@@ -133,6 +144,37 @@ const contact = document.createElement('button');
 const contact2 = document.createElement('button');
 const photographerFace = document.createElement('div');
 const image = document.createElement('img');
+//_____________//settings
+//PHOTOGRAPHE__
+photographerArea.classList.add('photoFrame');
+zoneTxt.classList.add('zoneTxt');
+nameTitle.innerHTML = photographer.name;
+para.classList.add('descript');
+place.classList.add('local');
+place.innerHTML = photographer.city + ', ' + photographer.country;
+gimmick.classList.add('depiction');
+gimmick.innerHTML = photographer.tagline;
+contact.classList.add('contact');
+contact2.classList.add('contact2');
+contact.innerHTML = "Contactez-moi";
+contact2.innerHTML = "Contactez-moi";
+photographerFace.classList.add('photographerFace');
+image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
+image.alt = 'photo portrait de ' + photographer.name;
+//___________//indent
+//PHOTOGRAPHE__
+body.append(main);
+main.append(photographerArea);
+photographerArea.append(zoneTxt);
+photographerArea.append(contact);
+photographerArea.append(contact2);
+photographerArea.append(photographerFace);
+photographerFace.append(image);
+zoneTxt.append(nameTitle);
+zoneTxt.append(para);
+para.append(place);
+para.append(gimmick);
+//_____________//create
 //FILTERS_____
 const filter = document.createElement('div');
 const sortBy = document.createElement('div');
@@ -147,23 +189,95 @@ const titleChoice = document.createElement('li');
 const linkTitle = document.createElement('a');
 const split1 = document.createElement('hr');
 const split2 = document.createElement('hr');
-//ALBUM______
+//_____________//settings
+//FILTERS______
+filter.classList.add('filter');
+sortBy.classList.add('sortBy');
+sortBy.innerHTML = "Trier par";
+select.classList.add('select');
+arrowDown.classList.add('arrowDown');
+arrowUp.classList.add('arrowUp');
+popChoice.classList.add('choice');
+linkPop.innerHTML = "Popularité";
+linkPop.href = "#";
+dateChoice.classList.add('choice');
+linkDate.innerHTML = "Date";
+linkDate.href = "#";
+titleChoice.classList.add('choice');
+linkTitle.innerHTML = "Titre";
+linkTitle.href = "#";
+//___________//indent
+//FILTERS______
+main.append(filter);
+filter.append(sortBy);
+filter.append(select);
+select.append(arrowDown);
+select.append(arrowUp);
+select.append(popChoice);
+popChoice.append(linkPop);
+select.append(split1);
+select.append(dateChoice);
+dateChoice.append(linkDate);
+select.append(split2);
+select.append(titleChoice);
+titleChoice.append(linkTitle);
+//_____________//create
+//ALBUM_______
 const album = document.createElement('div');
-// const pic = document.createElement('img');
-// const picSubtitle = document.createElement('div');
-// const nameImg = document.createElement('span');
-// const like = document.createElement('div');
-// const heart = document.createElement('div');
-// const heartImg = document.createElement('img');
-//BG_FORM____
+//_____________//settings
+album.classList.add('album');
+
+//FOREACH_MEDIA
+medias.forEach(media => {
+   const albumPhoto = document.createElement('div');
+   const divPhoto = document.createElement('div');
+   const pic = document.createElement('img');
+   const picSubtitle = document.createElement('div');
+   const nameImg = document.createElement('span');
+   const blockLike = document.createElement('div');
+   const like = document.createElement('div');
+   const heart = document.createElement('div');
+   const heartImg = document.createElement('img');
+   //_____________//settings
+   //ALBUM________
+   albumPhoto.classList.add('albumPhoto');
+   divPhoto.classList.add('divPhoto');
+   pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
+   picSubtitle.classList.add('subtitle');
+   nameImg.classList.add('nameImg');
+   nameImg.innerHTML = media.title;
+   blockLike.classList.add('blockLike');
+   like.classList.add('like');
+   like.innerHTML = media.likes
+   heart.classList.add('heart');
+   heartImg.src = "./FishEye_Photos/heart-solid.svg";
+   heartImg.alt = media.likes + " like";
+   //___________//indent
+   //ALBUM______
+   main.append(album);
+   album.append(albumPhoto);
+   albumPhoto.append(divPhoto);
+   divPhoto.append(pic);
+   albumPhoto.append(picSubtitle);
+   picSubtitle.append(nameImg);
+   picSubtitle.append(blockLike);
+   blockLike.append(like);
+   blockLike.append(heart);
+   heart.append(heartImg);
+})
+
+//******************* FORMULAIR *********************/
+//_____________//create
+//FORM________
 const bground = document.createElement('section');
 const content = document.createElement('div');
 const cross = document.createElement('span');
+const divContact = document.createElement('div');
 const contactMe = document.createElement('span');
 const up = document.createElement('br');
 const photographerName = document.createElement('h3');
 const modalbg = document.createElement('div');
-//FORM_______
+//===================================================
 const form = document.createElement('form');
 //===================================================
 const firstname = document.createElement('div');
@@ -182,71 +296,18 @@ const inpEmail = document.createElement('input');
 const inpTxtFree = document.createElement('textarea');
 //===================================================
 const sendBtn = document.createElement('button');
-
 //_____________//settings
-//HEADER_______
-head.classList.add('banner');
-section.classList.add('presentation');
-linkHome.classList.add('logo');
-linkHome.href = "./index.html";
-logo.alt = "FishEye Home Page";
-logo.src = "FishEye_Photos/logo.png";
-
-//MAIN________
-//____________
-//PHOTOGRAPHE_
-photographerArea.classList.add('photoFrame');
-zoneTxt.classList.add('zoneTxt');
-nameTitle.innerHTML = photographer.name;
-para.classList.add('descript');
-place.classList.add('local');
-place.innerHTML = photographer.city + ', ' + photographer.country;
-gimmick.classList.add('depiction');
-gimmick.innerHTML = photographer.tagline;
-contact.classList.add('contact');
-contact2.classList.add('contact2');
-contact.innerHTML = "Contactez-moi";
-contact2.innerHTML = "Contactez-moi";
-photographerFace.classList.add('photographerFace');
-image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
-image.alt = 'photo portrait de ' + photographer.name;
-//FILTERS______
-filter.classList.add('filter');
-sortBy.classList.add('sortBy');
-sortBy.innerHTML = "Trier par";
-select.classList.add('select');
-arrowDown.classList.add('arrowDown');
-arrowUp.classList.add('arrowUp');
-popChoice.classList.add('choice');
-linkPop.innerHTML = "Popularité";
-linkPop.href = "#";
-dateChoice.classList.add('choice');
-linkDate.innerHTML = "Date";
-linkDate.href = "#";
-titleChoice.classList.add('choice');
-linkTitle.innerHTML = "Titre";
-linkTitle.href = "#";
-//ALBUM_____
-album.classList.add('album');
-// // pic.src = "";
-// picSubtitle.classList.add('subtitle');
-// nameImg.classList.add('nameImg');
-// // nameImg.innerHTML = "";
-// like.classList.add('like');
-// // like.innerHTML = media.likes
-// heart.classList.add('heart');
-// heartImg.src = "./FishEye_Photos/heart-solid.svg";
-// // heartImg.alt = media.likes + "like";
-//BG_FORM____
+//FORM________
 bground.classList.add('bground');
 content.classList.add('content');
 cross.classList.add('cross');
 contactMe.classList.add('contactMe');
-// photographerId.innerHTML = photographers.name;
+contactMe.innerHTML = "Contactez-moi ";
+photographerName.classList.add('titleName');
+photographerName.innerHTML = photographer.name;
 modalbg.classList.add('modalBody');
-//FORM_______
+//==================================================
 form.id = "send";
-contactMe.innerHTML = "Contactez-moi "; 
 //==================================================
 firstname.classList.add('form-data');
 lastname.classList.add('form-data');
@@ -270,61 +331,21 @@ inpEmail.id = "email";
 inpEmail.type = "textarea";
 inpTxtFree.id = "txtFree";
 inpTxtFree.type = "textarea";
-// inpTxtFree.rows = "10";
-// inpTxtFree.cols= "50";
 //==================================================
 sendBtn.type = "submit";
 sendBtn.classList = "send";
 sendBtn.innerHTML = "Envoyer";
-
-//___________//indent
-//___________
-body.append(head);
-body.append(main);
-// body.append(section);
+//_____________//indent
+//FORM________
 body.append(bground);
-//================================
-head.append(linkHome);
-linkHome.append(logo);
-main.append(photographerArea);
-main.append(filter);
-main.append(album);
-//================================
-filter.append(sortBy);
-filter.append(select);
-select.append(arrowDown);
-select.append(arrowUp);
-select.append(popChoice);
-popChoice.append(linkPop);
-select.append(split1);
-select.append(dateChoice);
-dateChoice.append(linkDate);
-select.append(split2);
-select.append(titleChoice);
-titleChoice.append(linkTitle);
-//================================
-photographerArea.append(zoneTxt);
-photographerArea.append(contact);
-photographerArea.append(contact2);
-photographerArea.append(photographerFace);
-photographerFace.append(image);
-zoneTxt.append(nameTitle);
-zoneTxt.append(para);
-para.append(place);
-para.append(gimmick);
-//================================
-// album.append(pic);
-// album.append(picSubtitle);
-// picSubtitle.append(like);
-// picSubtitle.append(heart);
-// heart.append(heartImg);
-//================================
 bground.append(content);
 bground.append(modalbg);
-content.append(cross);
-content.append(contactMe);
-content.append(up);
 content.append(photographerName);
+content.append(cross);
+content.append(divContact);
+divContact.append(contactMe);
+divContact.append(up);
+divContact.append(photographerName);
 //================================
 modalbg.append(firstname);
 modalbg.append(lastname);
@@ -341,81 +362,25 @@ email.append(inpEmail);
 txtFree.append(labTxtFree);
 txtFree.append(inpTxtFree);
 
+//******************* FUNCTIONS *********************/
 
-
-
-
-
-
-
-
-
-
-
-
-const titleName = document.createElement('span');
-photographerName.classList.add('titleName');
-photographerName.innerHTML = photographer.name;
-content.append(photographerName);
-
-
-
-
-
-medias.forEach(media => {
-
-    const albumPhoto = document.createElement('div');
-    const divPhoto = document.createElement('div');
-
-    const pic = document.createElement('img');
-    const picSubtitle = document.createElement('div');
-    const nameImg = document.createElement('span');
-    const blockLike = document.createElement('div');
-    const like = document.createElement('div');
-    const heart = document.createElement('div');
-    const heartImg = document.createElement('img');
-
-    albumPhoto.classList.add('albumPhoto');
-    divPhoto.classList.add('divPhoto');
-    pic.src = "FishEye_Photos/" + photographer.name + "/" + media.image;
-    picSubtitle.classList.add('subtitle');
-    nameImg.classList.add('nameImg');
-    nameImg.innerHTML = media.title;
-    blockLike.classList.add('blockLike');
-    like.classList.add('like');
-    like.innerHTML = media.likes
-    heart.classList.add('heart');
-    heartImg.src = "./FishEye_Photos/heart-solid.svg";
-    heartImg.alt = media.likes + " like";
-
-    album.append(albumPhoto);
-    albumPhoto.append(divPhoto);
-    divPhoto.append(pic);
-    albumPhoto.append(picSubtitle);
-    picSubtitle.append(nameImg);
-    picSubtitle.append(blockLike);
-    blockLike.append(like);
-    blockLike.append(heart);
-    heart.append(heartImg);
-
-    })
 //============//
 //   STATE    //
 //============//
 
 var state = {
-    firstName: {
-        data: '',
-    },
-    lastName: {
-        data: '',
-    },
-    email: {
-        data: '',
-    },
-    txtFree: {
-        data: '',
-    }
+   firstName: {
+      data: '',
+   },
+   lastName: {
+      data: '',
+   },
+   email: {
+      data: '',
+   },
+   txtFree: {
+      data: '',
+   }
 }
 
 // =======================//
@@ -424,54 +389,54 @@ var state = {
 
 //MENU DEROULANT__________//
 const menuOn = () => {
-    select.style.height = "160px";
-    arrowDown.style.display = "none";
-    arrowUp.style.display = "block";
-    split1.style.display = "block";
-    split2.style.display = "block";
+   select.style.height = "160px";
+   arrowDown.style.display = "none";
+   arrowUp.style.display = "block";
+   split1.style.display = "block";
+   split2.style.display = "block";
 }
 const menuOff = () => {
-    select.style.height = "50px";
-    arrowDown.style.display = "block";
-    arrowUp.style.display = "none";
-    split1.style.display = "none";
-    split2.style.display = "none";
+   select.style.height = "50px";
+   arrowDown.style.display = "block";
+   arrowUp.style.display = "none";
+   split1.style.display = "none";
+   split2.style.display = "none";
 }
 
 //FORMULAIRE_________//
 //__________________//input_value
 const checkFirstname = () => {
-    state.firstName.data = inpFirstname.value;
+   state.firstName.data = inpFirstname.value;
 }
 firstname.addEventListener('input', checkFirstname);
 
 const checkLastname = () => {
-    state.lastName.data = inpLastname.value;
+   state.lastName.data = inpLastname.value;
 }
 lastname.addEventListener('input', checkLastname);
 
 const checkEmail = () => {
-    state.email.data = inpEmail.value;
+   state.email.data = inpEmail.value;
 }
 email.addEventListener('input', checkEmail);
 
 const checkTxtFree = () => {
-    state.txtFree.data = inpTxtFree.value;
+   state.txtFree.data = inpTxtFree.value;
 }
 txtFree.addEventListener('input', checkTxtFree);
 
 //__________________//context
 const closeForm = () => {
-    bground.style.display = "none";
-    main.style.opacity = 1;
+   bground.style.display = "none";
+   main.style.opacity = 1;
 }
 const openForm = () => {
-    bground.style.display = "block";
-    main.style.opacity = 0.3;
+   bground.style.display = "block";
+   main.style.opacity = 0.3;
 }
 const validForm = () => {
-    bground.style.display = "none";
-    main.style.opacity = 1;
+   bground.style.display = "none";
+   main.style.opacity = 1;
 }
 
 // ========================//
@@ -488,14 +453,14 @@ cross.addEventListener('click', closeForm);
 //CHECK_form_____
 //============================================
 sendBtn.addEventListener('click', (event) => {
-    //STOP FOR CHECK
-    event.preventDefault();
-    console.log(state);
+   //STOP FOR CHECK
+   event.preventDefault();
+   console.log(state);
 
-    checkFirstname();
-    checkLastname();
-    checkEmail();
-    checkTxtFree();
+   checkFirstname();
+   checkLastname();
+   checkEmail();
+   checkTxtFree();
 
-    closeForm();
+   closeForm();
 })
