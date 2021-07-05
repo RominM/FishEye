@@ -1,0 +1,74 @@
+@media screen and (max-width: 1024px) {
+
+    //PHOTOGRAPHER_ZONE
+    .divTitle {
+        width: 100%;
+        padding: 0;
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .contact {
+        display: none;
+    }
+
+    .contact2 {
+        display: block;
+    }
+
+    .album {
+        justify-content: center;
+    }
+
+}
+
+@media screen and (max-width: 775px) {
+
+
+    //FILTER
+    .filter {
+        display: none;
+    }
+
+    .album {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .photoFrame {
+        background-color: #fff;
+        padding: 0;
+        .photographerFace {
+            img {
+                width: 40vw;
+                height: 40vw;
+                border-radius: 40vw;
+            }
+        }    
+        .zoneTxt {
+            width: 70%;
+            .divTitle {
+                h2 {
+                    margin: 0;
+                    font-size: 10vw;
+                }
+            }
+        }
+    }
+
+    .album {
+        .albumPhoto {
+            padding: 0;
+        }
+        .subtitle {
+            .blockLike .heart {
+                .heart img {
+                    width: 100%
+                }
+            }
+        }
+    }
+}
