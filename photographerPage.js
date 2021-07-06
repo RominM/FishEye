@@ -170,7 +170,7 @@ image.alt = 'photo portrait de ' + photographer.name;
 blockFlex.classList.add('blockFlex');
 //__________//settings
 //TAGS______
-ul.classList.add('tagDesign');//___________//indent
+ul.classList.add('tagDesign'); //___________//indent
 //PHOTOGRAPHE__
 body.append(main);
 main.append(photographerArea);
@@ -187,18 +187,18 @@ para.append(place);
 zoneTxt.append(blockFlex);
 blockFlex.append(ul);
 //__________//indent
-      //TAGS______
-      for (let i = 0; i < photographer.tags.length; i++) {
-         const li = document.createElement('li')
-         const tag = document.createElement('span');
+//TAGS______
+for (let i = 0; i < photographer.tags.length; i++) {
+   const li = document.createElement('li')
+   const tag = document.createElement('span');
 
-         tag.classList.add('tagDesign__tag');
-         tag.innerHTML = '#' + photographer.tags[i];
+   tag.classList.add('tagDesign__tag');
+   tag.innerHTML = '#' + photographer.tags[i];
 
-         li.append(tag);
-         ul.append(li);
-      }
-      blockFlex.append(ul);
+   li.append(tag);
+   ul.append(li);
+}
+blockFlex.append(ul);
 //_____________//create
 //FILTERS_____
 const filter = document.createElement('div');
@@ -290,6 +290,102 @@ medias.forEach(media => {
    blockLike.append(heart);
    heart.append(heartImg);
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//******************* LIGHTBOX *********************/
+
+class lightbox {
+
+   static init() {
+      const links = document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
+         .forEach(link => link.addEventListener('click', e => {
+            e.preventDefault()
+            new lightbox(e.currentTarget.getAttribute('href'))
+         }))
+   }
+   constructor(url) {
+      const element = this.buildDOM(url);
+      document.body.appendChild(element);
+   }
+   buildDOM(url) {
+      //___________//create
+      //LIGHTBOX___
+      const lightbox = document.createElement('div');
+      const closeLB = document.createElement('button');
+      const nextLB = document.createElement('button');
+      const prevLB = document.createElement('button');
+      const contentLB = document.createElement('div');
+      const imgLB = document.createElement('img');
+      //___________//settings
+      //LIGHTBOX___
+      lightbox.classList.add('lightbox');
+      closeLB.classList.add('lightbox__closeLB');
+      closeLB.innerHTML = "Fermer";
+      nextLB.classList.add('lightbox__nextLB');
+      nextLB.innerHTML = "Suivant";
+      prevLB.classList.add('lightbox__prevLB');
+      prevLB.innerHTML = "Précedent";
+      contentLB.classList.add('lightbox__contentLB');
+      // imgLB.src = "";
+      //___________//indent
+      //LIGHTBOX___
+      main.append(lightbox);
+      lightbox.append(closeLB);
+      lightbox.append(nextLB);
+      lightbox.append(prevLB);
+      lightbox.append(contentLB);
+      contentLB.append(imgLB);
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //******************* FORMULAIR *********************/
 //_____________//create

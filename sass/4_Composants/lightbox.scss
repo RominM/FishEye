@@ -1,0 +1,58 @@
+
+.lightbox button {
+    cursor: pointer;
+    text-indent: -3000px;
+    opacity: 0.5;
+    transition: .3s
+}
+
+.lightbox button:hover {
+    opacity: 1;
+}
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 10;
+    &__closeLB {
+        border: none;
+        background: url(../../FishEye_Photos/close.svg) center center / 30px 30px no-repeat;
+        width: 45px;
+        height: 45px;
+        z-index: 12;
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 25px;
+    }
+    &__nextLB {
+        border: none;
+        background: url(../../FishEye_Photos/arrow.svg) center center / 30px 48px no-repeat;
+        width: 70px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin-top: -24px;
+        z-index: 11;
+    }
+    &__prevLB {
+        @extend .lightbox__nextLB;
+        transform: rotate(180deg);
+        right: auto;
+        left: 0;
+    }
+    .contentLB {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 50px;
+        margin-right: 50px;
+        min-height: 100vh;
+    }
+}
+
