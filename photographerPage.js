@@ -249,13 +249,34 @@ titleChoice.append(linkTitle);
 //_____________//create
 //ALBUM_______
 const album = document.createElement('div');
+const infoBox = document.createElement('div');
+const likeBox = document.createElement('div');
+const likeCounter = document.createElement('span');
+const blackHeart = document.createElement('div');
+const blackHeartImg = document.createElement('img');
+const infoPrice = document.createElement('span');
 //_____________//settings
 album.classList.add('album');
-
+infoBox.classList.add('infoBox');
+likeBox.classList.add('likeBox');
+likeCounter.classList.add('infoBox__likeCounter');
+likeCounter.innerHTML = "123456789";
+blackHeart.classList.add('infoBox__blackHeart');
+blackHeartImg.src = "./FishEye_Photos/heart-black.svg";
+blackHeartImg.alt = "coeur noir";
+infoPrice.classList.add('infoBox__infoPrice');
+infoPrice.innerHTML = photographer.price + "€ / jours"
+//____________//indent
+album.append(infoBox);
+infoBox.append(likeBox);
+infoBox.append(infoPrice);
+likeBox.append(likeCounter);
+likeBox.append(blackHeart);
+blackHeart.append(blackHeartImg);
 //FOREACH_MEDIA
 medias.forEach(media => {
    const albumPhoto = document.createElement('div');
-   const divPhoto = document.createElement('div');
+   const divPhoto = document.createElement('a');
    const pic = document.createElement('img');
    const picSubtitle = document.createElement('div');
    const nameImg = document.createElement('span');
@@ -267,6 +288,7 @@ medias.forEach(media => {
    //ALBUM________
    albumPhoto.classList.add('albumPhoto');
    divPhoto.classList.add('divPhoto');
+   divPhoto.href = "./FishEye_Photos/" + photographer.name + "/" + media.image;
    pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
    picSubtitle.classList.add('subtitle');
    nameImg.classList.add('nameImg');
@@ -275,7 +297,7 @@ medias.forEach(media => {
    like.classList.add('like');
    like.innerHTML = media.likes
    heart.classList.add('heart');
-   heartImg.src = "./FishEye_Photos/heart-solid.svg";
+   heartImg.src = "./FishEye_Photos/heart-red.svg";
    heartImg.alt = media.likes + " like";
    //___________//indent
    //ALBUM______
@@ -326,7 +348,7 @@ class lightbox {
    }
    constructor(url) {
       const element = this.buildDOM(url);
-      document.body.appendChild(element);
+      body.append(element);
    }
    buildDOM(url) {
       //___________//create
@@ -359,7 +381,7 @@ class lightbox {
    }
 }
 
-
+lightbox.init();
 
 
 

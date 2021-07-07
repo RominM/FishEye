@@ -33,11 +33,36 @@
             .heart {
                 width: 20px;
                 height: 20px;
+                margin: auto;
                 img {
-                    width: 400%;
+                    width: 100%;
+                    height: 100%;
                 }
             }            
         }        
+    }
+    .infoBox {
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+        bottom: 0;
+        right: 5%;
+        width: 300px;
+        height: 50px;
+        background-color: $salmon;
+        text-align: center;
+        border-radius: 5px;
+        .likeBox {
+            line-height: 50px;
+            display: flex;
+        }
+        &__blackHeart {
+            line-height: 60px;
+            margin-left: 5px;
+        }
+        &__infoPrice {
+            line-height: 50px;
+        }
     }
 }
 
