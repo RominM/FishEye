@@ -34,43 +34,21 @@
             transition: .3s;
         }
     }
-    .arrowDown {
+    .arrowDown img, .arrowUp img {
         position: absolute;
-        top: 20px;
-        right: 3px;
+        top: 35%;
+        right: 12%;
         width: 10px;
-        height: 10px;
+        z-index: 10;
         cursor: pointer;
-        transform: rotate(180deg);
+        transform: rotate(90deg);
         transition: .3s;
     }
-    .arrowUp{
+    .arrowUp {
         display: none;
         position: absolute;
-        top: 20px;
-        right: 41px;
-        width: 10px;
-        height: 10px;
-        cursor: pointer;
-        transition: .3s;
+        top: 21%;
+        right: 19%;
+        transform: rotate(180deg);
     }
-}
-
-.arrowDown::before, .arrowDown::after, .arrowUp::before, .arrowUp::after {
-    position: absolute;
-    left: 25px;
-    content: "";
-    width: 3px;
-    height: 100%;
-    background-color: #fff;
-}
-
-.arrowDown::before, .arrowUp::before{
-    transform: rotate(45deg);
-    position: absolute;
-    left: 200%;
-}
-
-.arrowDown::after, .arrowUp::after {
-    transform: rotate(-45deg);
 }

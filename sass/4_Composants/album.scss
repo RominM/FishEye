@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     width: 92%;
     margin: auto;
+    margin-bottom: 25px;
     .albumPhoto {
         padding: 35px;
         .divPhoto img {
@@ -25,6 +26,7 @@
         justify-content: space-between;
         font-size: 1.3em;
         color: $firebrick;
+        margin-bottom: 25px;
         .blockLike {
             display: flex;
             .like {
@@ -51,13 +53,16 @@
         height: 50px;
         background-color: $salmon;
         text-align: center;
-        border-radius: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 1.2em;
+        z-index: 9;
         .likeBox {
             line-height: 50px;
             display: flex;
         }
         &__blackHeart {
-            line-height: 60px;
+            line-height: 55px;
             margin-left: 5px;
         }
         &__infoPrice {

@@ -204,8 +204,10 @@ blockFlex.append(ul);
 const filter = document.createElement('div');
 const sortBy = document.createElement('div');
 const select = document.createElement('ul');
-const arrowDown = document.createElement('span');
-const arrowUp = document.createElement('span');
+const arrowDown = document.createElement('div');
+const arrowDownImg = document.createElement('img');
+const arrowUp = document.createElement('div');
+const arrowUpImg = document.createElement('img');
 const popChoice = document.createElement('li');
 const linkPop = document.createElement('a');
 const dateChoice = document.createElement('li');
@@ -221,7 +223,11 @@ sortBy.classList.add('sortBy');
 sortBy.innerHTML = "Trier par";
 select.classList.add('select');
 arrowDown.classList.add('arrowDown');
+arrowDownImg.src = "./FishEye_Photos/arrow-white.svg";
+arrowDownImg.alt = "flèche vers le bas";
 arrowUp.classList.add('arrowUp');
+arrowUpImg.src = "./FishEye_Photos/arrow-white.svg";
+arrowDownImg.alt = "flèche vers le haut";
 popChoice.classList.add('choice');
 linkPop.innerHTML = "Popularité";
 linkPop.href = "#";
@@ -238,6 +244,8 @@ filter.append(sortBy);
 filter.append(select);
 select.append(arrowDown);
 select.append(arrowUp);
+arrowDown.append(arrowDownImg);
+arrowUp.append(arrowUpImg);
 select.append(popChoice);
 popChoice.append(linkPop);
 select.append(split1);
@@ -311,6 +319,13 @@ medias.forEach(media => {
    blockLike.append(like);
    blockLike.append(heart);
    heart.append(heartImg);
+
+
+
+   // console.log("addition: " + media.likes + media.likes);
+   // console.log(+media.likes + media.likes.length);
+   console.log(media.likes);
+
 })
 
 
