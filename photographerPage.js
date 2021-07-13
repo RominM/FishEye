@@ -103,6 +103,8 @@ data.photographers.forEach(details => {
 
 //**********************************************************/
 
+let totalLike = 0;
+
 // ========================//
 //       DOM CREATION      //
 // ========================//
@@ -151,6 +153,7 @@ const blockFlex = document.createElement('div');
 const ul = document.createElement('ul');
 //_____________//settings
 //PHOTOGRAPHE__
+main.classList.add('main');
 photographerArea.classList.add('photoFrame');
 zoneTxt.classList.add('zoneTxt');
 nameTitle.innerHTML = photographer.name;
@@ -202,7 +205,7 @@ blockFlex.append(ul);
 //_____________//create
 //FILTERS_____
 const filter = document.createElement('div');
-const sortBy = document.createElement('div');
+const sortBy = document.createElement('span');
 const select = document.createElement('ul');
 const arrowDown = document.createElement('div');
 const arrowDownImg = document.createElement('img');
@@ -223,18 +226,21 @@ sortBy.classList.add('sortBy');
 sortBy.innerHTML = "Trier par";
 select.classList.add('select');
 arrowDown.classList.add('arrowDown');
-arrowDownImg.src = "./FishEye_Photos/arrow-white.svg";
+arrowDownImg.src = "FishEye_Photos/arrow-white.svg";
 arrowDownImg.alt = "flèche vers le bas";
 arrowUp.classList.add('arrowUp');
-arrowUpImg.src = "./FishEye_Photos/arrow-white.svg";
-arrowDownImg.alt = "flèche vers le haut";
+arrowUpImg.src = "FishEye_Photos/arrow-white.svg";
+arrowUpImg.alt = "flèche vers le haut";
 popChoice.classList.add('choice');
+popChoice.classList.add('popChoice');
 linkPop.innerHTML = "Popularité";
 linkPop.href = "#";
 dateChoice.classList.add('choice');
+dateChoice.classList.add('dateChoice');
 linkDate.innerHTML = "Date";
 linkDate.href = "#";
 titleChoice.classList.add('choice');
+titleChoice.classList.add('titleChoice');
 linkTitle.innerHTML = "Titre";
 linkTitle.href = "#";
 //___________//indent
@@ -268,7 +274,6 @@ album.classList.add('album');
 infoBox.classList.add('infoBox');
 likeBox.classList.add('likeBox');
 likeCounter.classList.add('infoBox__likeCounter');
-likeCounter.innerHTML = "123456789";
 blackHeart.classList.add('infoBox__blackHeart');
 blackHeartImg.src = "./FishEye_Photos/heart-black.svg";
 blackHeartImg.alt = "coeur noir";
@@ -290,7 +295,7 @@ medias.forEach(media => {
    const nameImg = document.createElement('span');
    const blockLike = document.createElement('div');
    const like = document.createElement('div');
-   const heart = document.createElement('div');
+   const heart = document.createElement('button');
    const heartImg = document.createElement('img');
    //_____________//settings
    //ALBUM________
@@ -298,12 +303,13 @@ medias.forEach(media => {
    divPhoto.classList.add('divPhoto');
    divPhoto.href = "./FishEye_Photos/" + photographer.name + "/" + media.image;
    pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
+   pic.alt = media.title + ", date: " + media.date + ", prix: " + media.price + "€";
    picSubtitle.classList.add('subtitle');
    nameImg.classList.add('nameImg');
    nameImg.innerHTML = media.title;
    blockLike.classList.add('blockLike');
    like.classList.add('like');
-   like.innerHTML = media.likes
+   like.innerHTML = media.likes;
    heart.classList.add('heart');
    heartImg.src = "./FishEye_Photos/heart-red.svg";
    heartImg.alt = media.likes + " like";
@@ -320,18 +326,67 @@ medias.forEach(media => {
    blockLike.append(heart);
    heart.append(heartImg);
 
-
-
-   // console.log("addition: " + media.likes + media.likes);
-   // console.log(+media.likes + media.likes.length);
-   console.log(media.likes);
-
+   //Addition des likes
+   totalLike += media.likes;
 })
 
 
+console.log(totalLike);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Fonction incrementation like photos
+const incrementPic = () => {
+   //recuperation des coeurs
+   const blocksLike = document.querySelectorAll('.blockLike');
+   blocksLike.forEach(block => {
+      const heart = block.querySelector('.heart');
+
+      heart.addEventListener('click', () => {
+         const like = block.querySelector('.like');
+         const likeNmb = parseInt(like.innerHTML);
+   
+         if(heart.classList.contains('clicked') == false) {
+            heart.classList.add('clicked');
+            totalLike += 1;
+            like.innerHTML = likeNmb + 1;
+            displayTotalLike();
+         } else {
+            heart.classList.remove('clicked');
+            totalLike -= 1;
+            like.innerHTML = likeNmb - 1;
+            displayTotalLike();
+         }
+      })
+   })
+}
+
+//Fonction du total des like de la page
+const displayTotalLike = () => {
+   likeCounter.innerHTML = totalLike;
+}
+
+
+displayTotalLike();
+incrementPic();
 
 
 

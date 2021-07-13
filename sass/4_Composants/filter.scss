@@ -2,6 +2,7 @@
 .filter {
     position: relative;
     width: 90%;
+    height: 50px;
     margin: auto;
     display: flex;
     .sortBy, .select {
@@ -15,6 +16,7 @@
         background-color: $firebrick;
         border-radius: 5px;
         box-shadow: 2px 2px 12px $darkGrey;
+        z-index: 10;
         .choice {
             width: 25px;
             padding: 17px 15px;

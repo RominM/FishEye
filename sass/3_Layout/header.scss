@@ -4,11 +4,13 @@
 .banner {
     display: grid;
     grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
     padding: 30px 10px 0px 10px;
     width: 85%;
     margin: auto;
     .logo {
         grid-column: 1;
+        grid-row: 1;
         max-width: 260px;
         min-width: 180px;
         img {
@@ -18,9 +20,12 @@
     .topNav {
         margin: auto;
         grid-column: 2;
+        grid-row: 1;
+
     }
     .mainHeader {
         grid-column: 3;
+        grid-row: 1;
         max-width: 260px;
         margin: auto 20px;
         color: $firebrick;
@@ -33,16 +38,18 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    .tagDesign__tag {
+    &__tag {
         border: solid 1px $lightGrey;
         border-radius: 20px;
-        padding: 0 8px;
+        padding: 5px 8px;
         margin: 2px;
         color: $firebrick;
         cursor: pointer;
         transition: .3s;
+        background-color: #fff;
+        font-size: 1em;
     }
-    .tagDesign__tag:hover {
+    &__tag:hover {
         box-shadow: $lightGrey 2px 2px 5px 2px;
         transform: scale3d(2 2);
         transform: translateY(-4px);

@@ -9,6 +9,8 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       init(response2);
    })
 
+   //********************************* CLASS ******************************************/
+
 // /**
 //  * @param domElement
 //  */
@@ -37,32 +39,100 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
 // const image = new CreateDOMElement('img', 'logo');
 // const div = new CreateDOMElement('div', 'bground');
 
-//creer un fichier DOMElement
+//**************************************************************************************/
 
-//DOM ELEMENTS
-const mainContent = document.querySelector('.mainContent');
+   //DOM ELEMENTS
+const body = document.body;
 
 //___________//create
 //HEADER_____
-// const header = document.createElement('header');
-// const linkHome = document.createElement('a');
-// const h1 = document.createElement('h1');
-// const logo = document.createElement('img');
-// const nav = document.createElement('nav');
+const header = document.createElement('header');
+const linkHome = document.createElement('a');
+const logo = document.createElement('img');
+const nav = document.createElement('nav');
+const ul = document.createElement('ul');
+const liPortrait = document.createElement('li');
+const spanPortrait = document.createElement('button');
+const liArt = document.createElement('li');
+const spanArt = document.createElement('button');
+const liFashion = document.createElement('li');
+const spanFashion = document.createElement('button');
+const liArchitecture = document.createElement('li');
+const spanArchitecture = document.createElement('button');
+const liTravel = document.createElement('li');
+const spanTravel = document.createElement('button');
+const liSport = document.createElement('li');
+const spanSport = document.createElement('button');
+const liAnimals = document.createElement('li');
+const spanAnimals = document.createElement('button');
+const liEvents = document.createElement('li');
+const spanEvents = document.createElement('button');
+const mainHeader = document.createElement('div');
+const h1 = document.createElement('h1');
 //___________//settings
 //HEADER_____
-// header.classList.add('banner');
-// linkHome.classList.add('logo');
-// logo.scr = "FishEye_Photos/logo.png";
-// logo.alt = "FishEye Home Page";
-// nav.classList.add('topNav');
-// nav.ariaLabel = "photographer categories";
+header.classList.add('banner');
+linkHome.href = "./index.html";
+linkHome.classList.add('logo');
+logo.src = "FishEye_Photos/logo.png";
+logo.alt = "FishEye Home Page";
+nav.ariaLabel = "photographer categories";
+nav.classList.add('topNav');
+ul.classList.add('tagDesign');
+spanPortrait.classList.add('tagDesign__tag');
+spanPortrait.innerHTML = "#Portrait";
+spanArt.classList.add('tagDesign__tag');
+spanArt.innerHTML = "#Art";
+spanFashion.classList.add('tagDesign__tag');
+spanFashion.innerHTML = "#Fashion";
+spanArchitecture.classList.add('tagDesign__tag');
+spanArchitecture.innerHTML = "#Architecture"
+spanTravel.classList.add('tagDesign__tag');
+spanTravel.innerHTML = "#Travel";
+spanSport.classList.add('tagDesign__tag');
+spanSport.innerHTML = "#Sport";
+spanAnimals.classList.add('tagDesign__tag');
+spanAnimals.innerHTML = "#Animals";
+spanEvents.classList.add('tagDesign__tag');
+spanEvents.innerHTML = "#Events";
+mainHeader.classList.add('mainHeader');
+h1.innerHTML = "Nos photographes";
 //___________//indent
 //HEADER_____
-// header.append(linkHome);
-// linkHome.append(logo);
-// header.append(nav);
-// nav.append(ul);
+body.append(header);
+header.append(linkHome);
+header.append(mainHeader);
+linkHome.append(logo);
+header.append(nav);
+nav.append(ul);
+ul.append(liPortrait);
+liPortrait.append(spanPortrait);
+ul.append(liArt);
+liArt.append(spanArt);
+ul.append(liFashion);
+liFashion.append(spanFashion);
+ul.append(liArchitecture);
+liArchitecture.append(spanArchitecture);
+ul.append(liTravel);
+liTravel.append(spanTravel);
+ul.append(liSport);
+liSport.append(spanSport);
+ul.append(liAnimals);
+liAnimals.append(spanAnimals);
+ul.append(liEvents);
+liEvents.append(spanEvents);
+mainHeader.append(h1);
+
+
+      const main = document.createElement('main');
+      const mainContent = document.createElement('section');
+      
+      mainContent.classList.add('mainContent');
+      
+      body.append(main);
+      main.append(mainContent);
+      
+
 
 
 // tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
@@ -139,3 +209,8 @@ const init = (data) => {
 }
 
 
+const addition = (nmb1, nmb2) => {
+   console.log(nmb1 + nmb2);
+}
+
+addition(3,4);
