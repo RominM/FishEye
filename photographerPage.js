@@ -232,15 +232,17 @@ arrowUp.classList.add('arrowUp');
 arrowUpImg.src = "FishEye_Photos/arrow-white.svg";
 arrowUpImg.alt = "flèche vers le haut";
 popChoice.classList.add('choice');
-popChoice.classList.add('popChoice');
+popChoice.id = "popChoice";
 linkPop.innerHTML = "Popularité";
 linkPop.href = "#";
+split1.classList.add('split');
 dateChoice.classList.add('choice');
-dateChoice.classList.add('dateChoice');
+dateChoice.id = "dateChoice";
 linkDate.innerHTML = "Date";
 linkDate.href = "#";
+split2.classList.add('split');
 titleChoice.classList.add('choice');
-titleChoice.classList.add('titleChoice');
+titleChoice.id = "titleChoice";
 linkTitle.innerHTML = "Titre";
 linkTitle.href = "#";
 //___________//indent
@@ -288,26 +290,43 @@ likeBox.append(blackHeart);
 blackHeart.append(blackHeartImg);
 //FOREACH_MEDIA
 medias.forEach(media => {
-   const albumPhoto = document.createElement('div');
+   
+   const albumPhoto = document.createElement('figure');
    const divPhoto = document.createElement('a');
-   const pic = document.createElement('img');
-   const picSubtitle = document.createElement('div');
+   const picSubtitle = document.createElement('figcaption');
    const nameImg = document.createElement('span');
    const blockLike = document.createElement('div');
+   
    const like = document.createElement('div');
    const heart = document.createElement('button');
    const heartImg = document.createElement('img');
+
+   if(media.video) {
+      const vid = document.createElement('video');
+      const source = document.createElement('source');
+      vid.controls = "true";
+      vid.type = "video/mp4"
+      source.src = "./FishEye_Photos/" + photographer.name + "/" + media.video;
+      source.alt = media.title + ", date: " + media.date + ", prix: " + media.price + "€";
+      vid.classList.add('fig-vid');
+      divPhoto.append(vid);
+      vid.append(source);
+   } else if(media.image) {
+      const pic = document.createElement('img');
+      pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
+      pic.alt = media.title + ", date: " + media.date + ", prix: " + media.price + "€";
+      divPhoto.append(pic);
+   }
    //_____________//settings
    //ALBUM________
    albumPhoto.classList.add('albumPhoto');
    divPhoto.classList.add('divPhoto');
    divPhoto.href = "./FishEye_Photos/" + photographer.name + "/" + media.image;
-   pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
-   pic.alt = media.title + ", date: " + media.date + ", prix: " + media.price + "€";
    picSubtitle.classList.add('subtitle');
    nameImg.classList.add('nameImg');
    nameImg.innerHTML = media.title;
    blockLike.classList.add('blockLike');
+
    like.classList.add('like');
    like.innerHTML = media.likes;
    heart.classList.add('heart');
@@ -318,7 +337,7 @@ medias.forEach(media => {
    main.append(album);
    album.append(albumPhoto);
    albumPhoto.append(divPhoto);
-   divPhoto.append(pic);
+
    albumPhoto.append(picSubtitle);
    picSubtitle.append(nameImg);
    picSubtitle.append(blockLike);
@@ -329,29 +348,6 @@ medias.forEach(media => {
    //Addition des likes
    totalLike += media.likes;
 })
-
-
-console.log(totalLike);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Fonction incrementation like photos
 const incrementPic = () => {
@@ -605,6 +601,8 @@ const menuOn = () => {
    select.style.height = "160px";
    arrowDown.style.display = "none";
    arrowUp.style.display = "block";
+   dateChoice.style.display = "block";
+   titleChoice.style.display = "block";
    split1.style.display = "block";
    split2.style.display = "block";
 }
@@ -612,6 +610,8 @@ const menuOff = () => {
    select.style.height = "50px";
    arrowDown.style.display = "block";
    arrowUp.style.display = "none";
+   dateChoice.style.display = "none";
+   titleChoice.style.display = "none";
    split1.style.display = "none";
    split2.style.display = "none";
 }

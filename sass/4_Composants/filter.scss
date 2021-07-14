@@ -26,7 +26,7 @@
                 color: #fff;
             }
         }
-        hr {
+        .split {
             display: none;
             width: 80%;
             margin: auto;
@@ -53,4 +53,17 @@
         right: 19%;
         transform: rotate(180deg);
     }
+}
+
+
+#popChoice {
+    display: block;
+}
+
+#dateChoice {
+    display: none;
+}
+
+#titleChoice {
+    display: none;
 }

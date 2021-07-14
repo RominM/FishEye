@@ -20,6 +20,19 @@
         .divPhoto img:hover {
             box-shadow: 2px 3px 15px 3px $darkGrey;
         }
+        video {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            box-shadow: 2px 2px 10px 2px $lightGrey;
+            cursor: pointer;
+            transition: .3s;
+        }
+        video:hover {
+            box-shadow: 2px 3px 15px 3px $darkGrey;
+        }
     }
     .subtitle {
         display: flex;
@@ -47,7 +60,7 @@
             }
             .heart:hover {
                 transform: scale(1.2);
-            }        
+            }
         }        
     }
     .infoBox {
