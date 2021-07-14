@@ -207,6 +207,7 @@ blockFlex.append(ul);
 const filter = document.createElement('div');
 const sortBy = document.createElement('span');
 const select = document.createElement('ul');
+const containChoice = document.createElement('div');
 const arrowDown = document.createElement('div');
 const arrowDownImg = document.createElement('img');
 const arrowUp = document.createElement('div');
@@ -219,42 +220,48 @@ const titleChoice = document.createElement('li');
 const linkTitle = document.createElement('a');
 const split1 = document.createElement('hr');
 const split2 = document.createElement('hr');
+
 //_____________//settings
 //FILTERS______
 filter.classList.add('filter');
 sortBy.classList.add('sortBy');
 sortBy.innerHTML = "Trier par";
 select.classList.add('select');
+containChoice.classList.add('choice');
 arrowDown.classList.add('arrowDown');
 arrowDownImg.src = "FishEye_Photos/arrow-white.svg";
 arrowDownImg.alt = "flèche vers le bas";
 arrowUp.classList.add('arrowUp');
 arrowUpImg.src = "FishEye_Photos/arrow-white.svg";
 arrowUpImg.alt = "flèche vers le haut";
-popChoice.classList.add('choice');
+popChoice.classList.add('sortChoice');
 popChoice.id = "popChoice";
 linkPop.innerHTML = "Popularité";
+linkPop.classList.add('selectLink');
 linkPop.href = "#";
 split1.classList.add('split');
-dateChoice.classList.add('choice');
+dateChoice.classList.add('sortChoice');
 dateChoice.id = "dateChoice";
 linkDate.innerHTML = "Date";
+linkDate.classList.add('selectLink');
 linkDate.href = "#";
 split2.classList.add('split');
-titleChoice.classList.add('choice');
+titleChoice.classList.add('sortChoice');
 titleChoice.id = "titleChoice";
 linkTitle.innerHTML = "Titre";
+linkTitle.classList.add('selectLink');
 linkTitle.href = "#";
 //___________//indent
 //FILTERS______
 main.append(filter);
 filter.append(sortBy);
 filter.append(select);
+select.append(containChoice);
 select.append(arrowDown);
 select.append(arrowUp);
 arrowDown.append(arrowDownImg);
 arrowUp.append(arrowUpImg);
-select.append(popChoice);
+containChoice.append(popChoice);
 popChoice.append(linkPop);
 select.append(split1);
 select.append(dateChoice);
@@ -262,6 +269,42 @@ dateChoice.append(linkDate);
 select.append(split2);
 select.append(titleChoice);
 titleChoice.append(linkTitle);
+
+
+//Fonction de "Trier par"
+const sortByChoice = () => {
+   //recuperation des differents choix
+   const selectLinks = document.querySelectorAll('.selectLink');
+   selectLinks.forEach(link => {
+      const choices = document.querySelector('.sortChoice');
+
+         choices.addEventListener('click', () => {
+            const choicePop = link.querySelector('#popChoice');
+            const choiceDate = link.querySelector('#dateChoice');
+            const choiceTitle = link.querySelector('#titleChoice');
+            console.log('coucou');
+            if (choicePop.classList.contains('selected') == false) {
+               choicePop.classList.add('selected');
+            } else if (choiceDate.classList.contains('selected') == false) {
+               choiceDate.classList.add('selected');
+            } else if (choiceTitle.classList.contains('selected') == false) {
+               choiceTitle.classList.add('selected');
+            } else {
+               choicePop.classList.add('selected');
+
+            }
+         })
+   })
+}
+
+
+
+sortByChoice();
+
+
+
+
+
 //_____________//create
 //ALBUM_______
 const album = document.createElement('div');
@@ -290,18 +333,23 @@ likeBox.append(blackHeart);
 blackHeart.append(blackHeartImg);
 //FOREACH_MEDIA
 medias.forEach(media => {
-   
+
+
+
+
+
+
    const albumPhoto = document.createElement('figure');
    const divPhoto = document.createElement('a');
    const picSubtitle = document.createElement('figcaption');
    const nameImg = document.createElement('span');
    const blockLike = document.createElement('div');
-   
+
    const like = document.createElement('div');
    const heart = document.createElement('button');
    const heartImg = document.createElement('img');
 
-   if(media.video) {
+   if (media.video) {
       const vid = document.createElement('video');
       const source = document.createElement('source');
       vid.controls = "true";
@@ -311,7 +359,7 @@ medias.forEach(media => {
       vid.classList.add('fig-vid');
       divPhoto.append(vid);
       vid.append(source);
-   } else if(media.image) {
+   } else if (media.image) {
       const pic = document.createElement('img');
       pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
       pic.alt = media.title + ", date: " + media.date + ", prix: " + media.price + "€";
@@ -347,7 +395,11 @@ medias.forEach(media => {
 
    //Addition des likes
    totalLike += media.likes;
+
 })
+
+
+
 
 //Fonction incrementation like photos
 const incrementPic = () => {
@@ -359,12 +411,14 @@ const incrementPic = () => {
       heart.addEventListener('click', () => {
          const like = block.querySelector('.like');
          const likeNmb = parseInt(like.innerHTML);
-   
-         if(heart.classList.contains('clicked') == false) {
+
+         if (heart.classList.contains('clicked') == false) {
             heart.classList.add('clicked');
             totalLike += 1;
             like.innerHTML = likeNmb + 1;
             displayTotalLike();
+            console.log(totalLike);
+
          } else {
             heart.classList.remove('clicked');
             totalLike -= 1;
@@ -605,6 +659,15 @@ const menuOn = () => {
    titleChoice.style.display = "block";
    split1.style.display = "block";
    split2.style.display = "block";
+   //condition des choix
+   //par defaut "popChoice" est dejà en display = "block";
+   // if (dateChoice.click()) {
+   //    choice.innerHTML = dateChoice;
+   // } else if (titlChoice.click()) {
+   //    choice.innerHTML = titleChoice;
+   // } else {
+   //    choice.innerHTML = popChoice
+   // }
 }
 const menuOff = () => {
    select.style.height = "50px";
