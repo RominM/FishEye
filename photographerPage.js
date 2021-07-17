@@ -213,11 +213,11 @@ const arrowDownImg = document.createElement('img');
 const arrowUp = document.createElement('div');
 const arrowUpImg = document.createElement('img');
 const popChoice = document.createElement('li');
-const linkPop = document.createElement('a');
+const btnPop = document.createElement('button');
 const dateChoice = document.createElement('li');
-const linkDate = document.createElement('a');
+const btnDate = document.createElement('button');
 const titleChoice = document.createElement('li');
-const linkTitle = document.createElement('a');
+const btnTitle = document.createElement('button');
 const split1 = document.createElement('hr');
 const split2 = document.createElement('hr');
 
@@ -236,70 +236,85 @@ arrowUpImg.src = "FishEye_Photos/arrow-white.svg";
 arrowUpImg.alt = "flèche vers le haut";
 popChoice.classList.add('sortChoice');
 popChoice.id = "popChoice";
-linkPop.innerHTML = "Popularité";
-linkPop.classList.add('selectLink');
-linkPop.href = "#";
+btnPop.innerHTML = "Popularité";
+btnPop.classList.add('selectBtn');
+btnPop.href = "#";
 split1.classList.add('split');
 dateChoice.classList.add('sortChoice');
 dateChoice.id = "dateChoice";
-linkDate.innerHTML = "Date";
-linkDate.classList.add('selectLink');
-linkDate.href = "#";
+btnDate.innerHTML = "Date";
+btnDate.classList.add('selectBtn');
+btnDate.href = "#";
 split2.classList.add('split');
 titleChoice.classList.add('sortChoice');
 titleChoice.id = "titleChoice";
-linkTitle.innerHTML = "Titre";
-linkTitle.classList.add('selectLink');
-linkTitle.href = "#";
+btnTitle.innerHTML = "Titre";
+btnTitle.classList.add('selectBtn');
+btnTitle.href = "#";
 //___________//indent
 //FILTERS______
 main.append(filter);
 filter.append(sortBy);
 filter.append(select);
 select.append(containChoice);
-select.append(arrowDown);
-select.append(arrowUp);
+containChoice.append(arrowDown);
+containChoice.append(arrowUp);
 arrowDown.append(arrowDownImg);
 arrowUp.append(arrowUpImg);
-containChoice.append(popChoice);
-popChoice.append(linkPop);
+select.append(popChoice);
+popChoice.append(btnPop);
 select.append(split1);
 select.append(dateChoice);
-dateChoice.append(linkDate);
+dateChoice.append(btnDate);
 select.append(split2);
 select.append(titleChoice);
-titleChoice.append(linkTitle);
+titleChoice.append(btnTitle);
 
 
-//Fonction de "Trier par"
-const sortByChoice = () => {
-   //recuperation des differents choix
-   const selectLinks = document.querySelectorAll('.selectLink');
-   selectLinks.forEach(link => {
-      const choices = document.querySelector('.sortChoice');
 
-         choices.addEventListener('click', () => {
-            const choicePop = link.querySelector('#popChoice');
-            const choiceDate = link.querySelector('#dateChoice');
-            const choiceTitle = link.querySelector('#titleChoice');
-            console.log('coucou');
-            if (choicePop.classList.contains('selected') == false) {
-               choicePop.classList.add('selected');
-            } else if (choiceDate.classList.contains('selected') == false) {
-               choiceDate.classList.add('selected');
-            } else if (choiceTitle.classList.contains('selected') == false) {
-               choiceTitle.classList.add('selected');
-            } else {
-               choicePop.classList.add('selected');
 
-            }
-         })
-   })
+console.log(medias);
+
+const buttons = document.querySelectorAll('.selectBtn');
+for (let i = 0; i < buttons.length; i++) {
+   let self = buttons[i];
+   console.log(buttons[i].textContent);
+
+   self.addEventListener('click', function () {
+
+      if(buttons[i].textContent === 'Popularité') {
+         for(let i = 0; i<medias.length; i++) {
+            console.log(medias[i].likes);
+            medias.sort((a, b) => a.likes - b.likes);
+         }
+      }
+      else if (buttons[i].textContent === 'Date') {
+         for(let i = 0; i<medias.length; i++) {
+            medias.sort((a, b) => {
+               return new Date(b.date) - new Date(a.date);
+            });
+            console.log(medias[i].date);
+         }
+      }
+      else if (buttons[i].textContent === 'Titre') {
+         for(let i = 0; i<medias.length; i++) {
+            console.log(medias[i].title);
+            medias.sort();
+         }
+      }
+   });
 }
 
 
 
-sortByChoice();
+
+
+
+
+
+
+
+
 
 
 

@@ -15,15 +15,23 @@
         height: 50px;
         background-color: $firebrick;
         border-radius: 5px;
-        z-index: 8;
+        z-index: 4;
         .sortChoice {
             width: 25px;
-            padding: 17px 15px;
             cursor: pointer;
             transition: .3s;
-            z-index: 15;
-            a {
+            z-index: 10;
+            .selectBtn {
+                border: none;
+                text-align: start;
+                margin-left: 10px;
+                width: 100px;
+                height: 50px;
+                background-color: transparent;
                 color: #fff;
+                font-size: 0.85em;
+                z-index: 12;
+                cursor: pointer;
             }
         }
         .split {
@@ -46,7 +54,7 @@
         top: 35%;
         right: 12%;
         width: 10px;
-        z-index: 12;
+        z-index: 15;
         cursor: pointer;
         transform: rotate(90deg);
         transition: .3s;
@@ -54,9 +62,9 @@
     .arrowUp {
         display: none;
         position: absolute;
-        top: 21%;
+        top: 66%;
         right: 19%;
-        z-index: 12;
+        z-index: 14;
         transform: rotate(180deg);
     }
 }
