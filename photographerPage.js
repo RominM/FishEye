@@ -273,7 +273,6 @@ titleChoice.append(btnTitle);
 
 
 
-console.log(medias);
 
 const buttons = document.querySelectorAll('.selectBtn');
 for (let i = 0; i < buttons.length; i++) {
@@ -284,8 +283,8 @@ for (let i = 0; i < buttons.length; i++) {
 
       if(buttons[i].textContent === 'Popularité') {
          for(let i = 0; i<medias.length; i++) {
-            console.log(medias[i].likes);
             medias.sort((a, b) => a.likes - b.likes);
+            console.log(medias[i].likes);
          }
       }
       else if (buttons[i].textContent === 'Date') {

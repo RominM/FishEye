@@ -52,21 +52,21 @@ const logo = document.createElement('img');
 const nav = document.createElement('nav');
 const ul = document.createElement('ul');
 const liPortrait = document.createElement('li');
-const spanPortrait = document.createElement('button');
+const btnPortrait = document.createElement('button');
 const liArt = document.createElement('li');
-const spanArt = document.createElement('button');
+const btnArt = document.createElement('button');
 const liFashion = document.createElement('li');
-const spanFashion = document.createElement('button');
+const btnFashion = document.createElement('button');
 const liArchitecture = document.createElement('li');
-const spanArchitecture = document.createElement('button');
+const btnArchitecture = document.createElement('button');
 const liTravel = document.createElement('li');
-const spanTravel = document.createElement('button');
+const btnTravel = document.createElement('button');
 const liSport = document.createElement('li');
-const spanSport = document.createElement('button');
+const btnSport = document.createElement('button');
 const liAnimals = document.createElement('li');
-const spanAnimals = document.createElement('button');
+const btnAnimals = document.createElement('button');
 const liEvents = document.createElement('li');
-const spanEvents = document.createElement('button');
+const btnEvents = document.createElement('button');
 const mainHeader = document.createElement('div');
 const h1 = document.createElement('h1');
 //___________//settings
@@ -79,22 +79,30 @@ logo.alt = "FishEye Home Page";
 nav.ariaLabel = "photographer categories";
 nav.classList.add('topNav');
 ul.classList.add('tagDesign');
-spanPortrait.classList.add('tagDesign__tag');
-spanPortrait.innerHTML = "#Portrait";
-spanArt.classList.add('tagDesign__tag');
-spanArt.innerHTML = "#Art";
-spanFashion.classList.add('tagDesign__tag');
-spanFashion.innerHTML = "#Fashion";
-spanArchitecture.classList.add('tagDesign__tag');
-spanArchitecture.innerHTML = "#Architecture"
-spanTravel.classList.add('tagDesign__tag');
-spanTravel.innerHTML = "#Travel";
-spanSport.classList.add('tagDesign__tag');
-spanSport.innerHTML = "#Sport";
-spanAnimals.classList.add('tagDesign__tag');
-spanAnimals.innerHTML = "#Animals";
-spanEvents.classList.add('tagDesign__tag');
-spanEvents.innerHTML = "#Events";
+btnPortrait.classList.add('tagDesign__tag');
+btnPortrait.innerHTML = "#Portrait";
+btnPortrait.id = "portrait";
+btnArt.classList.add('tagDesign__tag');
+btnArt.innerHTML = "#Art";
+btnArt.id = "art";
+btnFashion.classList.add('tagDesign__tag');
+btnFashion.innerHTML = "#Fashion";
+btnFashion.id = "fashion";
+btnArchitecture.classList.add('tagDesign__tag');
+btnArchitecture.innerHTML = "#Architecture";
+btnArchitecture.id = "architecture";
+btnTravel.classList.add('tagDesign__tag');
+btnTravel.innerHTML = "#Travel";
+btnTravel.id = "travel";
+btnSport.classList.add('tagDesign__tag');
+btnSport.innerHTML = "#Sport";
+btnSport.id = "sport";
+btnAnimals.classList.add('tagDesign__tag');
+btnAnimals.innerHTML = "#Animals";
+btnAnimals.id = "animals";
+btnEvents.classList.add('tagDesign__tag');
+btnEvents.innerHTML = "#Events";
+btnEvents.id = "events";
 mainHeader.classList.add('mainHeader');
 h1.innerHTML = "Nos photographes";
 //___________//indent
@@ -106,32 +114,109 @@ linkHome.append(logo);
 header.append(nav);
 nav.append(ul);
 ul.append(liPortrait);
-liPortrait.append(spanPortrait);
+liPortrait.append(btnPortrait);
 ul.append(liArt);
-liArt.append(spanArt);
+liArt.append(btnArt);
 ul.append(liFashion);
-liFashion.append(spanFashion);
+liFashion.append(btnFashion);
 ul.append(liArchitecture);
-liArchitecture.append(spanArchitecture);
+liArchitecture.append(btnArchitecture);
 ul.append(liTravel);
-liTravel.append(spanTravel);
+liTravel.append(btnTravel);
 ul.append(liSport);
-liSport.append(spanSport);
+liSport.append(btnSport);
 ul.append(liAnimals);
-liAnimals.append(spanAnimals);
+liAnimals.append(btnAnimals);
 ul.append(liEvents);
-liEvents.append(spanEvents);
+liEvents.append(btnEvents);
 mainHeader.append(h1);
 
 
-      const main = document.createElement('main');
-      const mainContent = document.createElement('section');
-      
-      mainContent.classList.add('mainContent');
-      
-      body.append(main);
-      main.append(mainContent);
-      
+const main = document.createElement('main');
+const mainContent = document.createElement('section');
+
+mainContent.classList.add('mainContent');
+
+body.append(main);
+main.append(mainContent);
+
+
+
+
+
+
+
+
+
+
+
+const buttons = document.querySelectorAll('.tagDesign__tag');
+for (let i = 0; i < buttons.length; i++) {
+   let self = buttons[i];
+   console.log(buttons[i].id);
+
+   self.addEventListener('click', function () {
+      buttons.forEach(button => {
+         
+         const btn = buttons[i].id;
+         // if(button.id === 'portrait') {
+            // }
+            // else if (button.id === 'events') {
+               //    console.log('tu as clicker sur "event"');
+               // }
+               switch (button) {
+                  case art:
+                     console.log('tu as clicker sur ' + btn);
+                     break;
+                  
+                  default:
+                     break;
+               }
+            })
+   })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -207,10 +292,3 @@ const init = (data) => {
       blockFlex.append(ul);
    })
 }
-
-
-const addition = (nmb1, nmb2) => {
-   console.log(nmb1 + nmb2);
-}
-
-addition(3,4);
