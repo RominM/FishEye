@@ -140,136 +140,6 @@ mainContent.classList.add('mainContent');
 body.append(main);
 main.append(mainContent);
 
-
-
-
-
-
-
-
-
-
-
-const buttons = document.querySelectorAll('.tagDesign__tag');
-
-for (let i = 0; i < buttons.length; i++) {
-   let self = buttons[i];
-   console.log(self.id);
-
-   self.addEventListener('click', function () {
-      const btn = buttons[i].id;
-   
-      switch (self) {
-         case portrait:
-            console.log('tu as clicker sur ' + btn);
-            
-            break;
-            
-         case art:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-         case fashion:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-         case architecture:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-         case travel:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-         case sport:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-         case animals:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-         case events:
-            console.log('tu as clicker sur ' + btn);
-            break;
-      
-            default:
-               break;
-         }
-
-
-      // buttons.forEach(button => {
-
-      //    const btn = buttons[i].id;
-
-      //    console.log(btn);
-
-
-
-
-         // if(buttons) {
-         //    }
-         //    else if (button.id === 'events') {
-         //          console.log('tu as clicker sur "event"');
-         //       }
-
-
-         // switch (button) {
-         //    case art:
-         //       console.log('tu as clicker sur ' + btn);
-         //       break;
-
-         //    default:
-         //       break;
-         // }
-      // })
-   })
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
 const init = (data) => {
    //boucle pour chaque photographes
@@ -340,5 +210,111 @@ const init = (data) => {
          ul.append(li);
       }
       blockFlex.append(ul);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // for (let i = 0; i < buttons.length; i++) {
+      //    let self = buttons[i];
+
+      //    self.addEventListener('click', function () {
+      //       const btn = buttons[i].id;
+      //       //Selection par Tags
+      //       const tagsSelect = photographer.tags;
+      //       for (let i = 0; i < tagsSelect; i++) {
+      //          if (tagsSelect[i] === '#portrait')
+      //             console.log(tagsSelect[i]);
+      //       }
+
+      // switch (self) {
+      //    case portrait:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case art:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case fashion:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case architecture:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case travel:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case sport:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case animals:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    case events:
+      //       console.log('tu as clické sur ' + btn);
+      //       break;
+
+      //    default:
+      //       break;
+      // }
+      // console.log(self);
+      //    })
+      // }
+   })
+
+
+
+
+   const btnTags = document.querySelectorAll('.tagDesign__tag');   
+   console.log(btnTags);
+   
+   const setCardsAsking = () => {
+      //affiche les cards qui dispose des 
+      //même tags selectionné
+   }
+   
+   btnTags.forEach(btnTag => {
+      btnTag.addEventListener('click', setCardsAsking)
    })
 }
+
+
+
+
