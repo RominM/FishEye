@@ -165,6 +165,7 @@ const init = (data) => {
       //CARDS______
       card.classList.add('cards');
       card.href = "photographer.html?id=" + photographer.id;
+      card.id = photographer.id;
       image.src = "FishEye_Photos/Photographers ID Photos/" + photographer.portrait;
       image.alt = 'photo portrait de ' + photographer.name;
       contact.classList.add('contact-btn');
@@ -211,110 +212,73 @@ const init = (data) => {
       }
       blockFlex.append(ul);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // for (let i = 0; i < buttons.length; i++) {
-      //    let self = buttons[i];
-
-      //    self.addEventListener('click', function () {
-      //       const btn = buttons[i].id;
-      //       //Selection par Tags
-      //       const tagsSelect = photographer.tags;
-      //       for (let i = 0; i < tagsSelect; i++) {
-      //          if (tagsSelect[i] === '#portrait')
-      //             console.log(tagsSelect[i]);
-      //       }
-
-      // switch (self) {
-      //    case portrait:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case art:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case fashion:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case architecture:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case travel:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case sport:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case animals:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    case events:
-      //       console.log('tu as clické sur ' + btn);
-      //       break;
-
-      //    default:
-      //       break;
-      // }
-      // console.log(self);
-      //    })
-      // }
    })
 
 
 
 
-   const btnTags = document.querySelectorAll('.tagDesign__tag');   
-   console.log(btnTags);
-   
-   const setCardsAsking = () => {
-      //affiche les cards qui dispose des 
-      //même tags selectionné
+
+
+
+   const setCardsAsking = (btn) => {
+      data.photographers.forEach(photographer => {
+         let array = photographer.tags;
+         console.log(photographer.id);
+         let getId = document.getElementById(photographer.id);
+         array.forEach(tags => {
+            if (tags == btn) {
+               getId.style.display = "none";
+            } else {
+               console.log('getId: ' + photographer.id);
+            }
+         })
+      })
    }
-   
-   btnTags.forEach(btnTag => {
-      btnTag.addEventListener('click', setCardsAsking)
-   })
+
+   const buttons = document.querySelectorAll('.tagDesign__tag');
+
+   for (let i = 0; i < buttons.length; i++) {
+      let self = buttons[i];
+
+      self.addEventListener('click', function () {
+         const btn = buttons[i].id;
+
+         switch (self) {
+            case portrait:
+               setCardsAsking(btn);
+               break;
+
+            case art:
+               setCardsAsking(btn);
+               break;
+
+            case fashion:
+               setCardsAsking(btn);
+               break;
+
+            case architecture:
+               setCardsAsking(btn);
+               break;
+
+            case travel:
+               setCardsAsking(btn);
+               break;
+
+            case sport:
+               setCardsAsking(btn);
+               break;
+
+            case animals:
+               setCardsAsking(btn);
+               break;
+
+            case events:
+               setCardsAsking(btn);
+               break;
+
+            default:
+               break;
+         }
+      })
+   }
 }
-
-
-
-
