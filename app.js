@@ -9,7 +9,7 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
       init(response2);
    })
 
-   //********************************* CLASS ******************************************/
+//********************************* CLASS ******************************************/
 
 // /**
 //  * @param domElement
@@ -41,7 +41,7 @@ fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse q
 
 //**************************************************************************************/
 
-   //DOM ELEMENTS
+//DOM ELEMENTS
 const body = document.body;
 
 //___________//create
@@ -151,28 +151,78 @@ main.append(mainContent);
 
 
 const buttons = document.querySelectorAll('.tagDesign__tag');
+
 for (let i = 0; i < buttons.length; i++) {
    let self = buttons[i];
-   console.log(buttons[i].id);
+   console.log(self.id);
 
    self.addEventListener('click', function () {
-      buttons.forEach(button => {
-         
-         const btn = buttons[i].id;
-         // if(button.id === 'portrait') {
-            // }
-            // else if (button.id === 'events') {
-               //    console.log('tu as clicker sur "event"');
-               // }
-               switch (button) {
-                  case art:
-                     console.log('tu as clicker sur ' + btn);
-                     break;
-                  
-                  default:
-                     break;
-               }
-            })
+      const btn = buttons[i].id;
+   
+      switch (self) {
+         case portrait:
+            console.log('tu as clicker sur ' + btn);
+            
+            break;
+            
+         case art:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+         case fashion:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+         case architecture:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+         case travel:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+         case sport:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+         case animals:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+         case events:
+            console.log('tu as clicker sur ' + btn);
+            break;
+      
+            default:
+               break;
+         }
+
+
+      // buttons.forEach(button => {
+
+      //    const btn = buttons[i].id;
+
+      //    console.log(btn);
+
+
+
+
+         // if(buttons) {
+         //    }
+         //    else if (button.id === 'events') {
+         //          console.log('tu as clicker sur "event"');
+         //       }
+
+
+         // switch (button) {
+         //    case art:
+         //       console.log('tu as clicker sur ' + btn);
+         //       break;
+
+         //    default:
+         //       break;
+         // }
+      // })
    })
 
 }
@@ -240,7 +290,7 @@ const init = (data) => {
       //__________//create
       //TAGS______
       const ul = document.createElement('ul');
-   //**************************************************************************************/
+      //**************************************************************************************/
       //___________//settings
       //CARDS______
       card.classList.add('cards');
@@ -264,7 +314,7 @@ const init = (data) => {
       ul.classList.add('tagDesign');
       /*********inDOM*********/
       mainContent.append(card);
-   //**************************************************************************************/
+      //**************************************************************************************/
       //___________//indent
       //CARDS______
       card.append(image);
