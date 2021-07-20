@@ -222,14 +222,25 @@ const init = (data) => {
 
    const setCardsAsking = (btn) => {
       data.photographers.forEach(photographer => {
-         let array = photographer.tags;
-         console.log(photographer.id);
-         let getId = document.getElementById(photographer.id);
-         array.forEach(tags => {
-            if (tags == btn) {
-               getId.style.display = "none";
+         let arrayTags = photographer.tags;//tags de chaques photographes
+         // console.log(arrayTags);
+
+         let getId = document.querySelectorAll('.cards');//cards de chaques photographes
+         let idCards = getId.getAttribute('id');
+         console.log(getId);
+
+         // console.log(btn);
+
+         arrayTags.forEach(tags => {
+            if (tags === btn) {
+               // console.log(tags);
+               // console.log(btn);
+               // console.log('le boutton qui contient l\'id ' + photographer.id + ' est clické');
+               // console.log('true');
             } else {
-               console.log('getId: ' + photographer.id);
+               // getId.style.display = "none"
+               // console.log('le boutton qui ne contient pas l\'id ' + photographer.id + ' demandé');
+               // console.log('false');
             }
          })
       })
