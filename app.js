@@ -140,11 +140,21 @@ mainContent.classList.add('mainContent');
 body.append(main);
 main.append(mainContent);
 
+
+
+
+
+
+
+
+
+
+
+
 // tous ce qui suivera sera effectuer même si 'fetch' n'a pas encore reçu de reponse.
 const init = (data) => {
    //boucle pour chaque photographes
    data.photographers.forEach(photographer => {
-
       //___________//create
       //CARDS______
       const card = document.createElement('a');
@@ -201,7 +211,7 @@ const init = (data) => {
       //__________//indent
       //TAGS______
       for (let i = 0; i < photographer.tags.length; i++) {
-         const li = document.createElement('li')
+         const li = document.createElement('li');
          const tag = document.createElement('span');
 
          tag.classList.add('tagDesign__tag');
@@ -212,6 +222,93 @@ const init = (data) => {
       }
       blockFlex.append(ul);
 
+
+
+
+
+
+
+
+
+
+
+
+      // const idPhotographer = photographer.id; //id de chaque photographers (à partir du Dom);
+      // console.log(idPhotographer);
+
+      // const btn = document.querySelector('.tagDesign__tag');
+      // console.log(btn);
+
+
+
+      // const setCardsAsking = (btn) => {
+
+      //    let arrayId = photographer.id; //Id de chaque photographes (à partir du .JSON)
+      //    let arrayTags = photographer.tags; //tags de chaques photographes (à partir du .JSON)
+      //    // console.log(arrayId);
+      //    // console.log(arrayTags);
+      //    console.log(btn);
+
+      //    arrayTags.forEach(tags => {
+      //       if (tags === btn) {
+      //          // console.log(tags);
+      //          // console.log(btn);
+      //          // console.log('le boutton qui contient l\'id ' + photographer.id + ' est clické');
+      //          // console.log('true');
+      //       } else {
+      //          // getId.style.display = "none";
+      //          // console.log('le boutton qui ne contient pas l\'id ' + photographer.id + ' demandé');
+      //          // console.log('false');
+      //       }
+      //    })
+      // }
+
+      // const buttons = document.querySelectorAll('.tagDesign__tag');
+
+      // for (let i = 0; i < buttons.length; i++) {
+      //    let self = buttons[i];
+
+      //    self.addEventListener('click', function () {
+      //       const btn = buttons[i].id;
+
+      //       switch (self) {
+      //          case portrait:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case art:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case fashion:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case architecture:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case travel:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case sport:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case animals:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          case events:
+      //             setCardsAsking(btn);
+      //             break;
+
+      //          default:
+      //             break;
+      //       }
+      //    })
+      // }
    })
 
 
@@ -220,76 +317,126 @@ const init = (data) => {
 
 
 
-   const setCardsAsking = (btn) => {
-      data.photographers.forEach(photographer => {
-         let arrayTags = photographer.tags;//tags de chaques photographes
-         // console.log(arrayTags);
 
-         let getId = document.querySelectorAll('.cards');//cards de chaques photographes
-         let idCards = getId.getAttribute('id');
-         console.log(getId);
 
-         // console.log(btn);
 
-         arrayTags.forEach(tags => {
-            if (tags === btn) {
-               // console.log(tags);
-               // console.log(btn);
-               // console.log('le boutton qui contient l\'id ' + photographer.id + ' est clické');
-               // console.log('true');
-            } else {
-               // getId.style.display = "none"
-               // console.log('le boutton qui ne contient pas l\'id ' + photographer.id + ' demandé');
-               // console.log('false');
-            }
-         })
-      })
-   }
 
-   const buttons = document.querySelectorAll('.tagDesign__tag');
 
-   for (let i = 0; i < buttons.length; i++) {
-      let self = buttons[i];
 
-      self.addEventListener('click', function () {
-         const btn = buttons[i].id;
 
-         switch (self) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   //Quand je click sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
+
+   const tags = document.querySelectorAll('.tagDesign__tag'); // tags sur lesquels clicker
+   const getCards = document.querySelectorAll('.cards'); // cards des photographes
+
+   tags.forEach(tag => { // pour chaque tag
+      tag.addEventListener('click', () => { // Quand je click sur un tag...
+
+         const tagId = tag.id; //id du boutton selectionné
+         const photoArray = data.photographers;
+
+
+         const getCardsAsking = () => { // fonction qui permettrais de passer les cards ne contenant pas le tag à display = "none";
+
+            // for (let i = 0; i < getCards.length; i++) {
+            //    const cardId = getCards[i].id; // id des cards (photographe)
+
+               for (let i = 0; i < photoArray.length; i++) { // parcourir chacune des cards pour verifier les tags
+                  const photoTag = photoArray[i].tags; // tableau des tags de chaque photographe
+                  for (let i = 0; i < photoTag.length; i++) { // parcourir chacun des tableau des tags de chaque photographe
+                     const eachTag = photoTag[i]; // chaque tags de chaque photographe
+                     if (tagId == eachTag) { // si (id du btn sélectionné) correspond au (tag de chaque photographe)
+                        console.log(eachTag);
+                     }
+                  }
+            console.log(photoTag);
+               }
+            // }
+
+
+
+
+            /*for (let i = 0; i < photoArray.length; i++) {
+               const photoId = photoArray[i].id; //id de chaque photographe
+               const photoTag = photoArray[i].tags; //tags de chaque photographe
+               for (let i = 0; i < getCards.length; i++) {
+                  const cardId = getCards[i].id; //id de chaque card
+                  for (let i = 0; i < photoTag.length; i++) {
+                     const eachTag = photoTag[i];
+                     for (let i = 0; i < getCards.length; i++) {
+                        const eachCards = getCards[i];
+                        console.log(eachCards);
+                        if (cardId !== photoId && eachTag !== tagId) {
+                           eachCards.style.display = "none";
+                        }
+                     }
+                  }
+               }
+            }*/
+
+
+         }
+
+         switch (tag) {
             case portrait:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking(getCards);
                break;
 
             case art:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking(getCards);
                break;
 
             case fashion:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking(getCards);
                break;
 
             case architecture:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking();
                break;
 
             case travel:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking();
                break;
 
             case sport:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking();
                break;
 
             case animals:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking();
                break;
 
             case events:
-               setCardsAsking(btn);
+               console.log('le Tag ' + "\"" + tagId + "\"" + ' est selectionné');
+               getCardsAsking();
                break;
 
             default:
                break;
          }
       })
-   }
+   })
+
 }
