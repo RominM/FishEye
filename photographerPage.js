@@ -270,10 +270,6 @@ select.append(split2);
 select.append(titleChoice);
 titleChoice.append(btnTitle);
 
-
-
-
-
 const buttons = document.querySelectorAll('.selectBtn');
 for (let i = 0; i < buttons.length; i++) {
    let self = buttons[i];
@@ -281,43 +277,26 @@ for (let i = 0; i < buttons.length; i++) {
 
    self.addEventListener('click', function () {
 
-      if(buttons[i].textContent === 'Popularité') {
-         for(let i = 0; i<medias.length; i++) {
+      if (buttons[i].textContent === 'Popularité') {
+         for (let i = 0; i < medias.length; i++) {
             medias.sort((a, b) => a.likes - b.likes);
             console.log(medias[i].likes);
          }
-      }
-      else if (buttons[i].textContent === 'Date') {
-         for(let i = 0; i<medias.length; i++) {
+      } else if (buttons[i].textContent === 'Date') {
+         for (let i = 0; i < medias.length; i++) {
             medias.sort((a, b) => {
                return new Date(b.date) - new Date(a.date);
             });
             console.log(medias[i].date);
          }
-      }
-      else if (buttons[i].textContent === 'Titre') {
-         for(let i = 0; i<medias.length; i++) {
+      } else if (buttons[i].textContent === 'Titre') {
+         for (let i = 0; i < medias.length; i++) {
             console.log(medias[i].title);
             medias.sort();
          }
       }
    });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //_____________//create
 //ALBUM_______
@@ -345,16 +324,15 @@ infoBox.append(infoPrice);
 likeBox.append(likeCounter);
 likeBox.append(blackHeart);
 blackHeart.append(blackHeartImg);
-//FOREACH_MEDIA
+
+//******************* MEDIA *********************/
+//POUR CHAQUE MEDIA
 medias.forEach(media => {
 
-
-
-
-
-
+   //_____________//create
+   //MEDIA
    const albumPhoto = document.createElement('figure');
-   const divPhoto = document.createElement('a');
+   const divPhoto = document.createElement('div');
    const picSubtitle = document.createElement('figcaption');
    const nameImg = document.createElement('span');
    const blockLike = document.createElement('div');
@@ -377,6 +355,7 @@ medias.forEach(media => {
       const pic = document.createElement('img');
       pic.src = "./FishEye_Photos/" + photographer.name + "/" + media.image;
       pic.alt = media.title + ", date: " + media.date + ", prix: " + media.price + "€";
+      pic.classList.add('fig-img')
       divPhoto.append(pic);
    }
    //_____________//settings
@@ -411,9 +390,6 @@ medias.forEach(media => {
    totalLike += media.likes;
 
 })
-
-
-
 
 //Fonction incrementation like photos
 const incrementPic = () => {
@@ -463,19 +439,13 @@ incrementPic();
 
 
 
-
-
-
-
-
-
 //******************* LIGHTBOX *********************/
 
 class lightbox {
 
    static init() {
-      const links = document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]')
-         .forEach(link => link.addEventListener('click', e => {
+      const links = document.querySelectorAll('.fig-vid, .fig-img')
+         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
             new lightbox(e.currentTarget.getAttribute('href'))
          }))
@@ -516,32 +486,6 @@ class lightbox {
 }
 
 lightbox.init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //******************* FORMULAIR *********************/
 //_____________//create
@@ -673,15 +617,7 @@ const menuOn = () => {
    titleChoice.style.display = "block";
    split1.style.display = "block";
    split2.style.display = "block";
-   //condition des choix
-   //par defaut "popChoice" est dejà en display = "block";
-   // if (dateChoice.click()) {
-   //    choice.innerHTML = dateChoice;
-   // } else if (titlChoice.click()) {
-   //    choice.innerHTML = titleChoice;
-   // } else {
-   //    choice.innerHTML = popChoice
-   // }
+
 }
 const menuOff = () => {
    select.style.height = "50px";
