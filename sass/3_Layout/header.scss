@@ -51,8 +51,17 @@
     }
     &__tag:hover {
         box-shadow: $lightGrey 2px 2px 5px 2px;
-        transform: scale3d(2 2);
-        transform: translateY(-4px);
+    }
+    &__tag2 {
+        border: solid 1px $lightGrey;
+        border-radius: 20px;
+        padding: 5px 8px;
+        margin: 2px;
+        color: $firebrick;
+        cursor: pointer;
+        transition: .3s;
+        background-color: #fff;
+        font-size: 1em;
     }
 }    
 
