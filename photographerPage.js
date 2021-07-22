@@ -195,7 +195,7 @@ for (let i = 0; i < photographer.tags.length; i++) {
    const li = document.createElement('li')
    const tag = document.createElement('span');
 
-   tag.classList.add('tagDesign__tag');
+   tag.classList.add('tagDesign__tag2');
    tag.innerHTML = '#' + photographer.tags[i];
 
    li.append(tag);
@@ -445,10 +445,10 @@ class lightbox {
 
    static init() {
       const links = document.querySelectorAll('.fig-vid, .fig-img')
-         links.forEach(link => link.addEventListener('click', e => {
-            e.preventDefault()
-            new lightbox(e.currentTarget.getAttribute('href'))
-         }))
+      links.forEach(link => link.addEventListener('click', e => {
+         e.preventDefault()
+         new lightbox(e.currentTarget.getAttribute('href'))
+      }))
    }
    constructor(url) {
       const element = this.buildDOM(url);

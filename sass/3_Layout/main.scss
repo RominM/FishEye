@@ -15,16 +15,18 @@
     display: none;
     background-color: $salmon;
     border-radius: 5px;
-    height: 30px;
-    width: 182px;
-    margin: auto;
+    height: 25px;
+    width: 180px;
+    margin: 15px auto;
+    padding-top: 10px;
     text-align: center;
+    a {
+        color: #000;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
 }
 
-.hidden a {
-    color: #000;
-    font-family: sans-serif;
-}
 
 .mainFlux {
     display: none;

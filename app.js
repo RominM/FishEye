@@ -1,5 +1,5 @@
 fetch("./data.json") // le 'fetch' est une promesse mais ne donnera la reponse que lorsqu'il aura recupérer les données.
-   // il n'empeche, cependant, pas la lecture du fichier
+   // il n'empeche pas, cependant la lecture du fichier
    //ici, le fetch demande des information concernant le fichier 'data.json"
    .then(response => { //ici sera decrit sa reponse
       return response.json()
@@ -46,6 +46,8 @@ const body = document.body;
 
 //___________//create
 //HEADER_____
+const hidden = document.createElement('div');
+const hiddenLink = document.createElement('a');
 const header = document.createElement('header');
 const linkHome = document.createElement('a');
 const logo = document.createElement('img');
@@ -71,6 +73,9 @@ const mainHeader = document.createElement('div');
 const h1 = document.createElement('h1');
 //___________//settings
 //HEADER_____
+hidden.classList.add('hidden');
+hiddenLink.href = "#main";
+hiddenLink.innerHTML = "Passer au contenu";
 header.classList.add('banner');
 linkHome.href = "./index.html";
 linkHome.classList.add('logo');
@@ -107,6 +112,8 @@ mainHeader.classList.add('mainHeader');
 h1.innerHTML = "Nos photographes";
 //___________//indent
 //HEADER_____
+body.append(hidden);
+hidden.append(hiddenLink);
 body.append(header);
 header.append(linkHome);
 header.append(mainHeader);
@@ -131,14 +138,17 @@ ul.append(liEvents);
 liEvents.append(btnEvents);
 mainHeader.append(h1);
 
-
 const main = document.createElement('main');
 const mainContent = document.createElement('section');
 
+main.id = "#main";
 mainContent.classList.add('mainContent');
 
 body.append(main);
 main.append(mainContent);
+main.onmouseover = function () {
+   hidden.style.display = "block";
+};
 
 const init = (data) => {
    //boucle pour chaque photographes
@@ -236,20 +246,22 @@ const init = (data) => {
             }
          }
          // afficher les photographes demandé
-         const cardToDisplay = []; 
+         const cardToDisplay = [];
 
-         getCards.forEach(card => {card.style.display = "none"});
+         getCards.forEach(card => {
+            card.style.display = "none"
+         });
 
-         for (let i = 0; i<getCards.length; i++) {
+         for (let i = 0; i < getCards.length; i++) {
             const cardId = getCards[i].id;
-            for (let j = 0; j<photographerAsked.length; j++) {
+            for (let j = 0; j < photographerAsked.length; j++) {
                const photographerId = photographerAsked[j].id;
-               if(photographerId == cardId) {
+               if (photographerId == cardId) {
                   cardToDisplay.push(getCards[i]);
                }
             }
          }
-         for (let i = 0; i<cardToDisplay.length; i++) {
+         for (let i = 0; i < cardToDisplay.length; i++) {
             document.getElementById(cardToDisplay[i].id).style.display = "block";
          }
       })

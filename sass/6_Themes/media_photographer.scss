@@ -42,7 +42,7 @@
         .photoFrame {
             background-color: #fff;
             padding: 0;
-            margin: 5px auto;
+            margin: 25px auto;
 
             .photographerFace {
                 img {
@@ -70,6 +70,15 @@
         .album {
             .albumPhoto {
                 padding: 0;
+                .divPhoto img {
+                    width: 320px;
+                    height: 320px;
+                    margin: auto;
+                }
+                video {
+                    width: 320px;
+                    height: 320px;
+                    margin: auto;                }
             }
 
             .subtitle {
