@@ -270,34 +270,6 @@ select.append(split2);
 select.append(titleChoice);
 titleChoice.append(btnTitle);
 
-const buttons = document.querySelectorAll('.selectBtn');
-for (let i = 0; i < buttons.length; i++) {
-   let self = buttons[i];
-   console.log(buttons[i].textContent);
-
-   self.addEventListener('click', function () {
-
-      if (buttons[i].textContent === 'Popularité') {
-         for (let i = 0; i < medias.length; i++) {
-            medias.sort((a, b) => a.likes - b.likes);
-            console.log(medias[i].likes);
-         }
-      } else if (buttons[i].textContent === 'Date') {
-         for (let i = 0; i < medias.length; i++) {
-            medias.sort((a, b) => {
-               return new Date(b.date) - new Date(a.date);
-            });
-            console.log(medias[i].date);
-         }
-      } else if (buttons[i].textContent === 'Titre') {
-         for (let i = 0; i < medias.length; i++) {
-            console.log(medias[i].title);
-            medias.sort();
-         }
-      }
-   });
-}
-
 //_____________//create
 //ALBUM_______
 const album = document.createElement('div');
@@ -390,6 +362,61 @@ medias.forEach(media => {
    totalLike += media.likes;
 
 })
+
+//TRIER PAR
+const buttons = document.querySelectorAll('.selectBtn');
+const getMedias = document.querySelectorAll('.albumPhoto');
+
+for (let i = 0; i < buttons.length; i++) {
+   let self = buttons[i];
+   console.log(buttons[i].textContent);
+
+   self.addEventListener('click', function () {
+
+         // trie par Popularité
+      if (buttons[i].textContent === 'Popularité') {
+         const sortPop = [];
+         for (let i = 0; i < medias.length; i++) {
+            medias.sort((a, b) => a.likes - b.likes);
+            sortPop.push(medias[i].likes);
+         }
+         // trie par Date
+      } else if (buttons[i].textContent === 'Date') {
+         const sortDate = [];
+         for (let i = 0; i < medias.length; i++) {
+            medias.sort((a, b) => {
+               return new Date(b.date) - new Date(a.date);
+            });
+            sortDate.push(medias[i].date);
+         }
+         // trie par Titre
+      } else if (buttons[i].textContent === 'Titre') {
+         const sortTitle = [];
+         for (let i = 0; i < medias.length; i++) {
+            sortTitle.push(medias[i].title);
+            medias.sort();
+         }
+      }
+
+
+      // afficher les photos trier
+      const sortToDisplay = [];
+
+      getMedias.forEach(media => {
+         media.style.display = "none";
+      })
+
+      for (let i = 0; i < getMedias.length; i++) {
+         sortToDisplay.push(getMedias[i]); 
+         console.log(getMedias[i]);
+      }
+
+      for (let i = 0; i < sortToDisplay.length; i++) {
+         console.log(sortToDisplay[i]);
+         sortToDisplay[i].style.display = "block";
+      }
+   });
+}
 
 //Fonction incrementation like photos
 const incrementPic = () => {
