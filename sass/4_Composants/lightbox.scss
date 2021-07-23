@@ -17,6 +17,15 @@
     height: 100%;
     background-color: #fff;
     z-index: 10;
+    overflow: auto;
+    animation: lightboxIn .5s;
+    transition: opacity .3s;
+    &__loader {
+        opacity: .7;
+    }
+    .fadeOut {
+        opacity: 0;
+    }
     &__closeLB {
         border: none;
         background: url(../../FishEye_Photos/close.svg) center center / 30px 30px no-repeat;
@@ -25,7 +34,7 @@
         z-index: 12;
         position: fixed;
         top: 0;
-        right: 0;
+        right: -15px;
         margin: 25px;
         text-indent: 3000px;
     }
@@ -51,9 +60,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 50px;
-        margin-right: 50px;
+        margin: auto 50px;
         min-height: 100vh;
+        img {
+            width: 100%;
+            margin: auto;
+            height: auto;
+            animation: lightboxIn .5s;
+        }
     }
 }
 
