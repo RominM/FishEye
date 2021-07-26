@@ -15,7 +15,7 @@ const data = JSON.parse(dataFromLocalStorage);
 // Récuperation des photos via une boucle puis stockage dans un tableau
 //=====================================================================
 const medias = [];
-//Récupération des medias en fonction de l'in du photographe
+//Récupération des medias en fonction de l'id du photographe
 data.media.forEach(media => {
    if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
       medias.push(media); // tri les media qui ont le même id que l'url
@@ -30,6 +30,12 @@ data.photographers.forEach(details => {
    }
 
 })
+
+
+// document.onkeyup = (e) => {
+//    console.log(e.key);
+// }
+
 
 // for(let i = 0; i < data.photographers.length; i++){
 //     if(data.photographers[i].id == url_id){
@@ -435,6 +441,27 @@ for (let i = 0; i < buttons.length; i++) {
    });
 }
 
+//CLASS "TRIER PAR"
+// class SortBy {
+
+//    constructor(popular, date, title) {
+//       this.popular = popular;
+//       this.date = date;
+//       this.title = title;
+//    }
+//    sortByPopular(newPopular) {
+//       this.popular = newPopular;
+//    }
+//    sortBydate(newDate){
+//       this.date = newDate;
+//    }
+//    sortBytitle(newTitle){
+//       this.title = newTitle;
+//    }
+// }
+
+// SortBy();
+
 //Fonction incrementation like photos
 const incrementPic = () => {
    //recuperation des coeurs
@@ -486,16 +513,15 @@ class lightbox {
 
       const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'));
       const gallery = links.map(link => link.getAttribute('href'))
-
-         links.forEach(link => link.addEventListener('click', e => {
-            e.preventDefault() // strop le comportement par defaut
-            new lightbox(e.currentTarget.getAttribute('href'), gallery) // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
-         }))
+ 
+      links.forEach(link => link.addEventListener('click', e => {
+         e.preventDefault() // strop le comportement par defaut
+         new lightbox(e.currentTarget.getAttribute('href'), gallery) // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
+      }))
    }
 
    //*********CONSTRUCTOR**********//
    /**
-    * 
     * @param {string} url url de l'image
     * @param {string[]} images Chemins des images de la Lightbox
     */
@@ -511,7 +537,6 @@ class lightbox {
    //*********lOADIMAGE************//
 
    /**
-    * 
     * @param {string} url url de l'image
     */
    loadImage(url) {
@@ -520,26 +545,26 @@ class lightbox {
       const container = this.element.querySelector('.contentLB');
       const loader = document.createElement('div');
       loader.classList.add('lightbox__loader');
-      loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "257px" height = "257px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
+      loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
       container.innerHTML = '';
       container.appendChild(loader);
       image.onload = () => {
          container.removeChild(loader);
          container.append(image);
+         this.url = url;
       }
       image.src = url;
    }
 
    /**
-    * 
     * @param {KeyboardEvent} e 
     */
    onKeyUp(e) {
-      if (e.key == 'Escape') {
+      if (e.key === 'Escape') {
          this.close(e);
-      } else if (e.key == 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft') {
          this.prev(e);
-      } else if (e.key == 'ArrowRight') {
+      } else if (e.key === 'ArrowRight') {
          this.next(e);
       }
    }
@@ -554,30 +579,28 @@ class lightbox {
       window.setTimeout(() => {
          this.element.parentElement.removeChild(this.element)
       }, 500);
-      document.removeEventListener('keyUp', this.onKeyUp);
+      document.removeEventListener('keyup', this.onKeyUp)
    }
 
    /**
-    * 
     * @param {MouseEvent/KeyboardEvent} e 
     */
    next(e) {
       e.preventDefault();
       let i = this.images.findIndex(image => image === this.url);
-      if(i === this.images.length - 1) {
+      if (i === this.images.length - 1) {
          i = -1;
       }
       this.loadImage(this.images[i + 1]);
    }
 
-      /**
-    * 
+   /**
     * @param {MouseEvent/KeyboardEvent} e 
     */
    prev(e) {
       e.preventDefault();
       let i = this.images.findIndex(image => image === this.url);
-      if(i === 0) {
+      if (i === 0) {
          i = this.images.length;
       }
       this.loadImage(this.images[i - 1]);
@@ -585,7 +608,6 @@ class lightbox {
 
    //*********BUILDDOM**********//
    /**
-    * 
     * @param {string} url url de l'image
     * @return {HTMLElement}
     */
