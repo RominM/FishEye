@@ -8,10 +8,13 @@
     "postcss": "^8.3.5",
     "sass": "^1.34.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.31.0"
+  },
   "scripts": {
     "sass": "sass --watch ./sass/master.scss:./css/style.css --style compressed",
-    "prefix": "postcss ./css/style.css -u autoprefixer -o ./css/stylePrefix.css -w"
+    "prefix": "postcss ./css/style.css -u autoprefixer -o ./css/stylePrefix.css -w",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
