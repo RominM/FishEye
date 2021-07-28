@@ -28,7 +28,6 @@ data.photographers.forEach(details => {
 	if (details.id == url_id) {
 		photographer = details;
 	}
-
 });
 
 
@@ -54,57 +53,38 @@ data.photographers.forEach(details => {
 
 //******************** CLASS *********************/
 
-// class MaClass{
-//     constructor(param1, param2, param3){
-//         this.param1 = param1;
-//         this.param2 = param2;
-//         this.param3 = param3;
-//     }
-//     changeParam1(newParam1){
-//         this.param1 = newParam1;
-//     }
-//     changeParam3(newparam3){
-//         this.param3 = newparam3;
-//     }
-//     unNomParam(){
-//         return this.param1;
-//     }
-// }
-
-// const maConst = new MaClass('string','string',number);
-
-// maConst.changeParam1('newString');
-// maConst.changeParam1('newString2');
-// maConst.changeParam3(newNumber);
-
-// console.log(maConst. unNomParam());
-
-
 // class CreateDOMElement {
-//    constructor(domElement, className, id, src, inneerHTML, href, type) {
-//       this.domElement = domElement;
-//       this.className = className;
-//       this.id = id;
-//       this.src = src;
-//       this.inneerHTML = inneerHTML;
-//       this.href = href;
-//       this.type = type;
+// 	constructor(domElement, className, id, src, inneerHTML, href, type) {
+// 		this.domElement = domElement;
+// 		this.className = className;
+// 		this.id = id;
+// 		this.src = src;
+// 		this.inneerHTML = inneerHTML;
+// 		this.href = href;
+// 		this.type = type;
 
-//       const elem = document.createElement(this.domElement);
-//       elem.classList.add(this.className);
-//       return elem;
-//    }
+// 		const elem = document.createElement(this.domElement);
+// 		elem.classList.add(this.className);
+// 		return elem;
+// 	}
 // }
+// CreateDOMElement();
 
 // class CreateHeader {
-//    constructor() {
-//       const header = new domElement('header');
-//       const linkHome = new domElement('a');
-//       const h1 = new domElement('h1');
-//       const logo = new domElement('img');
-//       const nav = new domElement('nav');
-//    }
+// 	constructor() {
+// 		const header = new this.domElement("header");
+// 		const linkHome = new this.domElement("a");
+// 		const h1 = new this.domElement("h1");
+// 		const logo = new this.domElement("img");
+// 		const nav = new this.domElement("nav");
+
+// 		header.append(linkHome);
+// 		linkHome.append(h1);
+// 		h1.append(logo);
+// 		header.append(nav);
+// 	}
 // }
+// CreateHeader();
 //=====================================================================
 
 //**********************************************************/
@@ -513,7 +493,7 @@ class lightbox {
 
 		const links = Array.from(document.querySelectorAll("a[href$=\".jpg\"], a[href$=\".mp4\"]"));
 		const gallery = links.map(link => link.getAttribute("href"));
- 
+
 		links.forEach(link => link.addEventListener("click", e => {
 			e.preventDefault(); // strop le comportement par defaut
 			new lightbox(e.currentTarget.getAttribute("href"), gallery); // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
@@ -522,9 +502,9 @@ class lightbox {
 
 	//*********CONSTRUCTOR**********//
 	/**
-    * @param {string} url url de l'image
-    * @param {string[]} images Chemins des images de la Lightbox
-    */
+   * @param {string} url url de l'image
+   * @param {string[]} images Chemins des images de la Lightbox
+   */
 	constructor(url, images) {
 		this.element = this.buildDOM(url);
 		this.images = images;
@@ -537,8 +517,8 @@ class lightbox {
 	//*********lOADIMAGE************//
 
 	/**
-    * @param {string} url url de l'image
-    */
+   * @param {string} url url de l'image
+   */
 	loadImage(url) {
 		this.url = null;
 		const image = new Image();
@@ -557,8 +537,8 @@ class lightbox {
 	}
 
 	/**
-    * @param {KeyboardEvent} e 
-    */
+   * @param {KeyboardEvent} e 
+   */
 	onKeyUp(e) {
 		if (e.key === "Escape") {
 			this.close(e);
@@ -570,9 +550,9 @@ class lightbox {
 	}
 
 	/**
-    * Ferme la Lightbox
-    * @param {MouseEvent/KeyboardEvent} e 
-    */
+   * Ferme la Lightbox
+   * @param {MouseEvent/KeyboardEvent} e 
+   */
 	close(e) {
 		e.preventDefault();
 		this.element.classList.add("fadeOut");
@@ -583,8 +563,8 @@ class lightbox {
 	}
 
 	/**
-    * @param {MouseEvent/KeyboardEvent} e 
-    */
+   * @param {MouseEvent/KeyboardEvent} e 
+   */
 	next(e) {
 		e.preventDefault();
 		let i = this.images.findIndex(image => image === this.url);
@@ -595,8 +575,8 @@ class lightbox {
 	}
 
 	/**
-    * @param {MouseEvent/KeyboardEvent} e 
-    */
+   * @param {MouseEvent/KeyboardEvent} e 
+   */
 	prev(e) {
 		e.preventDefault();
 		let i = this.images.findIndex(image => image === this.url);
@@ -608,9 +588,9 @@ class lightbox {
 
 	//*********BUILDDOM**********//
 	/**
-    * @param {string} url url de l'image
-    * @return {HTMLElement}
-    */
+   * @param {string} url url de l'image
+   * @return {HTMLElement}
+   */
 
 	buildDOM(url) {
 		const lightbox = document.createElement("div");
