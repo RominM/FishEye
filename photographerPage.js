@@ -373,7 +373,7 @@ const deletedMedia = () => {
 
 //TRIER PAR
 const buttons = document.querySelectorAll(".selectBtn");
-const getMedias = document.querySelectorAll(".albumPhoto");
+// const getMedias = document.querySelectorAll(".albumPhoto");
 
 for (let i = 0; i < buttons.length; i++) {
 	let self = buttons[i];
@@ -389,7 +389,6 @@ for (let i = 0; i < buttons.length; i++) {
 				medias.sort((a, b) => a.likes - b.likes);
 			}
 			deletedMedia();
-
 			break;
 		}
 
@@ -412,40 +411,22 @@ for (let i = 0; i < buttons.length; i++) {
 				sortTitle.push(medias[i].title);
 			}
 			sortTitle.sort();
-			console.log(sortTitle);
 			deletedMedia();
-			console.log("toto");
+					
 			let mediaToDisplay = [];
-			// for (let i = 0; i<sortTitle.length; i++) {
-			// 	const title = sortTitle[i];
-			// 	for (let j = 0; medias.length; i++) {
-			// 		if(title == medias[j].title) {
-			// 			mediaToDisplay.push(title);
-			// 		}
-			// 	}
-			// }
-			console.log(medias);
+			for (let i = 0; i < sortTitle.length; i++) {
+				const title = sortTitle[i];
+				for (let j = 0; j < medias.length; j++) {
+					if(title == medias[j].title) {
+						mediaToDisplay.push(medias[j]);
+					}
+				}
+			}
 			console.log(mediaToDisplay);
+
+			// displayPics(mediaToDisplay);// create / settings / indent allElement
 			break;
 		}}
-		
-
-
-		// afficher les photos trier
-		const sortToDisplay = [];
-
-		getMedias.forEach(media => {
-			media.style.display = "none";
-		});
-
-		for (let i = 0; i < getMedias.length; i++) {
-			sortToDisplay.push(getMedias[i]);
-		}
-
-		for (let i = 0; i < sortToDisplay.length; i++) {
-			// console.log(sortToDisplay[i]);
-			sortToDisplay[i].style.display = "block";
-		}
 	});
 }
 
