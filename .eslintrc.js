@@ -9,10 +9,7 @@ module.exports = {
 		"ecmaVersion": 12
 	},
 	"rules": {
-		"indent": [
-			"error",
-			"tab"
-		],
+		"indent": [2, "tab"],
 		"linebreak-style": [
 			"error",
 			"windows"

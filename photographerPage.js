@@ -365,6 +365,12 @@ medias.forEach(media => {
 	infoBox.title = "Like total et tarif de " + photographer.price + "€ par jour";
 });
 
+const deletedMedia = () => {
+	const domAlbum = document.querySelector(".album");
+	domAlbum.innerHTML = "";
+	console.log(domAlbum);
+};
+
 //TRIER PAR
 const buttons = document.querySelectorAll(".selectBtn");
 const getMedias = document.querySelectorAll(".albumPhoto");
@@ -374,17 +380,21 @@ for (let i = 0; i < buttons.length; i++) {
 
 	self.addEventListener("click", function () {
 
-		// trie par Popularité
-		if (buttons[i].textContent === "Popularité") {
-			const sortPop = [];
+		switch (self.textContent) {
+		case "Popularité": {
+			let sortPop = [];
 			for (let i = 0; i < medias.length; i++) {
 				sortPop.push(medias[i].likes);
 				console.log(medias[i].likes);
 				medias.sort((a, b) => a.likes - b.likes);
 			}
-			// trie par Date
-		} else if (buttons[i].textContent === "Date") {
-			const sortDate = [];
+			deletedMedia();
+
+			break;
+		}
+
+		case "Date": {
+			let sortDate = [];
 			for (let i = 0; i < medias.length; i++) {
 				medias.sort((a, b) => {
 					sortDate.push(medias[i].date);
@@ -392,15 +402,33 @@ for (let i = 0; i < buttons.length; i++) {
 					return new Date(b.date) - new Date(a.date);
 				});
 			}
-			// trie par Titre
-		} else if (buttons[i].textContent === "Titre") {
-			const sortTitle = [];
+			deletedMedia();
+			break;
+		}
+
+		case "Titre": {
+			let sortTitle = [];
 			for (let i = 0; i < medias.length; i++) {
 				sortTitle.push(medias[i].title);
-				console.log(medias[i].title);
-				medias.sort();
 			}
-		}
+			sortTitle.sort();
+			console.log(sortTitle);
+			deletedMedia();
+			console.log("toto");
+			let mediaToDisplay = [];
+			// for (let i = 0; i<sortTitle.length; i++) {
+			// 	const title = sortTitle[i];
+			// 	for (let j = 0; medias.length; i++) {
+			// 		if(title == medias[j].title) {
+			// 			mediaToDisplay.push(title);
+			// 		}
+			// 	}
+			// }
+			console.log(medias);
+			console.log(mediaToDisplay);
+			break;
+		}}
+		
 
 
 		// afficher les photos trier
@@ -420,27 +448,6 @@ for (let i = 0; i < buttons.length; i++) {
 		}
 	});
 }
-
-//CLASS "TRIER PAR"
-// class SortBy {
-
-//    constructor(popular, date, title) {
-//       this.popular = popular;
-//       this.date = date;
-//       this.title = title;
-//    }
-//    sortByPopular(newPopular) {
-//       this.popular = newPopular;
-//    }
-//    sortBydate(newDate){
-//       this.date = newDate;
-//    }
-//    sortBytitle(newTitle){
-//       this.title = newTitle;
-//    }
-// }
-
-// SortBy();
 
 //Fonction incrementation like photos
 const incrementPic = () => {
@@ -502,9 +509,9 @@ class lightbox {
 
 	//*********CONSTRUCTOR**********//
 	/**
-   * @param {string} url url de l'image
-   * @param {string[]} images Chemins des images de la Lightbox
-   */
+	 * @param {string} url url de l'image
+	 * @param {string[]} images Chemins des images de la Lightbox
+	 */
 	constructor(url, images) {
 		this.element = this.buildDOM(url);
 		this.images = images;
@@ -517,8 +524,8 @@ class lightbox {
 	//*********lOADIMAGE************//
 
 	/**
-   * @param {string} url url de l'image
-   */
+	 * @param {string} url url de l'image
+	 */
 	loadImage(url) {
 		this.url = null;
 		const image = new Image();
@@ -537,8 +544,8 @@ class lightbox {
 	}
 
 	/**
-   * @param {KeyboardEvent} e 
-   */
+	 * @param {KeyboardEvent} e 
+	 */
 	onKeyUp(e) {
 		if (e.key === "Escape") {
 			this.close(e);
@@ -550,9 +557,9 @@ class lightbox {
 	}
 
 	/**
-   * Ferme la Lightbox
-   * @param {MouseEvent/KeyboardEvent} e 
-   */
+	 * Ferme la Lightbox
+	 * @param {MouseEvent/KeyboardEvent} e 
+	 */
 	close(e) {
 		e.preventDefault();
 		this.element.classList.add("fadeOut");
@@ -563,8 +570,8 @@ class lightbox {
 	}
 
 	/**
-   * @param {MouseEvent/KeyboardEvent} e 
-   */
+	 * @param {MouseEvent/KeyboardEvent} e 
+	 */
 	next(e) {
 		e.preventDefault();
 		let i = this.images.findIndex(image => image === this.url);
@@ -575,8 +582,8 @@ class lightbox {
 	}
 
 	/**
-   * @param {MouseEvent/KeyboardEvent} e 
-   */
+	 * @param {MouseEvent/KeyboardEvent} e 
+	 */
 	prev(e) {
 		e.preventDefault();
 		let i = this.images.findIndex(image => image === this.url);
@@ -588,9 +595,9 @@ class lightbox {
 
 	//*********BUILDDOM**********//
 	/**
-   * @param {string} url url de l'image
-   * @return {HTMLElement}
-   */
+	 * @param {string} url url de l'image
+	 * @return {HTMLElement}
+	 */
 
 	buildDOM(url) {
 		const lightbox = document.createElement("div");
