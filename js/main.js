@@ -312,7 +312,7 @@ const displayMedias = (medias) => {
 			//_____________//settings
 			linkVid.href = './FishEye_Photos/' + photographer.name + '/' + media.video;
 			vid.controls = 'true';
-			vid.type = 'video/mp4';
+			vid.type = 'video/.mp4';
 			vid.title = media.title + ' | ' + media.date + ' | prix ' + media.price + '€';
 			source.src = './FishEye_Photos/' + photographer.name + '/' + media.video;
 			source.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
@@ -374,8 +374,33 @@ const deletedMedia = () => {
 	domAlbum.innerHTML = '';
 };
 
+//MENU DEROULANT__________//
+const menuOn = () => {
+	select.style.height = '160px';
+	arrowDown.style.display = 'none';
+	arrowUp.style.display = 'block';
+	dateChoice.style.display = 'block';
+	titleChoice.style.display = 'block';
+	split1.style.display = 'block';
+	split2.style.display = 'block';
+
+};
+const menuOff = () => {
+	select.style.height = '50px';
+	arrowDown.style.display = 'block';
+	arrowUp.style.display = 'none';
+	dateChoice.style.display = 'none';
+	titleChoice.style.display = 'none';
+	split1.style.display = 'none';
+	split2.style.display = 'none';
+};
+
+
 //TRIER PAR
 const buttons = document.querySelectorAll('.selectBtn');
+const bucketPop = document.querySelector('#popChoice');
+const bucketDate = document.querySelector('#dateChoice');
+const bucketTitle = document.querySelector('#titleChoice');
 // const getMedias = document.querySelectorAll(".albumPhoto");
 
 for (let i = 0; i < buttons.length; i++) {
@@ -401,8 +426,13 @@ for (let i = 0; i < buttons.length; i++) {
 					}
 				}
 			}
-			console.log(mediaToDisplay);
 			displayMedias(mediaToDisplay);
+			menuOff();
+			self.classList.add('selected');
+			bucketPop.append(self);//pop[0]
+			bucketDate.append(buttons[1]);//date
+			bucketTitle.append(buttons[2]);//titre
+			
 			break;
 		}
 
@@ -423,8 +453,12 @@ for (let i = 0; i < buttons.length; i++) {
 					}
 				}
 			}
-			console.log(mediaToDisplay);
 			displayMedias(mediaToDisplay);
+			menuOff();
+			self.classList.add('selected');
+			bucketPop.append(self);//date[1]
+			bucketDate.append(buttons[2]);//titre
+			bucketTitle.append(buttons[0]);//pop
 			break;
 		}
 
@@ -445,10 +479,16 @@ for (let i = 0; i < buttons.length; i++) {
 					}
 				}
 			}
-			console.log(mediaToDisplay);
 			displayMedias(mediaToDisplay);
+			menuOff();
+			self.classList.add('selected');
+			bucketPop.append(self);//titre[2]
+			bucketDate.append(buttons[0]);//pop
+			bucketTitle.append(buttons[1]);//date
 			break;
 		}
+		default:
+			break;
 		}
 	});
 }
@@ -615,26 +655,6 @@ var state = {
 // DECLARATIONS FONCTIONS //
 // =======================//
 
-//MENU DEROULANT__________//
-const menuOn = () => {
-	select.style.height = '160px';
-	arrowDown.style.display = 'none';
-	arrowUp.style.display = 'block';
-	dateChoice.style.display = 'block';
-	titleChoice.style.display = 'block';
-	split1.style.display = 'block';
-	split2.style.display = 'block';
-
-};
-const menuOff = () => {
-	select.style.height = '50px';
-	arrowDown.style.display = 'block';
-	arrowUp.style.display = 'none';
-	dateChoice.style.display = 'none';
-	titleChoice.style.display = 'none';
-	split1.style.display = 'none';
-	split2.style.display = 'none';
-};
 
 //FORMULAIRE_________//
 //__________________//input_value
