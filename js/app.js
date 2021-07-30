@@ -230,6 +230,7 @@ const init = (data) => {
 		tag.addEventListener('click', () => { // Quand je click sur un tag...
 
 			const tagId = tag.id; //id du boutton selectionné
+			console.log(tags);
 			const photoArray = data.photographers;
 
 			const photographerAsked = [];
