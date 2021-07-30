@@ -230,7 +230,6 @@ const init = (data) => {
 		tag.addEventListener('click', () => { // Quand je click sur un tag...
 
 			const tagId = tag.id; //id du boutton selectionné
-			console.log(tags);
 			const photoArray = data.photographers;
 
 			const photographerAsked = [];
@@ -243,9 +242,11 @@ const init = (data) => {
 
 					if (tagId == eachTag) { // si (id du btn sélectionné) correspond au (tag de chaque photographe)
 						photographerAsked.push(photoArray[i]);
+						tag.classList.add('selectedTag');
 					}
 				}
 			}
+			
 			// afficher les photographes demandé
 			const cardToDisplay = [];
 
@@ -265,6 +266,7 @@ const init = (data) => {
 			for (let i = 0; i < cardToDisplay.length; i++) {
 				document.getElementById(cardToDisplay[i].id).style.display = 'block';
 			}
-		});
+			console.log(tag);
+		});		
 	});
 };

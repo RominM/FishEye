@@ -161,7 +161,6 @@ image.src = 'FishEye_Photos/Photographers ID Photos/' + photographer.portrait;
 image.alt = 'photo portrait de ' + photographer.name;
 //__________//settings
 //TAGS______
-ul.classList.add('tagDesign2'); //___________//indent
 //PHOTOGRAPHE__
 body.append(main);
 main.append(photographerArea);
