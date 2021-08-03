@@ -1,7 +1,7 @@
 {
   "name": "rominmanogil_06_07062021",
   "version": "1.0.0",
-  "description": "",
+  "description": "FishEye",
   "main": "app.js",
   "dependencies": {
     "autoprefixer": "^9.8.6",

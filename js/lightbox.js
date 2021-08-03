@@ -123,3 +123,40 @@ class lightbox {
 	}
 }
 lightbox.init();
+
+//******************** CLASS *********************/
+
+// class CreateDOMElement {
+// 	constructor(domElement, className, id, src, inneerHTML, href, type) {
+// 		this.domElement = domElement;
+// 		this.className = className;
+// 		this.id = id;
+// 		this.src = src;
+// 		this.inneerHTML = inneerHTML;
+// 		this.href = href;
+// 		this.type = type;
+
+// 		const elem = document.createElement(this.domElement);
+// 		elem.classList.add(this.className);
+// 		return elem;
+// 	}
+// }
+// CreateDOMElement();
+
+// class CreateHeader {
+// 	constructor() {
+// 		const header = new this.domElement("header");
+// 		const linkHome = new this.domElement("a");
+// 		const h1 = new this.domElement("h1");
+// 		const logo = new this.domElement("img");
+// 		const nav = new this.domElement("nav");
+
+// 		header.append(linkHome);
+// 		linkHome.append(h1);
+// 		h1.append(logo);
+// 		header.append(nav);
+// 	}
+// }
+// CreateHeader();
+//=====================================================================
+

@@ -58,10 +58,10 @@ main {
                 font-size: 1.4em;
             }
         }
-
-        .tagDesign2 {
-            display: flex;
-            justify-content: start;
+        .blockFlex {
+            .tagDesign2 {
+                display: flex;
+            }
         }
     }
 }
