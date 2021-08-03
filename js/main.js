@@ -245,7 +245,6 @@ const init = (data) => {
 					}
 				}
 			}
-			
 			// afficher les photographes demandé
 			const cardToDisplay = [];
 
@@ -265,7 +264,17 @@ const init = (data) => {
 			for (let i = 0; i < cardToDisplay.length; i++) {
 				document.getElementById(cardToDisplay[i].id).style.display = 'block';
 			}
-			console.log(tag);
-		});		
+			const tagSelected = document.querySelector('.selectedTag');
+				
+			if(tagSelected.classList.contains('selectedTag')) {
+				tag.addEventListener('click', () => {
+					tag.classList.remove('selectedTag');
+					
+					getCards.forEach(card => {
+						card.style.display = 'block';
+					});
+				});
+			}
+		});
 	});
 };
