@@ -1,5 +1,7 @@
-1/ Accessibilité/Navigation clavier
+1/ Accessibilité/Navigation clavier;
 
-2/ Finir le menu deroulant "Trier par"
+2/ Finir le menu deroulant "Trier par: Date et Popularité";
 
-3/ LightBox = Taille des img + affichage des videos (parametre)
+3/ LightBox = affichage des videos (parametre) + ne fonctionne plus après avoir trié;
+
+4/ Autofocus on form

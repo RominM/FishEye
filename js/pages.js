@@ -376,10 +376,8 @@ for (let i = 0; i < buttons.length; i++) {
 		case 'Date': {
 			let sortDate = [];
 			for (let i = 0; i < medias.length; i++) {
-				console.log(medias.length);
 				sortDate.push(medias[i].date);
 			}
-			console.log(sortDate);
 			sortDate.sort();
 			deletedMedia();
 			let mediaToDisplay = [];
@@ -428,7 +426,6 @@ for (let i = 0; i < buttons.length; i++) {
 		default:
 			break;
 		}
-		console.log('toto');
 	});
 }
 
@@ -551,7 +548,7 @@ class lightbox {
 		lightbox.querySelector('.lightbox__closeLB').addEventListener('click', this.close.bind(this));
 		lightbox.querySelector('.lightbox__nextLB').addEventListener('click', this.next.bind(this));
 		lightbox.querySelector('.lightbox__prevLB').addEventListener('click', this.prev.bind(this));
-		console.log(url);
+		console.log(url);// ajout du log(url) car Error eslint: url is declared but never used
 		return lightbox;
 	}
 }
@@ -652,6 +649,9 @@ labTxtFree.setAttribute('for', 'txtFree');
 //==================================================
 inpFirstname.id = 'first';
 inpFirstname.type = 'textarea';
+// inpFirstname.setAttribute('autofocus', 'true');
+// inpFirstname.autofocus = 'true';
+// inpFirstname.autofocus = true;
 inpLastname.id = 'last';
 inpLastname.type = 'textarea';
 inpEmail.id = 'email';
