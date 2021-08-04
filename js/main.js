@@ -266,6 +266,7 @@ const init = (data) => {
 			}
 			const tagSelected = document.querySelector('.selectedTag');
 				
+			//Reset les cards si on click a nouveaux sur le tag selectionné
 			if(tagSelected.classList.contains('selectedTag')) {
 				tag.addEventListener('click', () => {
 					tag.classList.remove('selectedTag');

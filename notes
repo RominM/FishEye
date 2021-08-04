@@ -5,3 +5,11 @@
 3/ LightBox = affichage des videos (parametre) + ne fonctionne plus après avoir trié;
 
 4/ Autofocus on form
+
+
+//**** PROBLEMES ****//
+
+main.js:269 >>> tags selected
+pages.js:652 >>> focus on form + observation
+pages.js:437 >>> LightBox after sort
+pages.js:337 >>> sort by doesn't work
