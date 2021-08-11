@@ -1,4 +1,5 @@
-import { init } from "./utils.js";
+import { createHeader } from "./utils.js";
+import { init } from "./init-data.js";
 
 fetch('./data.json') // le 'fetch' est une promesse mais ne donnera la reponse que lorsqu'il aura recupérer les données.
 // il n'empeche pas, cependant la lecture du fichier
@@ -11,5 +12,4 @@ fetch('./data.json') // le 'fetch' est une promesse mais ne donnera la reponse q
 		init(response2);
 	});
 
-//DOM ELEMENTS
-const body = document.body;
+createHeader();
