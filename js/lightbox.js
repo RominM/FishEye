@@ -38,6 +38,9 @@ class lightbox {
 	 * @param {string} url url de l'image
 	 */
 	loadImage(url) {
+		if(url.indexOf('.mp4')) {
+			console.log('coucou');
+		}
 		this.url = null;
 		const image = new Image();
 		const container = this.element.querySelector('.contentLB');
