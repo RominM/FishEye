@@ -1,9 +1,4 @@
-
-.main {
-    margin-top: 25px;
-}
-
-.mainContent {
+main {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -12,7 +7,7 @@
 }
 
 .hidden {
-    display: none;
+    display: none; 
     background-color: $salmon;
     border-radius: 5px;
     height: 25px;

@@ -1,107 +1,195 @@
-export const createHeader = () => {
-	const body = document.body;
-	//___________//create
-	//HEADER_____
+export const createHeader = (data) => {
+	// ON FABRIQUE LES BALISES
+	const body = document.querySelector("body");
+	const header = document.querySelector("header");
+
 	const hidden = document.createElement('div');
-	const hiddenLink = document.createElement('a');
-	const header = document.createElement('header');
-	const linkHome = document.createElement('a');
-	const logo = document.createElement('img');
-	const nav = document.createElement('nav');
-	const ul = document.createElement('ul');
-	const liPortrait = document.createElement('li');
-	const btnPortrait = document.createElement('button');
-	const liArt = document.createElement('li');
-	const btnArt = document.createElement('button');
-	const liFashion = document.createElement('li');
-	const btnFashion = document.createElement('button');
-	const liArchitecture = document.createElement('li');
-	const btnArchitecture = document.createElement('button');
-	const liTravel = document.createElement('li');
-	const btnTravel = document.createElement('button');
-	const liSport = document.createElement('li');
-	const btnSport = document.createElement('button');
-	const liAnimals = document.createElement('li');
-	const btnAnimals = document.createElement('button');
-	const liEvents = document.createElement('li');
-	const btnEvents = document.createElement('button');
-	const mainHeader = document.createElement('div');
-	const h1 = document.createElement('h1');
-	//___________//settings
-	//HEADER_____
 	hidden.classList.add('hidden');
+	const hiddenLink = document.createElement('a');
 	hiddenLink.href = '#main';
 	hiddenLink.innerHTML = 'Passer au contenu';
-	header.classList.add('banner');
-	linkHome.href = './index.html';
-	linkHome.classList.add('logo');
+	
+	const logoLink = document.createElement('a');
+	const logo = document.createElement('img');
+	logoLink.href = './index.html';
+	logoLink.classList.add('logo');
 	logo.src = 'FishEye_Photos/logo.png';
 	logo.alt = 'FishEye Home Page';
+
+	const h1 = document.createElement('h1');
+	h1.innerHTML = 'Nos photographes';
+
+	const nav = document.createElement('nav');
+	const ul = document.createElement('ul');
 	nav.ariaLabel = 'photographer categories';
 	nav.classList.add('topNav');
 	ul.classList.add('tagDesign');
-	btnPortrait.classList.add('tagDesign__tag');
-	btnPortrait.innerHTML = '#Portrait';
-	btnPortrait.id = 'portrait';
-	btnArt.classList.add('tagDesign__tag');
-	btnArt.innerHTML = '#Art';
-	btnArt.id = 'art';
-	btnFashion.classList.add('tagDesign__tag');
-	btnFashion.innerHTML = '#Fashion';
-	btnFashion.id = 'fashion';
-	btnArchitecture.classList.add('tagDesign__tag');
-	btnArchitecture.innerHTML = '#Architecture';
-	btnArchitecture.id = 'architecture';
-	btnTravel.classList.add('tagDesign__tag');
-	btnTravel.innerHTML = '#Travel';
-	btnTravel.id = 'travel';
-	btnSport.classList.add('tagDesign__tag');
-	btnSport.innerHTML = '#Sport';
-	btnSport.id = 'sport';
-	btnAnimals.classList.add('tagDesign__tag');
-	btnAnimals.innerHTML = '#Animals';
-	btnAnimals.id = 'animals';
-	btnEvents.classList.add('tagDesign__tag');
-	btnEvents.innerHTML = '#Events';
-	btnEvents.id = 'events';
-	mainHeader.classList.add('mainHeader');
-	h1.innerHTML = 'Nos photographes';
-	//___________//indent
-	//HEADER_____
-	body.append(hidden);
+
+	const fullTags = [];
+	data.photographers.forEach(photographer => {
+		photographer.tags.forEach(tag => {
+			fullTags.push(tag)
+		});
+	});
+
+	const uniqueTags = fullTags.filter(function(item, pos) {
+   return fullTags.indexOf(item) == pos;
+	})
+
+	// ON REMPLI lES BALISES
+	for (let i = 0; i < uniqueTags.length; i++) {
+		const tag = uniqueTags[i];
+		const li = document.createElement('li');
+		const btn = document.createElement('button');
+
+		btn.classList.add('tagDesign__tag');
+		btn.innerHTML = `#${tag}`;
+		btn.id = tag;
+
+		li.append(btn);
+		ul.append(li);
+	}
+
 	hidden.append(hiddenLink);
-	body.append(header);
-	header.append(linkHome);
-	header.append(mainHeader);
-	linkHome.append(logo);
-	header.append(nav);
+	
+	logoLink.append(logo);
 	nav.append(ul);
-	ul.append(liPortrait);
-	liPortrait.append(btnPortrait);
-	ul.append(liArt);
-	liArt.append(btnArt);
-	ul.append(liFashion);
-	liFashion.append(btnFashion);
-	ul.append(liArchitecture);
-	liArchitecture.append(btnArchitecture);
-	ul.append(liTravel);
-	liTravel.append(btnTravel);
-	ul.append(liSport);
-	liSport.append(btnSport);
-	ul.append(liAnimals);
-	liAnimals.append(btnAnimals);
-	ul.append(liEvents);
-	liEvents.append(btnEvents);
-	mainHeader.append(h1);
-
-	const main = document.createElement('main');
-
-	main.id = '#main';
-	main.classList.add('mainContent');
-
-	body.append(main);
-	// main.append(mainContent);
-	main.onmouseover = function () {
-		hidden.style.display = 'block';
-	};
+	
+	// ON LES INSÈRE DANS LE DOM
+	header.append(logoLink);
+	header.append(nav);
+	header.append(h1);
+	
+	body.append(hidden);
 }
+
+export const createCard = (photographerData) => {
+	// ON FABRIQUE LES BALISES
+	const card = document.createElement('a');
+	card.classList.add('cards');
+	card.href = 'photographer.html?id=' + photographerData.id;
+	card.id = photographerData.id;
+	
+	const image = document.createElement('img');
+	image.src = 'FishEye_Photos/Photographers ID Photos/' + photographerData.portrait;
+	image.alt = 'photo portrait de ' + photographerData.name;
+	
+	const cardDescription = document.createElement('div');
+	cardDescription.classList.add('cardDescription');
+	
+	const nameTitle = document.createElement('h2');
+	nameTitle.innerHTML = photographerData.name;
+	
+	const para = document.createElement('p');
+	para.classList.add('descript');
+	
+	const place = document.createElement('span');
+	place.classList.add('local');
+	place.innerHTML = photographerData.city + ', ' + photographerData.country;
+	
+	const depiction = document.createElement('span');
+	depiction.classList.add('depiction');
+	depiction.innerHTML = photographerData.tagline;
+	
+	const price = document.createElement('span');
+	price.classList.add('price');
+	price.innerHTML = photographerData.price + '€/jour';
+	
+	const ul = document.createElement('ul');
+	ul.classList.add('tagDesign');
+	
+	// ON REMPLI LES BALISES
+	card.append(image);
+
+	para.append(place);
+	para.append(depiction);
+	para.append(price);
+
+	cardDescription.append(nameTitle);
+	cardDescription.append(para);
+
+	for (let i = 0; i < photographerData.tags.length; i++) {
+		const li = document.createElement('li');
+		const tag = document.createElement('span');
+
+		tag.classList.add('tagDesign__tag2');
+		tag.innerHTML = '#' + photographerData.tags[i];
+
+		li.append(tag);
+		ul.append(li);
+	}
+	cardDescription.append(ul);
+
+	card.append(cardDescription);
+
+	// ON INSÈRE TOUT DANS LE DOM
+	const main = document.querySelector('main');
+	main.append(card);
+}
+
+export const onClickTagsListHeader = (data) => {
+	//Quand je click sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
+	const tags = document.querySelectorAll('.tagDesign__tag'); // tags sur lesquels clicker
+	const getCards = document.querySelectorAll('.cards'); // cards des photographes
+
+	tags.forEach(tag => { // pour chaque tag
+		tag.addEventListener('click', () => { // Quand je click sur un tag...
+
+			const tagId = tag.id; //id du boutton selectionné
+			const photoArray = data.photographers;
+
+			const photographerAsked = [];
+
+			for (let i = 0; i < photoArray.length; i++) { // parcourir chacune des cards pour verifier les tags
+				const photoTag = photoArray[i].tags; // tableau des tags de chaque photographe
+
+				for (let j = 0; j < photoTag.length; j++) { // parcourir chacun des tableau des tags de chaque photographe
+					const eachTag = photoTag[j]; // chaque tags de chaque photographe
+
+					if (tagId == eachTag) { // si (id du btn sélectionné) correspond au (tag de chaque photographe)
+						photographerAsked.push(photoArray[i]);
+						tag.classList.add('selectedTag');
+					}
+				}
+			}
+			// afficher les photographes demandé
+			const cardToDisplay = [];
+
+			getCards.forEach(card => {
+				card.style.display = 'none';
+			});
+
+			for (let i = 0; i < getCards.length; i++) {
+				const cardId = getCards[i].id;
+				for (let j = 0; j < photographerAsked.length; j++) {
+					const photographerId = photographerAsked[j].id;
+					if (photographerId == cardId) {
+						cardToDisplay.push(getCards[i]);
+					}
+				}
+			}
+			for (let i = 0; i < cardToDisplay.length; i++) {
+				document.getElementById(cardToDisplay[i].id).style.display = 'block';
+			}
+			const tagSelected = document.querySelector('.selectedTag');
+
+			//Reset les cards si on click a nouveaux sur le tag selectionné
+			if(tagSelected.classList.contains('selectedTag')) {
+				tag.addEventListener('click', () => {
+					tag.classList.remove('selectedTag');
+
+					getCards.forEach(card => {
+						card.style.display = 'block';
+					});
+				});
+			}
+		});
+	});
+}
+
+
+export const paramUrl = (param) => {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	return urlParams.get(param);
+};

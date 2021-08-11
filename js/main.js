@@ -1,5 +1,4 @@
-import { createHeader } from "./utils.js";
-import { init } from "./init-data.js";
+import { initIndex } from "./initIndex.js";
 
 fetch('./data.json') // le 'fetch' est une promesse mais ne donnera la reponse que lorsqu'il aura recupérer les données.
 // il n'empeche pas, cependant la lecture du fichier
@@ -9,7 +8,5 @@ fetch('./data.json') // le 'fetch' est une promesse mais ne donnera la reponse q
 	}) //en attendant cette reponse, on lui demande d'initialiser la response2
 	.then(response2 => {
 		sessionStorage.setItem('data', JSON.stringify(response2));
-		init(response2);
+		initIndex(response2);
 	});
-
-createHeader();
