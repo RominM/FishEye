@@ -1,6 +1,5 @@
-const body = document.body;
 export const createHeader = () => {
-
+	const body = document.body;
 	//___________//create
 	//HEADER_____
 	const hidden = document.createElement('div');

@@ -3,7 +3,12 @@ const body = document.body;
 const main = document.createElement('main');
 body.append(main);
 
-export const init = (data) => {
+export const createHeader = () => {
+
+}
+
+export 
+const init = (data) => {
 	//boucle pour chaque photographes
 	data.photographers.forEach(photographer => {
 		//___________//create
