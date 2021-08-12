@@ -1,5 +1,5 @@
 import { lightbox } from "./lightbox.js";	
-import { paramUrl, createHeaderPage, photographerCard } from "./utils.js";
+// import { paramUrl, createHeaderPage, photographerCard, dropBoxSortBy } from "./utils.js";
 
 const body = document.querySelector('body');
 
@@ -20,80 +20,72 @@ data.media.forEach(media => {
 });
 //=====================================================================
 let photographer;
-//Récupération des datas du photographe
-data.photographers.forEach(details => {
-	if (details.id == url_id) {
-		photographer = details;
-	}
-});
+	//Récupération des datas du photographe
+	data.photographers.forEach(details => {
+		if (details.id == url_id) {
+			photographer = details;
+		}
+	});
+
 
 createHeaderPage();
-photographerCard(data);
+photographerCard();
+// dropBoxSortBy();
 
 
 
 
-//coucou
+
 const main = document.querySelector('main');
-//_____________//create
-//PHOTOGRAPHE__
+
+//__CREATE ELEMENT__//
 const photographerArea = document.createElement('div');
-const zoneTxt = document.createElement('div');
-const nameTitle = document.createElement('h2');
-const para = document.createElement('p');
-const place = document.createElement('span');
-const gimmick = document.createElement('span');
-const divTitle = document.createElement('div');
-const contact = document.createElement('button');
-const contact2 = document.createElement('button');
-const photographerFace = document.createElement('div');
-const image = document.createElement('img');
-const blockFlex = document.createElement('div');
-//__________//create
-//TAGS______
-const ul = document.createElement('ul');
-//_____________//settings
-//PHOTOGRAPHE__
-main.classList.add('main');
 photographerArea.classList.add('photoFrame');
+
+const zoneTxt = document.createElement('div');
 zoneTxt.classList.add('zoneTxt');
+
+const nameTitle = document.createElement('h2');
 nameTitle.innerHTML = photographer.name;
+
+const para = document.createElement('p');
 para.classList.add('descript');
+
+const place = document.createElement('span');
 place.classList.add('local');
 place.innerHTML = photographer.city + ', ' + photographer.country;
+
+const gimmick = document.createElement('span');
 gimmick.classList.add('depiction');
 gimmick.innerHTML = photographer.tagline;
+
+const divTitle = document.createElement('div');
 divTitle.classList.add('divTitle');
+
+const contact = document.createElement('button');
 contact.classList.add('contact');
 contact.innerHTML = 'Contactez-moi';
 contact.title = 'Contactez-moi';
+
+const contact2 = document.createElement('button');
 contact2.classList.add('contact2');
 contact2.innerHTML = 'Contactez-moi';
 contact2.title = 'Contactez-moi';
+
+const photographerFace = document.createElement('div');
 photographerFace.classList.add('photographerFace');
+
+const image = document.createElement('img');
 image.src = 'FishEye_Photos/Photographers ID Photos/' + photographer.portrait;
 image.alt = 'photo portrait de ' + photographer.name;
+
+const blockFlex = document.createElement('div');
 blockFlex.classList.add('blockFlex');
+
+const ul = document.createElement('ul');
 ul.classList.add('tagDesign2');
-//__________//settings
-//TAGS______
-//PHOTOGRAPHE__
-body.append(main);
-main.append(photographerArea);
-photographerArea.append(zoneTxt);
-photographerArea.append(contact2);
-photographerArea.append(photographerFace);
-photographerFace.append(image);
-zoneTxt.append(divTitle);
-divTitle.append(nameTitle);
-divTitle.append(contact);
-zoneTxt.append(para);
-para.append(gimmick);
-para.append(place);
-zoneTxt.append(blockFlex);
-blockFlex.append(ul);
-//__________//indent
-//TAGS______
+
+//__TAGS__//
 for (let i = 0; i < photographer.tags.length; i++) {
 	const li = document.createElement('li');
 	const tag = document.createElement('span');
@@ -104,77 +96,30 @@ for (let i = 0; i < photographer.tags.length; i++) {
 	li.append(tag);
 	ul.append(li);
 }
+
+//__INDENTATION__//
+divTitle.append(nameTitle);
+divTitle.append(contact);
+zoneTxt.append(divTitle);
+
+para.append(gimmick);
+para.append(place);
+zoneTxt.append(para);
+
 blockFlex.append(ul);
+zoneTxt.append(blockFlex);
+
+photographerArea.append(zoneTxt);
+photographerArea.append(contact2);
+photographerArea.append(photographerFace);
+photographerFace.append(image);
+
+main.append(photographerArea);
+body.append(main);
 
 
 
-//_____________//create
-//FILTERS_____
-const filter = document.createElement('div');
-const sortBy = document.createElement('span');
-const select = document.createElement('ul');
-const containChoice = document.createElement('div');
-const arrowDown = document.createElement('div');
-const arrowDownImg = document.createElement('img');
-const arrowUp = document.createElement('div');
-const arrowUpImg = document.createElement('img');
-const popChoice = document.createElement('li');
-const btnPop = document.createElement('button');
-const dateChoice = document.createElement('li');
-const btnDate = document.createElement('button');
-const titleChoice = document.createElement('li');
-const btnTitle = document.createElement('button');
-const split1 = document.createElement('hr');
-const split2 = document.createElement('hr');
 
-//_____________//settings
-//FILTERS______
-filter.classList.add('filter');
-sortBy.classList.add('sortBy');
-sortBy.innerHTML = 'Trier par';
-select.classList.add('select');
-containChoice.classList.add('choice');
-arrowDown.classList.add('arrowDown');
-arrowDownImg.src = 'FishEye_Photos/arrow-white.svg';
-arrowDownImg.alt = 'flèche vers le bas';
-arrowUp.classList.add('arrowUp');
-arrowUpImg.src = 'FishEye_Photos/arrow-white.svg';
-arrowUpImg.alt = 'flèche vers le haut';
-popChoice.classList.add('sortChoice');
-popChoice.id = 'popChoice';
-btnPop.innerHTML = 'Popularité';
-btnPop.classList.add('selectBtn');
-btnPop.href = '#';
-split1.classList.add('split');
-dateChoice.classList.add('sortChoice');
-dateChoice.id = 'dateChoice';
-btnDate.innerHTML = 'Date';
-btnDate.classList.add('selectBtn');
-btnDate.href = '#';
-split2.classList.add('split');
-titleChoice.classList.add('sortChoice');
-titleChoice.id = 'titleChoice';
-btnTitle.innerHTML = 'Titre';
-btnTitle.classList.add('selectBtn');
-btnTitle.href = '#';
-//___________//indent
-//FILTERS______
-main.append(filter);
-filter.append(sortBy);
-filter.append(select);
-select.append(containChoice);
-containChoice.append(arrowDown);
-containChoice.append(arrowUp);
-arrowDown.append(arrowDownImg);
-arrowUp.append(arrowUpImg);
-select.append(popChoice);
-popChoice.append(btnPop);
-select.append(split1);
-select.append(dateChoice);
-dateChoice.append(btnDate);
-select.append(split2);
-select.append(titleChoice);
-titleChoice.append(btnTitle);
 
 //_____________//create
 //ALBUM_______
@@ -294,121 +239,9 @@ const deletedMedia = () => {
 	domAlbum.innerHTML = '';
 };
 
-//MENU DEROULANT__________//
-const menuOn = () => {
-	select.style.height = '160px';
-	arrowDown.style.display = 'none';
-	arrowUp.style.display = 'block';
-	dateChoice.style.display = 'block';
-	titleChoice.style.display = 'block';
-	split1.style.display = 'block';
-	split2.style.display = 'block';
 
-};
-const menuOff = () => {
-	select.style.height = '50px';
-	arrowDown.style.display = 'block';
-	arrowUp.style.display = 'none';
-	dateChoice.style.display = 'none';
-	titleChoice.style.display = 'none';
-	split1.style.display = 'none';
-	split2.style.display = 'none';
-};
 
-//TRIER PAR
-const buttons = document.querySelectorAll('.selectBtn');
-const bucketPop = document.querySelector('#popChoice');
-const bucketDate = document.querySelector('#dateChoice');
-const bucketTitle = document.querySelector('#titleChoice');
 
-for (let i = 0; i < buttons.length; i++) {
-	let self = buttons[i];
-
-	self.addEventListener('click', function () {
-
-		switch (self.textContent) {
-		case 'Popularité': {
-			let sortPop = [];
-			for (let i = 0; i < medias.length; i++) {
-				sortPop.push(medias[i].likes);
-			}
-			sortPop.sort();
-			deletedMedia();
-
-			let mediaToDisplay = [];
-			for (let i = 0; i < sortPop.length; i++) {
-				const likes = sortPop[i];
-				for (let j = 0; j < medias.length; j++) {
-					if (likes == medias[j].likes) {
-						mediaToDisplay.push(medias[j]);
-					}
-				}
-			}
-			displayMedias(mediaToDisplay);
-			menuOff();
-			self.classList.add('selected');
-			bucketPop.append(self);//pop[0]
-			bucketDate.append(buttons[1]);//date
-			bucketTitle.append(buttons[2]);//titre
-			
-			break;
-		}
-
-		case 'Date': {
-			let sortDate = [];
-			for (let i = 0; i < medias.length; i++) {
-				sortDate.push(medias[i].date);
-			}
-			sortDate.sort();
-			deletedMedia();
-			let mediaToDisplay = [];
-			for (let i = 0; i < sortDate.length; i++) {
-				const date = sortDate[i];
-				for (let j = 0; j < medias.length; j++) {
-					if (date == medias[j].date) {
-						mediaToDisplay.push(medias[j]);
-					}
-				}
-			}
-			displayMedias(mediaToDisplay);
-			menuOff();
-			self.classList.add('selected');
-			bucketPop.append(self);//date[1]
-			bucketDate.append(buttons[2]);//titre
-			bucketTitle.append(buttons[0]);//pop
-			break;
-		}
-
-		case 'Titre': {
-			let sortTitle = [];
-			for (let i = 0; i < medias.length; i++) {
-				sortTitle.push(medias[i].title);
-			}
-			sortTitle.sort();
-			deletedMedia();
-
-			let mediaToDisplay = [];
-			for (let i = 0; i < sortTitle.length; i++) {
-				const title = sortTitle[i];
-				for (let j = 0; j < medias.length; j++) {
-					if (title == medias[j].title) {
-						mediaToDisplay.push(medias[j]);
-					}
-				}
-			}
-			displayMedias(mediaToDisplay);
-			menuOff();
-			self.classList.add('selected');
-			bucketPop.append(self);//titre[2]
-			bucketDate.append(buttons[0]);//pop
-			bucketTitle.append(buttons[1]);//date
-			break;
-		}
-		default:
-			break;
-		}
-	});
-}
 
 lightbox.init();
 
