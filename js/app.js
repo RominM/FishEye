@@ -1,8 +1,9 @@
 import { lightbox } from "./lightbox.js";	
-import { paramUrl } from "./utils.js";
+import { paramUrl, createHeaderPage, photographerCard } from "./utils.js";
+
+const body = document.querySelector('body');
 
 const url_id = paramUrl('id');
-
 // Récupération des data dans le local Storage
 //============================================
 const dataFromLocalStorage = sessionStorage.getItem('data');
@@ -26,32 +27,14 @@ data.photographers.forEach(details => {
 	}
 });
 
-//DOM element
-const body = document.body;
-//************************ HEADER *************************/
-//_____________//create
-//HEADER_______
-const head = document.createElement('header');
-const section = document.createElement('section');
-const linkHome = document.createElement('a');
-const logo = document.createElement('img');
-//_____________//settings
-//HEADER_______
-head.classList.add('banner');
-section.classList.add('presentation');
-linkHome.classList.add('logo');
-linkHome.href = './index.html';
-logo.alt = 'FishEye page d\'accueil';
-logo.title = 'FishEye page d\'accueil';
-logo.src = 'FishEye_Photos/logo.png';
-//___________//indent
-//HEADER_______
-body.append(head);
-//=====================
-head.append(linkHome);
-linkHome.append(logo);
-//************************ MAIN *************************/
-const main = document.createElement('main');
+createHeaderPage();
+photographerCard(data);
+
+
+
+
+
+const main = document.querySelector('main');
 //_____________//create
 //PHOTOGRAPHE__
 const photographerArea = document.createElement('div');
@@ -122,6 +105,9 @@ for (let i = 0; i < photographer.tags.length; i++) {
 	ul.append(li);
 }
 blockFlex.append(ul);
+
+
+
 //_____________//create
 //FILTERS_____
 const filter = document.createElement('div');

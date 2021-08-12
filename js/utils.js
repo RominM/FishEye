@@ -8,7 +8,7 @@ export const createHeader = (data) => {
 	const hiddenLink = document.createElement('a');
 	hiddenLink.href = '#main';
 	hiddenLink.innerHTML = 'Passer au contenu';
-	
+
 	const logoLink = document.createElement('a');
 	const logo = document.createElement('img');
 	logoLink.href = './index.html';
@@ -32,8 +32,8 @@ export const createHeader = (data) => {
 		});
 	});
 
-	const uniqueTags = fullTags.filter(function(item, pos) {
-   return fullTags.indexOf(item) == pos;
+	const uniqueTags = fullTags.filter(function (item, pos) {
+		return fullTags.indexOf(item) == pos;
 	})
 
 	// ON REMPLI lES BALISES
@@ -51,15 +51,15 @@ export const createHeader = (data) => {
 	}
 
 	hidden.append(hiddenLink);
-	
+
 	logoLink.append(logo);
 	nav.append(ul);
-	
+
 	// ON LES INSÈRE DANS LE DOM
 	header.append(logoLink);
 	header.append(nav);
 	header.append(h1);
-	
+
 	body.append(hidden);
 }
 
@@ -69,35 +69,35 @@ export const createCard = (photographerData) => {
 	card.classList.add('cards');
 	card.href = 'photographer.html?id=' + photographerData.id;
 	card.id = photographerData.id;
-	
+
 	const image = document.createElement('img');
 	image.src = 'FishEye_Photos/Photographers ID Photos/' + photographerData.portrait;
 	image.alt = 'photo portrait de ' + photographerData.name;
-	
+
 	const cardDescription = document.createElement('div');
 	cardDescription.classList.add('cardDescription');
-	
+
 	const nameTitle = document.createElement('h2');
 	nameTitle.innerHTML = photographerData.name;
-	
+
 	const para = document.createElement('p');
 	para.classList.add('descript');
-	
+
 	const place = document.createElement('span');
 	place.classList.add('local');
 	place.innerHTML = photographerData.city + ', ' + photographerData.country;
-	
+
 	const depiction = document.createElement('span');
 	depiction.classList.add('depiction');
 	depiction.innerHTML = photographerData.tagline;
-	
+
 	const price = document.createElement('span');
 	price.classList.add('price');
 	price.innerHTML = photographerData.price + '€/jour';
-	
+
 	const ul = document.createElement('ul');
 	ul.classList.add('tagDesign');
-	
+
 	// ON REMPLI LES BALISES
 	card.append(image);
 
@@ -174,7 +174,7 @@ export const onClickTagsListHeader = (data) => {
 			const tagSelected = document.querySelector('.selectedTag');
 
 			//Reset les cards si on click a nouveaux sur le tag selectionné
-			if(tagSelected.classList.contains('selectedTag')) {
+			if (tagSelected.classList.contains('selectedTag')) {
 				tag.addEventListener('click', () => {
 					tag.classList.remove('selectedTag');
 
@@ -193,3 +193,27 @@ export const paramUrl = (param) => {
 	const urlParams = new URLSearchParams(queryString);
 	return urlParams.get(param);
 };
+
+export const createHeaderPage = () => {
+	const body = document.querySelector('body');
+
+	const header = document.querySelector('header');
+
+	const logoLink = document.createElement('a');
+	logoLink.classList.add('logo');
+	logoLink.href = './index.html';
+
+	const logo = document.createElement('img');
+	logo.alt = 'FishEye page d\'accueil';
+	logo.title = 'FishEye page d\'accueil';
+	logo.src = 'FishEye_Photos/logo.png';
+
+	logoLink.append(logo);
+	header.append(logoLink);
+
+	body.append(header);
+}
+
+export const photographerCard = () => {
+
+}
