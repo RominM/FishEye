@@ -49,22 +49,22 @@ export class lightbox {
 		loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
 		container.innerHTML = '';
 		container.appendChild(loader);
-		if(url.indexOf('.mp4')) {
-			video.onload = () => {
-				container.removeChild(loader);
-				container.append(video);
-				video.append(src);
-				this.url = url;
-				console.log('is contains ".mp4"');
-			}
-		} else {
+		// if(url.indexOf('.mp4')) {
+		// 	video.onload = () => {
+		// 		container.removeChild(loader);
+		// 		container.append(video);
+		// 		video.append(src);
+		// 		this.url = url;
+		// 		console.log('is contains ".mp4"');
+		// 	}
+		// } else {
 			image.onload = () => {
 				container.removeChild(loader);
 				container.append(image);
 				this.url = url;
 				console.log('is not contains ".mp4"');
 			}
-		}
+		// }
 		image.src = url;
 	}
 
