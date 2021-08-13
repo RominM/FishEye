@@ -137,7 +137,6 @@ export const onClickTagsListHeader = (data) => {
 
 			const tagId = tag.id; //id du boutton selectionné
 			const photoArray = data.photographers;
-
 			const photographerAsked = [];
 
 			for (let i = 0; i < photoArray.length; i++) { // parcourir chacune des cards pour verifier les tags
@@ -187,7 +186,6 @@ export const onClickTagsListHeader = (data) => {
 	});
 }
 
-
 export const paramUrl = (param) => {
 	const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
@@ -214,6 +212,84 @@ export const createHeaderPage = () => {
 	body.append(header);
 }
 
-export const photographerCard = () => {
+export const dropBoxSortBy = () => {
+	const main = document.querySelector('main');
+	//_____________//create
+	//FILTERS_____
+	const filter = document.createElement('div');
+	filter.classList.add('filter');
 
+	const sortBy = document.createElement('span');
+	sortBy.classList.add('sortBy');
+	sortBy.innerHTML = 'Trier par';
+
+	const select = document.createElement('ul');
+	select.classList.add('select');
+
+	const containChoice = document.createElement('div');
+	containChoice.classList.add('choice');
+
+	const arrowDown = document.createElement('div');
+	const arrowDownImg = document.createElement('img');
+	arrowDown.classList.add('arrowDown');
+	arrowDownImg.src = 'FishEye_Photos/arrow-white.svg';
+	arrowDownImg.alt = 'flèche vers le bas';
+
+	const arrowUp = document.createElement('div');
+	const arrowUpImg = document.createElement('img');
+	arrowUp.classList.add('arrowUp');
+	arrowUpImg.src = 'FishEye_Photos/arrow-white.svg';
+	arrowUpImg.alt = 'flèche vers le haut';
+
+	const popChoice = document.createElement('li');
+	const btnPop = document.createElement('button');
+	popChoice.classList.add('sortChoice');
+	popChoice.id = 'popChoice';
+	btnPop.innerHTML = 'Popularité';
+	btnPop.classList.add('selectBtn');
+	btnPop.href = '#';
+
+	const dateChoice = document.createElement('li');
+	const btnDate = document.createElement('button');
+	dateChoice.classList.add('sortChoice');
+	dateChoice.id = 'dateChoice';
+	btnDate.innerHTML = 'Date';
+	btnDate.classList.add('selectBtn');
+	btnDate.href = '#';
+
+	const titleChoice = document.createElement('li');
+	const btnTitle = document.createElement('button');
+	titleChoice.classList.add('sortChoice');
+	titleChoice.id = 'titleChoice';
+	btnTitle.innerHTML = 'Titre';
+	btnTitle.classList.add('selectBtn');
+	btnTitle.href = '#';
+
+	// const split1 = document.createElement('hr');
+	// const split2 = document.createElement('hr');
+	// split1.classList.add('split');
+	// split2.classList.add('split');
+	// select.append(split1);
+	// select.append(split2);
+
+	select.append(containChoice);
+
+	select.append(popChoice);
+	popChoice.append(btnPop);
+
+	select.append(dateChoice);
+	dateChoice.append(btnDate);
+
+	select.append(titleChoice);
+	titleChoice.append(btnTitle);
+
+	containChoice.append(arrowDown);
+	containChoice.append(arrowUp);
+	arrowDown.append(arrowDownImg);
+	arrowUp.append(arrowUpImg);
+
+	filter.append(sortBy);
+	filter.append(select);
+	
+	main.append(filter);
 }
