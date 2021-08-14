@@ -1,5 +1,5 @@
 import { lightbox } from "./lightbox.js";	
-import { paramUrl, createHeaderPage, dropBoxSortBy } from "./utils.js";
+import { paramUrl, createHeaderPage, photographerFrame, dropBoxSortBy/*, createGalleryOfMedias*/ } from "./utils.js";
 
 const body = document.querySelector('body');
 
@@ -28,86 +28,32 @@ data.photographers.forEach(details => {
 });
 
 createHeaderPage();
+photographerFrame(data);
 
-
-
-
-
+//***************************************************/
+// const createTagsOnPage();
 const main = document.querySelector('main');
-//_____________//create
-//PHOTOGRAPHE__
-const photographerArea = document.createElement('div');
-const zoneTxt = document.createElement('div');
-const nameTitle = document.createElement('h2');
-const para = document.createElement('p');
-const place = document.createElement('span');
-const gimmick = document.createElement('span');
-const divTitle = document.createElement('div');
-const contact = document.createElement('button');
-const contact2 = document.createElement('button');
-const photographerFace = document.createElement('div');
-const image = document.createElement('img');
-const blockFlex = document.createElement('div');
-//__________//create
-//TAGS______
 const ul = document.createElement('ul');
-//_____________//settings
-//PHOTOGRAPHE__
-main.classList.add('main');
-photographerArea.classList.add('photoFrame');
-zoneTxt.classList.add('zoneTxt');
-nameTitle.innerHTML = photographer.name;
-para.classList.add('descript');
-place.classList.add('local');
-place.innerHTML = photographer.city + ', ' + photographer.country;
-gimmick.classList.add('depiction');
-gimmick.innerHTML = photographer.tagline;
-divTitle.classList.add('divTitle');
-contact.classList.add('contact');
-contact.innerHTML = 'Contactez-moi';
-contact.title = 'Contactez-moi';
-contact2.classList.add('contact2');
-contact2.innerHTML = 'Contactez-moi';
-contact2.title = 'Contactez-moi';
-photographerFace.classList.add('photographerFace');
-image.src = 'FishEye_Photos/Photographers ID Photos/' + photographer.portrait;
-image.alt = 'photo portrait de ' + photographer.name;
-blockFlex.classList.add('blockFlex');
+const zoneTxt = document.querySelector('.zoneTxt');
 ul.classList.add('tagDesign2');
-//__________//settings
-//TAGS______
-//PHOTOGRAPHE__
-body.append(main);
-main.append(photographerArea);
-photographerArea.append(zoneTxt);
-photographerArea.append(contact2);
-photographerArea.append(photographerFace);
-photographerFace.append(image);
-zoneTxt.append(divTitle);
-divTitle.append(nameTitle);
-divTitle.append(contact);
-zoneTxt.append(para);
-para.append(gimmick);
-para.append(place);
-zoneTxt.append(blockFlex);
-blockFlex.append(ul);
 //__________//indent
-//TAGS______
-for (let i = 0; i < photographer.tags.length; i++) {
-	const li = document.createElement('li');
-	const tag = document.createElement('span');
+	//TAGS______
+	for (let i = 0; i < photographer.tags.length; i++) {
+		const li = document.createElement('li');
+		const tag = document.createElement('span');
 
-	tag.classList.add('tagDesign__tag2');
-	tag.innerHTML = '#' + photographer.tags[i];
+		tag.classList.add('tagDesign__tag2');
+		tag.innerHTML = '#' + photographer.tags[i];
 
-	li.append(tag);
-	ul.append(li);
-}
-blockFlex.append(ul);
-
+		li.append(tag);
+		ul.append(li);
+	}
+	zoneTxt.append(ul);
+//***************************************************/
 
 dropBoxSortBy();
 
+// createGalleryOfMedias()
 //_____________//create
 //ALBUM_______
 const album = document.createElement('div');
@@ -351,6 +297,7 @@ for (let i = 0; i < buttons.length; i++) {
 lightbox.init();
 
 //Fonction incrementation like photos
+
 const incrementPic = () => {
 	//recuperation des coeurs
 	const blocksLike = document.querySelectorAll('.blockLike');
@@ -536,13 +483,14 @@ const openForm = () => {
 	bground.style.display = 'block';
 	main.style.opacity = 0.3;
 };
-
 const arrowDown = document.querySelector('.arrowDown');
 const arrowUp = document.querySelector('.arrowUp');
 //FLECHE_menu____
 arrowDown.addEventListener('click', menuOn);
 arrowUp.addEventListener('click', menuOff);
 //FORM_context___
+const contact = document.querySelector('.contact');
+const contact2 = document.querySelector('.contact2');
 contact.addEventListener('click', openForm);
 contact2.addEventListener('click', openForm);
 cross.addEventListener('click', closeForm);

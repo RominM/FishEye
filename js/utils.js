@@ -212,6 +212,75 @@ export const createHeaderPage = () => {
 	body.append(header);
 }
 
+export const photographerFrame = (data) => {
+	const body = document.querySelector('body');
+	const main = document.querySelector('main');
+
+	//recuperation de l'url du photographe
+	const url_id = paramUrl('id');
+	let photographer;
+	//Récupération des datas du photographe
+	data.photographers.forEach(details => {
+		if (details.id == url_id) {
+			photographer = details;
+		}
+	});
+
+	const photographerArea = document.createElement('div');
+	photographerArea.classList.add('photoFrame');
+
+	const zoneTxt = document.createElement('div');
+	zoneTxt.classList.add('zoneTxt');
+
+	const nameTitle = document.createElement('h2');
+	nameTitle.innerHTML = photographer.name;
+
+	const para = document.createElement('p');
+	para.classList.add('descript');
+
+	const place = document.createElement('span');
+	place.classList.add('local');
+	place.innerHTML = photographer.city + ', ' + photographer.country;
+
+	const depiction = document.createElement('span');
+	depiction.classList.add('depiction');
+	depiction.innerHTML = photographer.tagline;
+
+	const divTitle = document.createElement('div');
+	divTitle.classList.add('divTitle');
+
+	const contact = document.createElement('button');
+	contact.classList.add('contact');
+	contact.innerHTML = 'Contactez-moi';
+	contact.title = 'Contactez-moi';
+
+	const contact2 = document.createElement('button');
+	contact2.classList.add('contact2');
+	contact2.innerHTML = 'Contactez-moi';
+	contact2.title = 'Contactez-moi';
+
+	const photographerFace = document.createElement('div');
+	photographerFace.classList.add('photographerFace');
+
+	const image = document.createElement('img');
+	image.src = 'FishEye_Photos/Photographers ID Photos/' + photographer.portrait;
+	image.alt = 'photo portrait de ' + photographer.name;
+
+	photographerArea.append(zoneTxt);
+	photographerArea.append(contact2);
+	photographerArea.append(photographerFace);
+	photographerFace.append(image);
+	zoneTxt.append(divTitle);
+	divTitle.append(nameTitle);
+	divTitle.append(contact);
+	zoneTxt.append(para);
+	para.append(depiction);
+	para.append(place);
+	
+	main.append(photographerArea);
+	body.append(main);
+}
+
 export const dropBoxSortBy = () => {
 	const main = document.querySelector('main');
 	//_____________//create
@@ -290,8 +359,10 @@ export const dropBoxSortBy = () => {
 
 	filter.append(sortBy);
 	filter.append(select);
-	
+
 	main.append(filter);
 }
 
+// export const createGalleryOfMedias = () => {
 
+// }

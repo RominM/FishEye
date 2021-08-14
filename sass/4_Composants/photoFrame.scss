@@ -31,8 +31,8 @@ main {
             flex-wrap: nowrap;
 
             h2 {
-                width: 60%;
-                font-size: 4.5vw;
+                width: 63%;
+                font-size: 4.3vw;
                 white-space: nowrap;
                 margin: 0;
             }
@@ -58,9 +58,11 @@ main {
                 font-size: 1.4em;
             }
         }
-        .blockFlex {
-            .tagDesign2 {
-                display: flex;
+
+        .tagDesign2 {
+            display: flex;
+            &__tag2 {
+                width: 100px;
             }
         }
     }
