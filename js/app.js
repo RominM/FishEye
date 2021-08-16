@@ -119,7 +119,7 @@ const displayMedias = (medias) => {
 			vid.controls = 'true';
 			vid.type = 'video/.mp4';
 			vid.title = media.title + ' | ' + media.date + ' | prix ' + media.price + '€';
-			source.src = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
+			vid.src = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
 			source.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
 			vid.classList.add('fig-vid');
 			heart.innerHTML = 'Clickez pour liker';

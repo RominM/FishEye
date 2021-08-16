@@ -69,6 +69,9 @@
             height: auto;
             animation: lightboxIn .5s;
         }
+        video {
+            @extend img
+        }
     }
 }
 

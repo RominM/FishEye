@@ -10,9 +10,10 @@ export class lightbox {
 	// Ouverture de la Lightbox lorsqu'on click sur un de ces liens
 	static init() {
 
-		const links = Array.from(document.querySelectorAll('a[href$=".jpg"], a[href$=".mp4"]'));
+		const links = Array.from(document.querySelectorAll('a'));
 		const gallery = links.map(link => link.getAttribute('href'));
 
+		console.log(links);
 		links.forEach(link => link.addEventListener('click', e => {
 			e.preventDefault(); // strop le comportement par defaut
 			new lightbox(e.currentTarget.getAttribute('href'), gallery); // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
@@ -24,14 +25,14 @@ export class lightbox {
 	 * @param {string} url url de l'image
 	 * @param {string[]} images Chemins des images de la Lightbox
 	 */
-	constructor(url, images, videos) {
+	constructor(url, images) {
 		this.element = this.buildDOM(url);
 		this.images = images;
-		this.videos = videos;
-		// this.loadImage(url);
+		this.loadImage(url);
 		this.onKeyUp = this.onKeyUp.bind(this);
 		document.body.appendChild(this.element);
 		document.addEventListener('keyup', this.onKeyUp);
+		console.log(url);
 	}
 
 	//*********lOADIMAGE************//
@@ -40,26 +41,34 @@ export class lightbox {
 	 * @param {string} url url de l'image
 	 */
 	loadImage(url) {
+		this.url = url;
 		const image = new Image();
 		const video = document.createElement('video');
+		const src = document.createElement('source');
 		const container = this.element.querySelector('.contentLB');
 		container.innerHTML = '';
-		this.url = url;
-		// const loader = document.createElement('div');
-		// loader.classList.add('lightbox__loader');
-		// loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
-		// container.appendChild(loader);
-		if(url.includes('jpg')) {
+		const loader = document.createElement('div');
+		loader.classList.add('lightbox__loader');
+		loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
+		container.innerHTML = '';
+		container.appendChild(loader);
+		if (url.includes('jpg')) {
+			console.log('This is an JPG not an MP4');
 			container.appendChild(image);
 			image.src = url;
-		} else if(url.includes('mp4')) {
+			container.removeChild(loader);
+		} else if (url.includes('mp4')) {
+			console.log('This is an MP4 ! YES !!');
 			container.appendChild(video);
-			console.log('here we are !');
-			video.src = url;
+			video.controls = true;
+			video.appendChild(src);
+			src.src = url;
+			container.removeChild(loader);
+		} else {
+			return url
 		}
 		// if(url.indexOf('.mp4')) {
 		// 	video.onload = () => {
-		// 		container.removeChild(loader);
 		// 		container.append(video);
 		// 		video.append(src);
 		// 		this.url = url;
@@ -139,6 +148,7 @@ export class lightbox {
 		lightbox.querySelector('.lightbox__closeLB').addEventListener('click', this.close.bind(this));
 		lightbox.querySelector('.lightbox__nextLB').addEventListener('click', this.next.bind(this));
 		lightbox.querySelector('.lightbox__prevLB').addEventListener('click', this.prev.bind(this));
+		// body.style.overflow = "hidden";
 		console.log(url);// ajout d'un console log car url en param grisé (???)
 		return lightbox;
 	}
