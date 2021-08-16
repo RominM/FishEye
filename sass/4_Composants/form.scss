@@ -5,24 +5,24 @@
     left: 50%;
     transform: translate(-50%,-50%);
     background-color: #DB8876;
-    width: 75%;
-    max-width: 590px;
-    height: auto;
+    width: 70%;
+    max-width: 550px;
+    max-height: 600px;
     margin: auto;
     border-radius: 3px;
     animation: formOpen .3s;
     .content {
         position: relative;
         display: flex;
-        margin: 25px;
+        margin: 20px;
         margin-left: 30px;
-        padding-top: 25px;
+        padding-top: 5px;
         .cross {
             position: absolute;
             right: -10px;
             top: 0;
             width: 50px;
-            height: 50px;
+            height: 40px;
             cursor: pointer;
             transform: scale(0.7);
         }
@@ -43,7 +43,7 @@
             transform: rotate(-45deg);
         }
         .contactMe {
-            font-size: 3em;
+            font-size: 2.8em;
         }
         .titleName {
             font-size: 3em;
@@ -58,19 +58,19 @@
             margin: auto;
             label {
                 margin-bottom: 5px;
-                font-size: 1.4em;
+                font-size: 1.2em;
             }
             
             input, textarea {
                 margin-bottom: 10px;
                 border: none;
                 border-radius: 3px;
-                height: 40px;
+                height: 30px;
                 font-size: 1.2em;
                 outline: none;
             }
             textarea {
-                height: 170px;
+                height: 130px;
                 overflow-wrap: break-word;
                 font-size: 19px;
             }
@@ -78,10 +78,10 @@
     }
     .send {
         border: none;
-        margin: 25px 35px;
+        margin: 15px 35px;
         border-radius: 5px;
         width: 170px;
-        height: 69px;
+        height: 45px;
         background-color: #901C1C;
         color: #fff;
         font-size: 1em;

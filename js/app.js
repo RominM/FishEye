@@ -87,6 +87,7 @@ likeBox.append(likeCounter);
 likeBox.append(blackHeart);
 blackHeart.append(blackHeartImg);
 
+
 //******************* MEDIA *********************/
 let totalLike = 0;
 
@@ -205,7 +206,8 @@ const menuOff = () => {
 	// split2.style.display = 'none';
 };
 
-//TRIER PAR
+
+//FONCTION TRIER PAR
 const buttons = document.querySelectorAll('.selectBtn');
 const bucketPop = document.querySelector('#popChoice');
 const bucketDate = document.querySelector('#dateChoice');
@@ -220,11 +222,13 @@ for (let i = 0; i < buttons.length; i++) {
 			case 'Popularité': {
 				let sortPop = [];
 				for (let i = 0; i < medias.length; i++) {
-					sortPop.push(medias[i].likes);
+					let likes = medias[i].likes;
+					sortPop.push(likes); //On mets les likes dans un tableau
 				}
-				sortPop.sort();
+				sortPop.sort(function (a, b) {
+					return b - a;
+				});
 				deletedMedia();
-
 				let mediaToDisplay = [];
 				for (let i = 0; i < sortPop.length; i++) {
 					const likes = sortPop[i];
