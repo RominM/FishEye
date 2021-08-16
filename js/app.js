@@ -1,5 +1,12 @@
-import { lightbox } from "./lightbox.js";	
-import { paramUrl, createHeaderPage, photographerFrame, dropBoxSortBy/*, createGalleryOfMedias*/ } from "./utils.js";
+import {
+	lightbox
+} from "./lightbox.js";
+import {
+	paramUrl,
+	createHeaderPage,
+	photographerFrame,
+	dropBoxSortBy
+} from "./utils.js";
 
 const body = document.querySelector('body');
 
@@ -37,23 +44,23 @@ const ul = document.createElement('ul');
 const zoneTxt = document.querySelector('.zoneTxt');
 ul.classList.add('tagDesign2');
 //__________//indent
-	//TAGS______
-	for (let i = 0; i < photographer.tags.length; i++) {
-		const li = document.createElement('li');
-		const tag = document.createElement('span');
+//TAGS______
+for (let i = 0; i < photographer.tags.length; i++) {
+	const li = document.createElement('li');
+	const tag = document.createElement('span');
 
-		tag.classList.add('tagDesign__tag2');
-		tag.innerHTML = '#' + photographer.tags[i];
+	tag.classList.add('tagDesign__tag2');
+	tag.innerHTML = '#' + photographer.tags[i];
 
-		li.append(tag);
-		ul.append(li);
-	}
-	zoneTxt.append(ul);
+	li.append(tag);
+	ul.append(li);
+}
+zoneTxt.append(ul);
 //***************************************************/
 
 dropBoxSortBy();
 
-// createGalleryOfMedias()
+
 //_____________//create
 //ALBUM_______
 const album = document.createElement('div');
@@ -80,6 +87,8 @@ infoBox.append(infoPrice);
 likeBox.append(likeCounter);
 likeBox.append(blackHeart);
 blackHeart.append(blackHeartImg);
+
+
 
 //******************* MEDIA *********************/
 let totalLike = 0;
@@ -162,8 +171,12 @@ const displayMedias = (medias) => {
 		//Addition des likes
 		totalLike += media.likes;
 		infoBox.title = 'Like total et tarif de ' + photographer.price + '€ par jour';
+
+		
+
 	});
 };
+
 
 displayMedias(medias);
 
@@ -211,85 +224,85 @@ for (let i = 0; i < buttons.length; i++) {
 	self.addEventListener('click', function () {
 
 		switch (self.textContent) {
-		case 'Popularité': {
-			let sortPop = [];
-			for (let i = 0; i < medias.length; i++) {
-				sortPop.push(medias[i].likes);
-			}
-			sortPop.sort();
-			deletedMedia();
+			case 'Popularité': {
+				let sortPop = [];
+				for (let i = 0; i < medias.length; i++) {
+					sortPop.push(medias[i].likes);
+				}
+				sortPop.sort();
+				deletedMedia();
 
-			let mediaToDisplay = [];
-			for (let i = 0; i < sortPop.length; i++) {
-				const likes = sortPop[i];
-				for (let j = 0; j < medias.length; j++) {
-					if (likes == medias[j].likes) {
-						mediaToDisplay.push(medias[j]);
+				let mediaToDisplay = [];
+				for (let i = 0; i < sortPop.length; i++) {
+					const likes = sortPop[i];
+					for (let j = 0; j < medias.length; j++) {
+						if (likes == medias[j].likes) {
+							mediaToDisplay.push(medias[j]);
+						}
 					}
 				}
-			}
-			displayMedias(mediaToDisplay);
-			menuOff();
-			self.classList.add('selected');
-			bucketPop.append(self);//pop[0]
-			bucketDate.append(buttons[1]);//date
-			bucketTitle.append(buttons[2]);//titre
-			
-			break;
-		}
+				displayMedias(mediaToDisplay);
+				menuOff();
+				self.classList.add('selected');
+				bucketPop.append(self); //pop[0]
+				bucketDate.append(buttons[1]); //date
+				bucketTitle.append(buttons[2]); //titre
 
-		case 'Date': {
-			let sortDate = [];
-			for (let i = 0; i < medias.length; i++) {
-				sortDate.push(medias[i].date);
+				break;
 			}
-			sortDate.sort();
-			deletedMedia();
-			let mediaToDisplay = [];
-			for (let i = 0; i < sortDate.length; i++) {
-				const date = sortDate[i];
-				for (let j = 0; j < medias.length; j++) {
-					if (date == medias[j].date) {
-						mediaToDisplay.push(medias[j]);
+
+			case 'Date': {
+				let sortDate = [];
+				for (let i = 0; i < medias.length; i++) {
+					sortDate.push(medias[i].date);
+				}
+				sortDate.sort();
+				deletedMedia();
+				let mediaToDisplay = [];
+				for (let i = 0; i < sortDate.length; i++) {
+					const date = sortDate[i];
+					for (let j = 0; j < medias.length; j++) {
+						if (date == medias[j].date) {
+							mediaToDisplay.push(medias[j]);
+						}
 					}
 				}
+				displayMedias(mediaToDisplay);
+				menuOff();
+				self.classList.add('selected');
+				bucketPop.append(self); //date[1]
+				bucketDate.append(buttons[2]); //titre
+				bucketTitle.append(buttons[0]); //pop
+				break;
 			}
-			displayMedias(mediaToDisplay);
-			menuOff();
-			self.classList.add('selected');
-			bucketPop.append(self);//date[1]
-			bucketDate.append(buttons[2]);//titre
-			bucketTitle.append(buttons[0]);//pop
-			break;
-		}
 
-		case 'Titre': {
-			let sortTitle = [];
-			for (let i = 0; i < medias.length; i++) {
-				sortTitle.push(medias[i].title);
-			}
-			sortTitle.sort();
-			deletedMedia();
+			case 'Titre': {
+				let sortTitle = [];
+				for (let i = 0; i < medias.length; i++) {
+					sortTitle.push(medias[i].title);
+				}
+				sortTitle.sort();
+				deletedMedia();
 
-			let mediaToDisplay = [];
-			for (let i = 0; i < sortTitle.length; i++) {
-				const title = sortTitle[i];
-				for (let j = 0; j < medias.length; j++) {
-					if (title == medias[j].title) {
-						mediaToDisplay.push(medias[j]);
+				let mediaToDisplay = [];
+				for (let i = 0; i < sortTitle.length; i++) {
+					const title = sortTitle[i];
+					for (let j = 0; j < medias.length; j++) {
+						if (title == medias[j].title) {
+							mediaToDisplay.push(medias[j]);
+						}
 					}
 				}
+				displayMedias(mediaToDisplay);
+				menuOff();
+				self.classList.add('selected');
+				bucketPop.append(self); //titre[2]
+				bucketDate.append(buttons[0]); //pop
+				bucketTitle.append(buttons[1]); //date
+				break;
 			}
-			displayMedias(mediaToDisplay);
-			menuOff();
-			self.classList.add('selected');
-			bucketPop.append(self);//titre[2]
-			bucketDate.append(buttons[0]);//pop
-			bucketTitle.append(buttons[1]);//date
-			break;
-		}
-		default:
-			break;
+			default:
+				break;
 		}
 	});
 }
@@ -297,7 +310,6 @@ for (let i = 0; i < buttons.length; i++) {
 lightbox.init();
 
 //Fonction incrementation like photos
-
 const incrementPic = () => {
 	//recuperation des coeurs
 	const blocksLike = document.querySelectorAll('.blockLike');
@@ -307,6 +319,7 @@ const incrementPic = () => {
 		heart.addEventListener('click', () => {
 			const like = block.querySelector('.like');
 			const likeNmb = parseInt(like.innerHTML);
+			let totalLike = 0;
 
 			if (heart.classList.contains('clicked') == false) {
 				// const heartImg = document.querySelector(".heartImg");
@@ -325,13 +338,28 @@ const incrementPic = () => {
 	});
 };
 
+incrementPic();
+
 //Fonction du total des like de la page
-const displayTotalLike = () => {
+const displayTotalLike = (data) => {
+	const url_id = paramUrl('id');
+	const medias = [];
+	//Récupération des medias en fonction de l'id du photographe
+	data.medias.forEach(media => {
+		if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
+			medias.push(media); // tri les media qui ont le même id que l'url
+		}
+	});
+	displayTotalLike();
+
+	//======
+	const likeCounter = document.querySelector('.infoBox__likeCounter');
+	let totalLike = 0;
+	totalLike += media.likes;
+
 	likeCounter.innerHTML = totalLike;
 };
-
 displayTotalLike();
-incrementPic();
 
 //******************* FORMULAIR *********************/
 //_____________//create

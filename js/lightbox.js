@@ -24,10 +24,11 @@ export class lightbox {
 	 * @param {string} url url de l'image
 	 * @param {string[]} images Chemins des images de la Lightbox
 	 */
-	constructor(url, images) {
+	constructor(url, images, videos) {
 		this.element = this.buildDOM(url);
 		this.images = images;
-		this.loadImage(url);
+		this.videos = videos;
+		// this.loadImage(url);
 		this.onKeyUp = this.onKeyUp.bind(this);
 		document.body.appendChild(this.element);
 		document.addEventListener('keyup', this.onKeyUp);
@@ -39,16 +40,23 @@ export class lightbox {
 	 * @param {string} url url de l'image
 	 */
 	loadImage(url) {
-		this.url = null;
 		const image = new Image();
 		const video = document.createElement('video');
-		const src = document.createElement('source');
 		const container = this.element.querySelector('.contentLB');
-		const loader = document.createElement('div');
-		loader.classList.add('lightbox__loader');
-		loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
 		container.innerHTML = '';
-		container.appendChild(loader);
+		this.url = url;
+		// const loader = document.createElement('div');
+		// loader.classList.add('lightbox__loader');
+		// loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
+		// container.appendChild(loader);
+		if(url.includes('jpg')) {
+			container.appendChild(image);
+			image.src = url;
+		} else if(url.includes('mp4')) {
+			container.appendChild(video);
+			console.log('here we are !');
+			video.src = url;
+		}
 		// if(url.indexOf('.mp4')) {
 		// 	video.onload = () => {
 		// 		container.removeChild(loader);
@@ -58,14 +66,14 @@ export class lightbox {
 		// 		console.log('is contains ".mp4"');
 		// 	}
 		// } else {
-			image.onload = () => {
-				container.removeChild(loader);
-				container.append(image);
-				this.url = url;
-				console.log('is not contains ".mp4"');
-			}
+			// image.onload = () => {
+			// 	container.removeChild(loader);
+			// 	container.append(image);
+			// 	this.url = url;
+			// 	console.log('is not contains ".mp4"');
+			// }
 		// }
-		image.src = url;
+		// image.src = url;
 	}
 
 	/**
@@ -131,7 +139,6 @@ export class lightbox {
 		lightbox.querySelector('.lightbox__closeLB').addEventListener('click', this.close.bind(this));
 		lightbox.querySelector('.lightbox__nextLB').addEventListener('click', this.next.bind(this));
 		lightbox.querySelector('.lightbox__prevLB').addEventListener('click', this.prev.bind(this));
-		// body.style.overflow = "hidden";
 		console.log(url);// ajout d'un console log car url en param grisé (???)
 		return lightbox;
 	}

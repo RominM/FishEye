@@ -170,9 +170,9 @@ export const onClickTagsListHeader = (data) => {
 			for (let i = 0; i < cardToDisplay.length; i++) {
 				document.getElementById(cardToDisplay[i].id).style.display = 'block';
 			}
-			const tagSelected = document.querySelector('.selectedTag');
 
 			//Reset les cards si on click a nouveaux sur le tag selectionné
+			const tagSelected = document.querySelector('.selectedTag');
 			if (tagSelected.classList.contains('selectedTag')) {
 				tag.addEventListener('click', () => {
 					tag.classList.remove('selectedTag');
@@ -276,7 +276,7 @@ export const photographerFrame = (data) => {
 	zoneTxt.append(para);
 	para.append(depiction);
 	para.append(place);
-	
+
 	main.append(photographerArea);
 	body.append(main);
 }
@@ -316,7 +316,6 @@ export const dropBoxSortBy = () => {
 	popChoice.id = 'popChoice';
 	btnPop.innerHTML = 'Popularité';
 	btnPop.classList.add('selectBtn');
-	btnPop.href = '#';
 
 	const dateChoice = document.createElement('li');
 	const btnDate = document.createElement('button');
@@ -324,7 +323,6 @@ export const dropBoxSortBy = () => {
 	dateChoice.id = 'dateChoice';
 	btnDate.innerHTML = 'Date';
 	btnDate.classList.add('selectBtn');
-	btnDate.href = '#';
 
 	const titleChoice = document.createElement('li');
 	const btnTitle = document.createElement('button');
@@ -332,7 +330,6 @@ export const dropBoxSortBy = () => {
 	titleChoice.id = 'titleChoice';
 	btnTitle.innerHTML = 'Titre';
 	btnTitle.classList.add('selectBtn');
-	btnTitle.href = '#';
 
 	// const split1 = document.createElement('hr');
 	// const split2 = document.createElement('hr');
@@ -362,7 +359,3 @@ export const dropBoxSortBy = () => {
 
 	main.append(filter);
 }
-
-// export const createGalleryOfMedias = () => {
-
-// }
