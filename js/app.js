@@ -60,7 +60,6 @@ zoneTxt.append(ul);
 
 dropBoxSortBy();
 
-
 //_____________//create
 //ALBUM_______
 const album = document.createElement('div');
@@ -88,8 +87,6 @@ likeBox.append(likeCounter);
 likeBox.append(blackHeart);
 blackHeart.append(blackHeartImg);
 
-
-
 //******************* MEDIA *********************/
 let totalLike = 0;
 
@@ -113,20 +110,19 @@ const displayMedias = (medias) => {
 			//_____________//create
 			const linkVid = document.createElement('a');
 			const vid = document.createElement('video');
-			const source = document.createElement('source');
 			//_____________//settings
 			linkVid.href = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
 			vid.controls = 'true';
 			vid.type = 'video/.mp4';
 			vid.title = media.title + ' | ' + media.date + ' | prix ' + media.price + '€';
 			vid.src = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
-			source.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
+			vid.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
 			vid.classList.add('fig-vid');
+			linkVid.classList.add('lightboxOn');
 			heart.innerHTML = 'Clickez pour liker';
 			//_____________//indent
 			divPhoto.append(linkVid);
 			linkVid.append(vid);
-			vid.append(source);
 		} else if (media.image) {
 			//_____________//create
 			const linkPic = document.createElement('a');
@@ -137,6 +133,7 @@ const displayMedias = (medias) => {
 			pic.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
 			pic.title = media.title + ' | ' + media.date + ' | prix ' + media.price + '€';
 			pic.classList.add('fig-img');
+			linkPic.classList.add('lightboxOn');
 			heart.innerHTML = 'Clickez pour liker';
 			//_____________//indent
 			divPhoto.append(linkPic);
@@ -243,7 +240,7 @@ for (let i = 0; i < buttons.length; i++) {
 				bucketPop.append(self); //pop[0]
 				bucketDate.append(buttons[1]); //date
 				bucketTitle.append(buttons[2]); //titre
-
+				lightbox.init();
 				break;
 			}
 
@@ -269,6 +266,7 @@ for (let i = 0; i < buttons.length; i++) {
 				bucketPop.append(self); //date[1]
 				bucketDate.append(buttons[2]); //titre
 				bucketTitle.append(buttons[0]); //pop
+				lightbox.init();
 				break;
 			}
 
@@ -295,6 +293,7 @@ for (let i = 0; i < buttons.length; i++) {
 				bucketPop.append(self); //titre[2]
 				bucketDate.append(buttons[0]); //pop
 				bucketTitle.append(buttons[1]); //date
+				lightbox.init();
 				break;
 			}
 			default:

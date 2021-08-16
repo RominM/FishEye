@@ -10,10 +10,9 @@ export class lightbox {
 	// Ouverture de la Lightbox lorsqu'on click sur un de ces liens
 	static init() {
 
-		const links = Array.from(document.querySelectorAll('a'));
+		const links = Array.from(document.querySelectorAll('.lightboxOn'));
 		const gallery = links.map(link => link.getAttribute('href'));
 
-		console.log(links);
 		links.forEach(link => link.addEventListener('click', e => {
 			e.preventDefault(); // strop le comportement par defaut
 			new lightbox(e.currentTarget.getAttribute('href'), gallery); // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
@@ -44,7 +43,6 @@ export class lightbox {
 		this.url = url;
 		const image = new Image();
 		const video = document.createElement('video');
-		const src = document.createElement('source');
 		const container = this.element.querySelector('.contentLB');
 		container.innerHTML = '';
 		const loader = document.createElement('div');
@@ -52,37 +50,19 @@ export class lightbox {
 		loader.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"style = "margin: auto; background: none; display: block; shape-rendering: auto;" width = "200px" height = "200px" viewBox = "0 0 100 100" preserveAspectRatio = "xMidYMid" ><path d = "M17 50A33 33 0 0 0 83 50A33 34.6 0 0 1 17 50" fill = "#911616" stroke = "none"><animateTransform attributeName = "transform" type = "rotate" dur = "1.5384615384615383s" repeatCount = "indefinite" keyTimes = "0;1" values = "0 50 50.8;360 50 50.8"></animateTransform></path></svg>';
 		container.innerHTML = '';
 		container.appendChild(loader);
+
 		if (url.includes('jpg')) {
-			console.log('This is an JPG not an MP4');
 			container.appendChild(image);
 			image.src = url;
 			container.removeChild(loader);
+			return url
 		} else if (url.includes('mp4')) {
-			console.log('This is an MP4 ! YES !!');
 			container.appendChild(video);
 			video.controls = true;
-			video.appendChild(src);
-			src.src = url;
+			video.src = url;
 			container.removeChild(loader);
-		} else {
 			return url
 		}
-		// if(url.indexOf('.mp4')) {
-		// 	video.onload = () => {
-		// 		container.append(video);
-		// 		video.append(src);
-		// 		this.url = url;
-		// 		console.log('is contains ".mp4"');
-		// 	}
-		// } else {
-			// image.onload = () => {
-			// 	container.removeChild(loader);
-			// 	container.append(image);
-			// 	this.url = url;
-			// 	console.log('is not contains ".mp4"');
-			// }
-		// }
-		// image.src = url;
 	}
 
 	/**
@@ -140,7 +120,7 @@ export class lightbox {
 	 * @param {string} url url de l'image
 	 * @return {HTMLElement}
 	 */
-
+	
 	buildDOM(url) {
 		const lightbox = document.createElement('div');
 		lightbox.classList.add('lightbox');
