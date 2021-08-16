@@ -171,12 +171,8 @@ const displayMedias = (medias) => {
 		//Addition des likes
 		totalLike += media.likes;
 		infoBox.title = 'Like total et tarif de ' + photographer.price + '€ par jour';
-
-		
-
 	});
 };
-
 
 displayMedias(medias);
 
@@ -319,7 +315,6 @@ const incrementPic = () => {
 		heart.addEventListener('click', () => {
 			const like = block.querySelector('.like');
 			const likeNmb = parseInt(like.innerHTML);
-			let totalLike = 0;
 
 			if (heart.classList.contains('clicked') == false) {
 				// const heartImg = document.querySelector(".heartImg");
@@ -338,28 +333,13 @@ const incrementPic = () => {
 	});
 };
 
-incrementPic();
 
 //Fonction du total des like de la page
-const displayTotalLike = (data) => {
-	const url_id = paramUrl('id');
-	const medias = [];
-	//Récupération des medias en fonction de l'id du photographe
-	data.medias.forEach(media => {
-		if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
-			medias.push(media); // tri les media qui ont le même id que l'url
-		}
-	});
-	displayTotalLike();
-
-	//======
-	const likeCounter = document.querySelector('.infoBox__likeCounter');
-	let totalLike = 0;
-	totalLike += media.likes;
-
+const displayTotalLike = () => {
 	likeCounter.innerHTML = totalLike;
 };
 displayTotalLike();
+incrementPic();
 
 //******************* FORMULAIR *********************/
 //_____________//create
