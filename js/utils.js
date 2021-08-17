@@ -359,3 +359,141 @@ export const dropBoxSortBy = () => {
 
 	main.append(filter);
 }
+/**
+ * 
+ * @param {array} data 
+ * @param {string} urlId 
+ * @returns //media array
+ */
+export const getMedias = (data, url_id) => {
+	const medias = [];
+	//Récupération des medias en fonction de l'id du photographe
+	data.media.forEach(media => {
+		if (media.photographerId == url_id) { // si (l'id des chaque media a le même id que l'url)
+			medias.push(media); // tri les media qui ont le même id que l'url
+		}
+	});
+	return medias
+}
+
+export const createAlbum = (photographer) => {
+	const main = document.querySelector('main');
+	//_____________//create
+	//ALBUM_______
+	const album = document.createElement('div');
+	const infoBox = document.createElement('div');
+	const likeBox = document.createElement('div');
+	const likeCounter = document.createElement('span');
+	const blackHeart = document.createElement('div');
+	const blackHeartImg = document.createElement('img');
+	const infoPrice = document.createElement('span');
+	//_____________//settings
+	album.classList.add('album');
+	infoBox.classList.add('infoBox');
+	likeBox.classList.add('likeBox');
+	likeCounter.classList.add('infoBox__likeCounter');
+	blackHeart.classList.add('infoBox__blackHeart');
+	blackHeartImg.src = './FishEye_Photos/heart-black.svg';
+	blackHeartImg.alt = 'coeur noir';
+	infoPrice.classList.add('infoBox__infoPrice');
+	infoPrice.innerHTML = photographer.price + '€ / jour';
+	//____________//indent
+	main.append(album);
+	album.append(infoBox);
+	infoBox.append(likeBox);
+	infoBox.append(infoPrice);
+	likeBox.append(likeCounter);
+	likeBox.append(blackHeart);
+	blackHeart.append(blackHeartImg);
+}
+
+export const displayMedias = (medias, photographer) => {
+	//POUR CHAQUE MEDIA
+	medias.forEach(media => {
+
+		const album = document.querySelector('.album');
+		const main = document.querySelector('main');
+		//_____________//create
+		//MEDIA
+		const albumPhoto = document.createElement('figure');
+		const divPhoto = document.createElement('div');
+		const picSubtitle = document.createElement('figcaption');
+		const nameImg = document.createElement('span');
+		const blockLike = document.createElement('div');
+
+		const like = document.createElement('div');
+		const heart = document.createElement('button');
+		const heartImg = document.createElement('img');
+
+		if (media.video) {
+			//_____________//create
+			const linkVid = document.createElement('a');
+			const vid = document.createElement('video');
+			//_____________//settings
+			linkVid.href = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
+			vid.controls = 'true';
+			vid.type = 'video/.mp4';
+			vid.title = media.title + ' | ' + media.date + ' | prix ' + media.price + '€';
+			vid.src = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
+			vid.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
+			vid.classList.add('fig-vid');
+			linkVid.classList.add('lightboxOn');
+			heart.innerHTML = 'Clickez pour liker';
+			//_____________//indent
+			divPhoto.append(linkVid);
+			linkVid.append(vid);
+		} else if (media.image) {
+			//_____________//create
+			const linkPic = document.createElement('a');
+			const pic = document.createElement('img');
+			//_____________//settings
+			linkPic.href = './FishEye_Photos/' + photographer.name + '/' + media.image;
+			pic.src = './FishEye_Photos/' + photographer.name + '/' + media.image;
+			pic.alt = media.title + ' date ' + media.date + ' prix ' + media.price + '€';
+			pic.title = media.title + ' | ' + media.date + ' | prix ' + media.price + '€';
+			pic.classList.add('fig-img');
+			linkPic.classList.add('lightboxOn');
+			heart.innerHTML = 'Clickez pour liker';
+			//_____________//indent
+			divPhoto.append(linkPic);
+			linkPic.append(pic);
+		}
+		//_____________//settings
+		//ALBUM________
+		albumPhoto.classList.add('albumPhoto');
+		divPhoto.classList.add('divPhoto');
+		divPhoto.src = './FishEye_Photos/' + photographer.name + '/' + media.image;
+		picSubtitle.classList.add('subtitle');
+		nameImg.classList.add('nameImg');
+		nameImg.innerHTML = media.title;
+		blockLike.classList.add('blockLike');
+
+		like.classList.add('like');
+		like.innerHTML = media.likes;
+		heart.classList.add('heart');
+		heartImg.classList.add('heartImg');
+		//___________//indent
+		//ALBUM______
+		console.log(album);
+		main.append(album);
+		album.append(albumPhoto);
+		albumPhoto.append(divPhoto);
+
+		albumPhoto.append(picSubtitle);
+		picSubtitle.append(nameImg);
+		picSubtitle.append(blockLike);
+		blockLike.append(like);
+		blockLike.append(heart);
+	});
+	const infoBox = document.querySelector('.infoBox');
+	infoBox.title = 'Like total et tarif de ' + photographer.price + '€ par jour';
+	LikeAddition(medias);
+};
+
+export const LikeAddition = (medias) => {
+	let totalLike = 0;
+	medias.forEach(media => {
+		totalLike += media.likes;
+	})
+	return totalLike;
+}
