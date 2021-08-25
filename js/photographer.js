@@ -1,5 +1,6 @@
 import { lightbox } from "./lightbox.js";
-import { paramUrl, createHeaderPage, photographerFrame, dropBoxSortBy, getMedias, getPhotographer, createAlbum, displayMedias, menuOn, menuOff, likeAddition, createTagsOnPage, mediasSortBy, incrementPic, displayTotalLike, createForm, closeForm, openForm } from "./utils.js";
+import { paramUrl, createHeaderPage, photographerFrame, dropBoxSortBy, getMedias, getPhotographer, createAlbum, displayMedias, menuOn, menuOff, likeAddition, createTagsOnPage, mediasSortBy, incrementPic, displayTotalLike } from "./utils.js";
+import { Form } from "./Form.js";
 
 const url_id = paramUrl('id');
 // Récupération des data dans le local Storage
@@ -9,6 +10,9 @@ const data = JSON.parse(dataFromLocalStorage);
 const medias = getMedias(data, url_id);
 //Récupération des medias en fonction de l'id du photographe//=====================================================================
 const photographer = getPhotographer(data, url_id);
+
+const form = new Form(photographer);
+
 //DOM Elements
 createHeaderPage();
 photographerFrame(data);
@@ -23,6 +27,8 @@ mediasSortBy(medias);
 lightbox.init();
 displayTotalLike(medias);
 incrementPic(medias);
-createForm(photographer);
-openForm();
-closeForm();
+
+
+form.createForm();
+form.handleStatus();
+
