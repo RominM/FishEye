@@ -4,11 +4,12 @@
 header {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
+    grid-template-rows: auto auto;
     padding: 0 10px 0px 10px;
     width: 85%;
-    margin: auto;
+    margin: 25px auto;
     .logo {
+        grid-area: logo;
         grid-column: 1;
         grid-row: 1;
         max-width: 260px;
@@ -18,12 +19,14 @@ header {
         }
     }
     .topNav {
+        grid-area: topNav;
         margin: auto;
         grid-column: 2;
         grid-row: 1;
 
     }
     h1 {
+        grid-area: h1;
         grid-column: 3;
         grid-row: 1;
         max-width: 260px;

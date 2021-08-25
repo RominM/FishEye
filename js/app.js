@@ -1,26 +1,5 @@
-import {
-	lightbox
-} from "./lightbox.js";
-import {
-	paramUrl,
-	createHeaderPage,
-	photographerFrame,
-	dropBoxSortBy,
-	getMedias,
-	getPhotographer,
-	createAlbum,
-	displayMedias,
-	menuOn,
-	menuOff,
-	likeAddition,
-	createTagsOnPage,
-	mediasSortBy,
-	incrementPic,
-	displayTotalLike,
-	createForm,
-	closeForm,
-	openForm
-} from "./utils.js";
+import { lightbox } from "./lightbox.js";
+import { paramUrl, createHeaderPage, photographerFrame, dropBoxSortBy, getMedias, getPhotographer, createAlbum, displayMedias, menuOn, menuOff, likeAddition, createTagsOnPage, mediasSortBy, incrementPic, displayTotalLike, createForm, closeForm, openForm } from "./utils.js";
 
 const url_id = paramUrl('id');
 // Récupération des data dans le local Storage
@@ -47,7 +26,3 @@ incrementPic(medias);
 createForm(photographer);
 openForm();
 closeForm();
-
-
-
-

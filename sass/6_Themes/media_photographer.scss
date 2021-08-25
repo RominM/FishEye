@@ -26,7 +26,6 @@
 
     @media screen and (max-width: 775px) {
 
-
         //FILTER
         .filter {
             display: none;
@@ -37,28 +36,48 @@
         }
     }
 
-    @media screen and (max-width: 550px) {
+    @media screen and (max-width: 850px) {
 
+        header {
+            margin: 25px auto;
+            padding: 0;
+            // margin: auto;
+            .logo {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .topNav {
+                grid-column: 1/4;
+                grid-row: 2;
+                margin-top: 25px;
+                margin-bottom: 50px;
+            }
+        }
+        main {
+            margin-top: 0;
+        }
+    }
+
+    @media screen and (max-width: 610px) {
         .photoFrame {
             background-color: #fff;
             padding: 0;
             margin: 25px auto;
-
             .photographerFace {
                 img {
                     width: 30vw;
                     height: 30vw;
                     border-radius: 30vw;
+                    margin-bottom: 50px;
                 }
             }
 
             .zoneTxt {
                 width: 50%;
-
                 .divTitle {
                     h2 {
                         margin: 0;
-                        font-size: 7vw;
+                        font-size: 6.5vw;
                     }
                 }
                 .descript {
@@ -78,7 +97,8 @@
                 video {
                     width: 320px;
                     height: 320px;
-                    margin: auto;                }
+                    margin: auto;                
+                }
             }
 
             .subtitle {
@@ -89,16 +109,10 @@
                 }
             }
         }
+
     }
-    // .bground {
-    //     .content {
-    //         .contactMe {
-    //             font-size: 2em;
-    //         }
-    //     }
-    // }
-    // .modalBody {
-    //     textarea {
-    //         height: 10px;
-    //     }
-    // }
+    @media screen and (max-width: 400px) {
+        header {
+            margin: 25px 0;
+        }
+    }
