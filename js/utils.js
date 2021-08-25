@@ -375,6 +375,22 @@ export const getMedias = (data, url_id) => {
 	});
 	return medias
 }
+/**
+ * 
+ * @param {array} data 
+ * @param {string} urlId 
+ * @returns //media array
+ */
+export const getPhotographer = (data, url_id) => {
+	let photographer;
+	//Récupération des datas du photographe
+	data.photographers.forEach(details => {
+		if (details.id == url_id) {
+			photographer = details;
+		}
+	});
+	return photographer
+}
 
 export const createAlbum = (photographer) => {
 	const main = document.querySelector('main');
@@ -431,6 +447,7 @@ export const displayMedias = (medias, photographer) => {
 			const linkVid = document.createElement('a');
 			const vid = document.createElement('video');
 			//_____________//settings
+			console.log(photographer);
 			linkVid.href = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
 			vid.controls = 'true';
 			vid.type = 'video/.mp4';
@@ -488,6 +505,36 @@ export const displayMedias = (medias, photographer) => {
 	likeAddition(medias);
 };
 
+export const menuOn = () => {
+	const select = document.querySelector('.select');
+	select.style.height = '150px';
+	const arrowDown = document.querySelector('.arrowDown');
+	arrowDown.style.display = 'none';
+	const arrowUp = document.querySelector('.arrowUp');
+	arrowUp.style.display = 'block';
+	dateChoice.style.display = 'block';
+	titleChoice.style.display = 'block';
+	popChoice.classList.add('popChoice');
+	dateChoice.classList.add('dateChoice');
+	// split1.style.display = 'block';
+	// split2.style.display = 'block';
+};
+
+export const menuOff = () => {
+	const select = document.querySelector('.select');
+	select.style.height = '47px';
+	const arrowDown = document.querySelector('.arrowDown');
+	arrowDown.style.display = 'block';
+	const arrowUp = document.querySelector('.arrowUp');
+	arrowUp.style.display = 'none';
+	dateChoice.style.display = 'none';
+	titleChoice.style.display = 'none';
+	popChoice.classList.remove('popChoice');
+	dateChoice.classList.remove('dateChoice');
+	// split1.style.display = 'none';
+	// split2.style.display = 'none';
+};
+
 export const likeAddition = (medias) => {
 	let totalLike = 0;
 	medias.forEach(media => {
@@ -525,7 +572,7 @@ export const incrementPic = (medias) => {
 		heart.addEventListener('click', () => {
 			const like = block.querySelector('.like');
 			const likeNmb = parseInt(like.innerHTML);
-			
+
 			if (heart.classList.contains('clicked') == false) {
 				heart.classList.add('clicked');
 				likeAddition(medias);
@@ -546,6 +593,122 @@ export const displayTotalLike = (medias) => {
 	const likeCounter = document.querySelector('.infoBox__likeCounter');
 	likeCounter.innerHTML = likeAddition(medias);
 };
+
+const deletedMedia = () => {
+	const domAlbum = document.querySelector('.album');
+	domAlbum.innerHTML = '';
+};
+
+export const mediasSortBy = (medias) => {
+	const arrowDown = document.querySelector('.arrowDown');
+	const arrowUp = document.querySelector('.arrowUp');
+	//FLECHE_menu____
+	arrowDown.addEventListener('click', menuOn);
+	arrowUp.addEventListener('click', menuOff);
+	//FONCTION TRIER PAR
+	const buttons = document.querySelectorAll('.selectBtn');
+	const bucketPop = document.querySelector('#popChoice');
+	const bucketDate = document.querySelector('#dateChoice');
+	const bucketTitle = document.querySelector('#titleChoice');
+
+	for (let i = 0; i < buttons.length; i++) {
+		let self = buttons[i];
+
+		self.addEventListener('click', function () {
+			const album = document.querySelector('.album');
+			const infoBox = document.querySelector('.infoBox');
+
+			switch (self.textContent) {
+				case 'Popularité': {
+					let sortPop = [];
+					for (let i = 0; i < medias.length; i++) {
+						let likes = medias[i].likes;
+						sortPop.push(likes); //On mets les likes dans un tableau
+					}
+					sortPop.sort(function (a, b) {
+						return b - a;
+					});
+					deletedMedia();
+					let mediaToDisplay = [];
+					for (let i = 0; i < sortPop.length; i++) {
+						const likes = sortPop[i];
+						for (let j = 0; j < medias.length; j++) {
+							if (likes == medias[j].likes) {
+								mediaToDisplay.push(medias[j]);
+							}
+						}
+					}
+					displayMedias(mediaToDisplay);
+					album.append(infoBox);
+					menuOff();
+					self.classList.add('selected');
+					bucketPop.append(self); //pop[0]
+					bucketDate.append(buttons[1]); //date
+					bucketTitle.append(buttons[2]); //titre
+					lightbox.init();
+					break;
+				}
+
+				case 'Date': {
+					let sortDate = [];
+					for (let i = 0; i < medias.length; i++) {
+						sortDate.push(medias[i].date);
+					}
+					sortDate.sort();
+					deletedMedia();
+					let mediaToDisplay = [];
+					for (let i = 0; i < sortDate.length; i++) {
+						const date = sortDate[i];
+						for (let j = 0; j < medias.length; j++) { //medias.length = return 9
+							if (date == medias[j].date) {
+								mediaToDisplay.push(medias[j]);
+							}
+						}
+					}
+					displayMedias(mediaToDisplay);
+					album.append(infoBox);
+					menuOff();
+					self.classList.add('selected');
+					bucketPop.append(self); //date[1]
+					bucketDate.append(buttons[2]); //titre
+					bucketTitle.append(buttons[0]); //pop
+					lightbox.init();
+					break;
+				}
+
+				case 'Titre': {
+					let sortTitle = [];
+					for (let i = 0; i < medias.length; i++) {
+						sortTitle.push(medias[i].title);
+					}
+					sortTitle.sort();
+					deletedMedia();
+
+					let mediaToDisplay = [];
+					for (let i = 0; i < sortTitle.length; i++) {
+						const title = sortTitle[i];
+						for (let j = 0; j < medias.length; j++) {
+							if (title == medias[j].title) {
+								mediaToDisplay.push(medias[j]);
+							}
+						}
+					}
+					displayMedias(mediaToDisplay);
+					album.append(infoBox);
+					menuOff();
+					self.classList.add('selected');
+					bucketPop.append(self); //titre[2]
+					bucketDate.append(buttons[0]); //pop
+					bucketTitle.append(buttons[1]); //date
+					lightbox.init();
+					break;
+				}
+				default:
+					break;
+			}
+		});
+	}
+}
 
 export const createForm = (photographer) => {
 	const body = document.querySelector('body');
@@ -664,46 +827,52 @@ export const createForm = (photographer) => {
 		}
 	};
 	//FORMULAIRE_________//
-//__________________//input_value
-const checkFirstname = () => {
-	state.firstName.data = inpFirstname.value;
-};
-// firstname.addEventListener('input', checkFirstname);
+	//__________________//input_value
+	const checkFirstname = () => {
+		state.firstName.data = inpFirstname.value;
+	};
+	// firstname.addEventListener('input', checkFirstname);
 
-const checkLastname = () => {
-	state.lastName.data = inpLastname.value;
-};
-// lastname.addEventListener('input', checkLastname);
+	const checkLastname = () => {
+		state.lastName.data = inpLastname.value;
+	};
+	// lastname.addEventListener('input', checkLastname);
 
-const checkEmail = () => {
-	state.email.data = inpEmail.value;
-};
-// email.addEventListener('input', checkEmail);
+	const checkEmail = () => {
+		state.email.data = inpEmail.value;
+	};
+	// email.addEventListener('input', checkEmail);
 
-const checkTxtFree = () => {
-	state.txtFree.data = inpTxtFree.value;
-};
-// txtFree.addEventListener('input', checkTxtFree);
+	const checkTxtFree = () => {
+		state.txtFree.data = inpTxtFree.value;
+	};
+	// txtFree.addEventListener('input', checkTxtFree);
 
-const checkForm = () => {
-	const sendBtn = document.querySelector('.send');
-	sendBtn.addEventListener('click', (event) => {
-		//STOP FOR CHECK
-		event.preventDefault();
-		console.log(state);
-	
-		checkFirstname();
-		checkLastname();
-		checkEmail();
-		checkTxtFree();
-	
-		closeForm();
-	});
-}
-checkForm();
+	const checkForm = () => {
+		const sendBtn = document.querySelector('.send');
+		sendBtn.addEventListener('click', (event) => {
+			//STOP FOR CHECK
+			event.preventDefault();
+			console.log(state);
+
+			checkFirstname();
+			checkLastname();
+			checkEmail();
+			checkTxtFree();
+
+			closeForm();
+		});
+	}
+	checkForm();
 }
 
 export const openForm = () => {
+	//FORM_context___
+	const contact = document.querySelector('.contact');
+	const contact2 = document.querySelector('.contact2');
+	contact.addEventListener('click', openForm);
+	contact2.addEventListener('click', openForm);
+
 	const bground = document.querySelector('.bground');
 	const main = document.querySelector('main');
 	bground.style.display = 'block';
@@ -711,6 +880,8 @@ export const openForm = () => {
 };
 
 export const closeForm = () => {
+	const cross = document.querySelector('.cross');
+	cross.addEventListener('click', closeForm);
 	const bground = document.querySelector('.bground');
 	const main = document.querySelector('main')
 	bground.style.display = 'none';
