@@ -1,16 +1,7 @@
-1/ Accessibilité/Navigation clavier;
+1/Autofocus on form
 
-2/ Finir le menu deroulant "Trier par: Date et Popularité";
+2/Navigation bizzare sur la LightBox
 
-3/ LightBox = affichage des videos (parametre) + ne fonctionne plus après avoir trié;
+3/'Trier par: Date' ajoute des images qui on le même nombre de likes en double (aucune explication...?)
 
-4/ Autofocus on form
-
-5/ A quoi sert le "Passer au contenu"?
-
-//**** PROBLEMES ****//
-
-main.js:269 >>> tags selected
-pages.js:652 >>> focus on form + observation
-pages.js:437 >>> LightBox after sort
-pages.js:337 >>> sort by doesn't work
+4/Trie des Tags sur la premiere page toujours pas operationel
