@@ -391,6 +391,7 @@ export const createAlbum = (photographer) => {
 	album.classList.add('album');
 	infoBox.classList.add('infoBox');
 	likeBox.classList.add('likeBox');
+	infoBox.title = 'Like total et tarif de ' + photographer.price + '€ par jour';
 	likeCounter.classList.add('infoBox__likeCounter');
 	blackHeart.classList.add('infoBox__blackHeart');
 	blackHeartImg.src = './FishEye_Photos/heart-black.svg';
@@ -474,7 +475,6 @@ export const displayMedias = (medias, photographer) => {
 		heartImg.classList.add('heartImg');
 		//___________//indent
 		//ALBUM______
-		console.log(album);
 		main.append(album);
 		album.append(albumPhoto);
 		albumPhoto.append(divPhoto);
@@ -485,15 +485,234 @@ export const displayMedias = (medias, photographer) => {
 		blockLike.append(like);
 		blockLike.append(heart);
 	});
-	const infoBox = document.querySelector('.infoBox');
-	infoBox.title = 'Like total et tarif de ' + photographer.price + '€ par jour';
-	LikeAddition(medias);
+	likeAddition(medias);
 };
 
-export const LikeAddition = (medias) => {
+export const likeAddition = (medias) => {
 	let totalLike = 0;
 	medias.forEach(media => {
 		totalLike += media.likes;
 	})
 	return totalLike;
 }
+
+export const createTagsOnPage = (photographer) => {
+	const main = document.querySelector('main');
+	const ul = document.createElement('ul');
+	const zoneTxt = document.querySelector('.zoneTxt');
+	ul.classList.add('tagDesign2');
+	//__________//indent
+	//TAGS______
+	for (let i = 0; i < photographer.tags.length; i++) {
+		const li = document.createElement('li');
+		const tag = document.createElement('span');
+
+		tag.classList.add('tagDesign__tag2');
+		tag.innerHTML = '#' + photographer.tags[i];
+
+		li.append(tag);
+		ul.append(li);
+	}
+	zoneTxt.append(ul);
+}
+
+export const incrementPic = (medias) => {
+	//recuperation des coeurs
+	const blocksLike = document.querySelectorAll('.blockLike');
+	blocksLike.forEach(block => {
+		const heart = block.querySelector('.heart');
+
+		heart.addEventListener('click', () => {
+			const like = block.querySelector('.like');
+			const likeNmb = parseInt(like.innerHTML);
+			
+			if (heart.classList.contains('clicked') == false) {
+				heart.classList.add('clicked');
+				likeAddition(medias);
+				totalLike += 1;
+				like.innerHTML = likeNmb + 1;
+				displayTotalLike();
+			} else {
+				heart.classList.remove('clicked');
+				totalLike -= 1;
+				like.innerHTML = likeNmb - 1;
+				displayTotalLike();
+			}
+		});
+	});
+};
+
+export const displayTotalLike = (medias) => {
+	const likeCounter = document.querySelector('.infoBox__likeCounter');
+	likeCounter.innerHTML = likeAddition(medias);
+};
+
+export const createForm = (photographer) => {
+	const body = document.querySelector('body');
+	//******************* FORMULAIR *********************/
+	//_____________//create
+	//FORM________
+	const bground = document.createElement('section');
+	const content = document.createElement('div');
+	const cross = document.createElement('span');
+	const divContact = document.createElement('div');
+	const contactMe = document.createElement('span');
+	const up = document.createElement('br');
+	const photographerName = document.createElement('h3');
+	const modalbg = document.createElement('div');
+	//===================================================
+	const form = document.createElement('form');
+	//===================================================
+	const firstname = document.createElement('div');
+	const lastname = document.createElement('div');
+	const email = document.createElement('div');
+	const txtFree = document.createElement('div');
+	//===================================================
+	const labFirstname = document.createElement('label');
+	const labLastname = document.createElement('label');
+	const labEmail = document.createElement('label');
+	const labTxtFree = document.createElement('label');
+	//===================================================
+	const inpFirstname = document.createElement('input');
+	const inpLastname = document.createElement('input');
+	const inpEmail = document.createElement('input');
+	const inpTxtFree = document.createElement('textarea');
+	//===================================================
+	const sendBtn = document.createElement('button');
+	//_____________//settings
+	//FORM________
+	bground.classList.add('bground');
+	content.classList.add('content');
+	cross.classList.add('cross');
+	contactMe.classList.add('contactMe');
+	contactMe.innerHTML = 'Contactez-moi ';
+	photographerName.classList.add('titleName');
+	photographerName.innerHTML = photographer.name;
+	modalbg.classList.add('modalBody');
+	//==================================================
+	form.id = 'send';
+	//==================================================
+	firstname.classList.add('form-data');
+	lastname.classList.add('form-data');
+	email.classList.add('form-data');
+	txtFree.classList.add('form-data');
+	//==================================================
+	labFirstname.innerHTML = 'Prénom';
+	labFirstname.setAttribute('for', 'first');
+	labLastname.innerHTML = 'Nom';
+	labLastname.setAttribute('for', 'last');
+	labEmail.innerHTML = 'Email';
+	labEmail.setAttribute('for', 'email');
+	labTxtFree.innerHTML = 'Votre message';
+	labTxtFree.setAttribute('for', 'txtFree');
+	//==================================================
+	inpFirstname.id = 'first';
+	inpFirstname.type = 'textarea';
+	// inpFirstname.setAttribute('autofocus', 'true');
+	// inpFirstname.autofocus = 'true';
+	// inpFirstname.autofocus = true;
+	inpLastname.id = 'last';
+	inpLastname.type = 'textarea';
+	inpEmail.id = 'email';
+	inpEmail.type = 'textarea';
+	inpTxtFree.id = 'txtFree';
+	// inpTxtFree.type = 'textarea';
+	//==================================================
+	sendBtn.type = 'submit';
+	sendBtn.classList.add('send');
+	sendBtn.innerHTML = 'Envoyer';
+	//_____________//indent
+	//FORM________
+	body.append(bground);
+	bground.append(content);
+	bground.append(modalbg);
+	modalbg.append(form);
+	content.append(photographerName);
+	content.append(cross);
+	content.append(divContact);
+	divContact.append(contactMe);
+	divContact.append(up);
+	divContact.append(photographerName);
+	//================================
+	form.append(firstname);
+	form.append(lastname);
+	form.append(email);
+	form.append(txtFree);
+	form.append(sendBtn);
+	//================================
+	firstname.append(labFirstname);
+	firstname.append(inpFirstname);
+	lastname.append(labLastname);
+	lastname.append(inpLastname);
+	email.append(labEmail);
+	email.append(inpEmail);
+	txtFree.append(labTxtFree);
+	txtFree.append(inpTxtFree);
+
+	var state = {
+		firstName: {
+			data: '',
+		},
+		lastName: {
+			data: '',
+		},
+		email: {
+			data: '',
+		},
+		txtFree: {
+			data: '',
+		}
+	};
+	//FORMULAIRE_________//
+//__________________//input_value
+const checkFirstname = () => {
+	state.firstName.data = inpFirstname.value;
+};
+// firstname.addEventListener('input', checkFirstname);
+
+const checkLastname = () => {
+	state.lastName.data = inpLastname.value;
+};
+// lastname.addEventListener('input', checkLastname);
+
+const checkEmail = () => {
+	state.email.data = inpEmail.value;
+};
+// email.addEventListener('input', checkEmail);
+
+const checkTxtFree = () => {
+	state.txtFree.data = inpTxtFree.value;
+};
+// txtFree.addEventListener('input', checkTxtFree);
+
+const checkForm = () => {
+	const sendBtn = document.querySelector('.send');
+	sendBtn.addEventListener('click', (event) => {
+		//STOP FOR CHECK
+		event.preventDefault();
+		console.log(state);
+	
+		checkFirstname();
+		checkLastname();
+		checkEmail();
+		checkTxtFree();
+	
+		closeForm();
+	});
+}
+checkForm();
+}
+
+export const openForm = () => {
+	const bground = document.querySelector('.bground');
+	const main = document.querySelector('main');
+	bground.style.display = 'block';
+	main.style.opacity = 0.3;
+};
+
+export const closeForm = () => {
+	const bground = document.querySelector('.bground');
+	const main = document.querySelector('main')
+	bground.style.display = 'none';
+	main.style.opacity = 1;
+};

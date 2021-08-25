@@ -9,10 +9,16 @@ import {
 	getMedias,
 	createAlbum,
 	displayMedias,
-	LikeAddition
+	likeAddition,
+	createTagsOnPage,
+	incrementPic,
+	displayTotalLike,
+	createForm,
+	closeForm,
+	openForm
 } from "./utils.js";
 
-const body = document.querySelector('body');
+// const body = document.querySelector('body');
 
 const url_id = paramUrl('id');
 // Récupération des data dans le local Storage
@@ -36,33 +42,10 @@ data.photographers.forEach(details => {
 
 createHeaderPage();
 photographerFrame(data);
-
-//***************************************************/
-// const createTagsOnPage();
-const main = document.querySelector('main');
-const ul = document.createElement('ul');
-const zoneTxt = document.querySelector('.zoneTxt');
-ul.classList.add('tagDesign2');
-//__________//indent
-//TAGS______
-for (let i = 0; i < photographer.tags.length; i++) {
-	const li = document.createElement('li');
-	const tag = document.createElement('span');
-
-	tag.classList.add('tagDesign__tag2');
-	tag.innerHTML = '#' + photographer.tags[i];
-
-	li.append(tag);
-	ul.append(li);
-}
-zoneTxt.append(ul);
-//***************************************************/
-
+likeAddition(medias);
+createTagsOnPage(photographer);
 dropBoxSortBy();
-
 createAlbum(photographer);
-//******************* MEDIA *********************/
-
 displayMedias(medias, photographer);
 
 
@@ -107,9 +90,11 @@ const bucketTitle = document.querySelector('#titleChoice');
 
 for (let i = 0; i < buttons.length; i++) {
 	let self = buttons[i];
-
+	
 	self.addEventListener('click', function () {
-
+		const album = document.querySelector('.album');
+		const infoBox = document.querySelector('.infoBox');
+		
 		switch (self.textContent) {
 			case 'Popularité': {
 				let sortPop = [];
@@ -130,7 +115,8 @@ for (let i = 0; i < buttons.length; i++) {
 						}
 					}
 				}
-				displayMedias(mediaToDisplay);
+				displayMedias(mediaToDisplay, photographer);
+				album.append(infoBox);
 				menuOff();
 				self.classList.add('selected');
 				bucketPop.append(self); //pop[0]
@@ -139,7 +125,7 @@ for (let i = 0; i < buttons.length; i++) {
 				lightbox.init();
 				break;
 			}
-
+			
 			case 'Date': {
 				let sortDate = [];
 				for (let i = 0; i < medias.length; i++) {
@@ -150,13 +136,14 @@ for (let i = 0; i < buttons.length; i++) {
 				let mediaToDisplay = [];
 				for (let i = 0; i < sortDate.length; i++) {
 					const date = sortDate[i];
-					for (let j = 0; j < medias.length; j++) {
+					for (let j = 0; j < medias.length; j++) {//medias.length = return 9
 						if (date == medias[j].date) {
 							mediaToDisplay.push(medias[j]);
 						}
 					}
 				}
-				displayMedias(mediaToDisplay);
+				displayMedias(mediaToDisplay, photographer);
+				album.append(infoBox);
 				menuOff();
 				self.classList.add('selected');
 				bucketPop.append(self); //date[1]
@@ -183,7 +170,8 @@ for (let i = 0; i < buttons.length; i++) {
 						}
 					}
 				}
-				displayMedias(mediaToDisplay);
+				displayMedias(mediaToDisplay, photographer);
+				album.append(infoBox);
 				menuOff();
 				self.classList.add('selected');
 				bucketPop.append(self); //titre[2]
@@ -200,193 +188,13 @@ for (let i = 0; i < buttons.length; i++) {
 
 lightbox.init();
 
-//Fonction incrementation like photos
-const incrementPic = () => {
-	//recuperation des coeurs
-	const blocksLike = document.querySelectorAll('.blockLike');
-	blocksLike.forEach(block => {
-		const heart = block.querySelector('.heart');
-
-		heart.addEventListener('click', () => {
-			const like = block.querySelector('.like');
-			const likeNmb = parseInt(like.innerHTML);
-
-			if (heart.classList.contains('clicked') == false) {
-				// const heartImg = document.querySelector(".heartImg");
-				heart.classList.add('clicked');
-				totalLike += 1;
-				like.innerHTML = likeNmb + 1;
-				displayTotalLike();
-
-			} else {
-				heart.classList.remove('clicked');
-				totalLike -= 1;
-				like.innerHTML = likeNmb - 1;
-				displayTotalLike();
-			}
-		});
-	});
-};
+displayTotalLike(medias);
+incrementPic(medias);
+createForm(photographer);
+openForm();
+closeForm();
 
 
-//Fonction du total des like de la page
-const displayTotalLike = () => {
-	const likeCounter = document.querySelector('.infoBox__likeCounter');
-	likeCounter.innerHTML = LikeAddition(medias);
-};
-displayTotalLike();
-incrementPic();
-
-//******************* FORMULAIR *********************/
-//_____________//create
-//FORM________
-const bground = document.createElement('section');
-const content = document.createElement('div');
-const cross = document.createElement('span');
-const divContact = document.createElement('div');
-const contactMe = document.createElement('span');
-const up = document.createElement('br');
-const photographerName = document.createElement('h3');
-const modalbg = document.createElement('div');
-//===================================================
-const form = document.createElement('form');
-//===================================================
-const firstname = document.createElement('div');
-const lastname = document.createElement('div');
-const email = document.createElement('div');
-const txtFree = document.createElement('div');
-//===================================================
-const labFirstname = document.createElement('label');
-const labLastname = document.createElement('label');
-const labEmail = document.createElement('label');
-const labTxtFree = document.createElement('label');
-//===================================================
-const inpFirstname = document.createElement('input');
-const inpLastname = document.createElement('input');
-const inpEmail = document.createElement('input');
-const inpTxtFree = document.createElement('textarea');
-//===================================================
-const sendBtn = document.createElement('button');
-//_____________//settings
-//FORM________
-bground.classList.add('bground');
-content.classList.add('content');
-cross.classList.add('cross');
-contactMe.classList.add('contactMe');
-contactMe.innerHTML = 'Contactez-moi ';
-photographerName.classList.add('titleName');
-photographerName.innerHTML = photographer.name;
-modalbg.classList.add('modalBody');
-//==================================================
-form.id = 'send';
-//==================================================
-firstname.classList.add('form-data');
-lastname.classList.add('form-data');
-email.classList.add('form-data');
-txtFree.classList.add('form-data');
-//==================================================
-labFirstname.innerHTML = 'Prénom';
-labFirstname.setAttribute('for', 'first');
-labLastname.innerHTML = 'Nom';
-labLastname.setAttribute('for', 'last');
-labEmail.innerHTML = 'Email';
-labEmail.setAttribute('for', 'email');
-labTxtFree.innerHTML = 'Votre message';
-labTxtFree.setAttribute('for', 'txtFree');
-//==================================================
-inpFirstname.id = 'first';
-inpFirstname.type = 'textarea';
-// inpFirstname.setAttribute('autofocus', 'true');
-// inpFirstname.autofocus = 'true';
-// inpFirstname.autofocus = true;
-inpLastname.id = 'last';
-inpLastname.type = 'textarea';
-inpEmail.id = 'email';
-inpEmail.type = 'textarea';
-inpTxtFree.id = 'txtFree';
-// inpTxtFree.type = 'textarea';
-//==================================================
-sendBtn.type = 'submit';
-sendBtn.classList = 'send';
-sendBtn.innerHTML = 'Envoyer';
-//_____________//indent
-//FORM________
-body.append(bground);
-bground.append(content);
-bground.append(modalbg);
-modalbg.append(form);
-content.append(photographerName);
-content.append(cross);
-content.append(divContact);
-divContact.append(contactMe);
-divContact.append(up);
-divContact.append(photographerName);
-//================================
-form.append(firstname);
-form.append(lastname);
-form.append(email);
-form.append(txtFree);
-form.append(sendBtn);
-//================================
-firstname.append(labFirstname);
-firstname.append(inpFirstname);
-lastname.append(labLastname);
-lastname.append(inpLastname);
-email.append(labEmail);
-email.append(inpEmail);
-txtFree.append(labTxtFree);
-txtFree.append(inpTxtFree);
-
-//============//
-//   STATE    //
-//============//
-
-var state = {
-	firstName: {
-		data: '',
-	},
-	lastName: {
-		data: '',
-	},
-	email: {
-		data: '',
-	},
-	txtFree: {
-		data: '',
-	}
-};
-
-//FORMULAIRE_________//
-//__________________//input_value
-const checkFirstname = () => {
-	state.firstName.data = inpFirstname.value;
-};
-firstname.addEventListener('input', checkFirstname);
-
-const checkLastname = () => {
-	state.lastName.data = inpLastname.value;
-};
-lastname.addEventListener('input', checkLastname);
-
-const checkEmail = () => {
-	state.email.data = inpEmail.value;
-};
-email.addEventListener('input', checkEmail);
-
-const checkTxtFree = () => {
-	state.txtFree.data = inpTxtFree.value;
-};
-txtFree.addEventListener('input', checkTxtFree);
-
-//__________________//context
-const closeForm = () => {
-	bground.style.display = 'none';
-	main.style.opacity = 1;
-};
-const openForm = () => {
-	bground.style.display = 'block';
-	main.style.opacity = 0.3;
-};
 const arrowDown = document.querySelector('.arrowDown');
 const arrowUp = document.querySelector('.arrowUp');
 //FLECHE_menu____
@@ -395,20 +203,7 @@ arrowUp.addEventListener('click', menuOff);
 //FORM_context___
 const contact = document.querySelector('.contact');
 const contact2 = document.querySelector('.contact2');
+const cross = document.querySelector('.cross');
 contact.addEventListener('click', openForm);
 contact2.addEventListener('click', openForm);
 cross.addEventListener('click', closeForm);
-//CHECK_form_____
-//============================================
-sendBtn.addEventListener('click', (event) => {
-	//STOP FOR CHECK
-	event.preventDefault();
-	console.log(state);
-
-	checkFirstname();
-	checkLastname();
-	checkEmail();
-	checkTxtFree();
-
-	closeForm();
-});
