@@ -363,7 +363,6 @@ export const displayMedias = (medias, photographer) => {
 			const linkVid = document.createElement('a');
 			const vid = document.createElement('video');
 			//_____________//settings
-			console.log(photographer);
 			linkVid.href = './FishEye_Photos/' + photographer.name + '/' + media.video + '?iframe=true';
 			vid.controls = 'true';
 			vid.type = 'video/.mp4';
@@ -481,7 +480,7 @@ export const displayTotalLike = (medias) => {
 	likeCounter.innerHTML = likeAddition(medias);
 };
 
-const deletedMedia = () => {
+export const deletedMedia = () => {
 	const domAlbum = document.querySelector('.album');
 	domAlbum.innerHTML = '';
 };

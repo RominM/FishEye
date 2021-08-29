@@ -10,14 +10,13 @@
     }
     .dropBox {
         position: relative;
-        color : #000;
-        font-size: 1.3em;
+        color : #fff;
+        font-size: 1.25em;
         .contains {
             position: absolute;
             top: 45%;
             left: 40%;
             transform: translate(-50%,-50%);
-            // z-index: 4000;
         }
         .arrowsBtn {
             position: absolute;
@@ -32,7 +31,7 @@
             .arrowDown img,
             .arrowUp img {
                 position: absolute;
-                top: 35%;
+                top: 30%;
                 right: 10%;
                 transform: translate(-50%,-50%);
                 width: 10px;
@@ -47,11 +46,11 @@
                 top: 65%;
                 right: 16%;
                 transform: translate(-50%,-50%);
-                // z-index: 14;
+                z-index: 140000;
                 transform: rotate(180deg);
             }
         }
-        ul {
+        .dropUl {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -61,38 +60,57 @@
             border-radius: 5px;
             box-shadow: 2px 2px 12px $darkGrey;
             transition: .3s;
-            li {
+            .dropli {
+                display: block;
                 width: 25px;
                 height: 50px;
                 cursor: pointer;
-                transition: .3s;
+                transition: .7s;
+                color: #fff;
                 .liPop::after {
                     content: '';
                     display: inline-block;
                     vertical-align: middle;
                     width: 100px;
                     height: 1.5px;
-                    background-color: #fff;
+                    background-color: #000;
                     margin-left: 25px;
                     margin-bottom: 17px;
                 }
-
                 .liDate::after {
                     @extend .liPop;
                 }
             }
-
-            .selectBtn {
-                display: none;
-                border: none;
-                // text-align: start;
-                margin-left: 10px;
-                width: 100px;
-                height: 250px;
-                background-color: transparent;
-                font-size: 0.85em;
-                cursor: pointer;
+            hr {
+                width: 80%;
+                height: 1px;
+                background-color: #fff;
+                opacity: 0;
+                padding: 0;
+                margin: 0 auto;
+                transition: .3s;
             }
+            .selectBtn {
+                border: none;
+                text-align: start;
+                margin: 10px;
+                width: 100px;
+                height: 35px;
+                background-color: transparent;
+                font-size: 0.9em;
+                cursor: pointer;
+                color: #fff;
+            }
+            #liPop, #liDate, #liTitle {
+                opacity: 0;
+            }
+            #liPop:hover, #liDate:hover, #liTitle:hover {
+                transform: translateX(15px);
+            }
+        }
+        .droped {
+            height: 160px;
+            padding-top: 50px;
         }
     }
 }
