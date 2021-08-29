@@ -254,11 +254,6 @@ export const photographerFrame = (data) => {
 	contact.innerHTML = 'Contactez-moi';
 	contact.title = 'Contactez-moi';
 
-	const contact2 = document.createElement('button');
-	contact2.classList.add('contact2');
-	contact2.innerHTML = 'Contactez-moi';
-	contact2.title = 'Contactez-moi';
-
 	const photographerFace = document.createElement('div');
 	photographerFace.classList.add('photographerFace');
 
@@ -267,7 +262,6 @@ export const photographerFrame = (data) => {
 	image.alt = 'photo portrait de ' + photographer.name;
 
 	photographerArea.append(zoneTxt);
-	photographerArea.append(contact2);
 	photographerArea.append(photographerFace);
 	photographerFace.append(image);
 	zoneTxt.append(divTitle);
@@ -281,84 +275,6 @@ export const photographerFrame = (data) => {
 	body.append(main);
 }
 
-export const dropBoxSortBy = () => {
-	const main = document.querySelector('main');
-	//_____________//create
-	//FILTERS_____
-	const filter = document.createElement('div');
-	filter.classList.add('filter');
-
-	const sortBy = document.createElement('span');
-	sortBy.classList.add('sortBy');
-	sortBy.innerHTML = 'Trier par';
-
-	const select = document.createElement('ul');
-	select.classList.add('select');
-
-	const containChoice = document.createElement('div');
-	containChoice.classList.add('choice');
-
-	const arrowDown = document.createElement('div');
-	const arrowDownImg = document.createElement('img');
-	arrowDown.classList.add('arrowDown','arrowDrop');
-	arrowDownImg.src = 'FishEye_Photos/arrow-white.svg';
-	arrowDownImg.alt = 'flèche vers le bas';
-
-	const arrowUp = document.createElement('div');
-	const arrowUpImg = document.createElement('img');
-	arrowUp.classList.add('arrowUp','arrowDrop');
-	arrowUpImg.src = 'FishEye_Photos/arrow-white.svg';
-	arrowUpImg.alt = 'flèche vers le haut';
-
-	const popChoice = document.createElement('li');
-	const btnPop = document.createElement('button');
-	popChoice.classList.add('sortChoice');
-	popChoice.id = 'popChoice';
-	btnPop.innerHTML = 'Popularité';
-	btnPop.classList.add('selectBtn');
-
-	const dateChoice = document.createElement('li');
-	const btnDate = document.createElement('button');
-	dateChoice.classList.add('sortChoice');
-	dateChoice.id = 'dateChoice';
-	btnDate.innerHTML = 'Date';
-	btnDate.classList.add('selectBtn');
-
-	const titleChoice = document.createElement('li');
-	const btnTitle = document.createElement('button');
-	titleChoice.classList.add('sortChoice');
-	titleChoice.id = 'titleChoice';
-	btnTitle.innerHTML = 'Titre';
-	btnTitle.classList.add('selectBtn');
-
-	// const split1 = document.createElement('hr');
-	// const split2 = document.createElement('hr');
-	// split1.classList.add('split');
-	// split2.classList.add('split');
-	// select.append(split1);
-	// select.append(split2);
-
-	select.append(containChoice);
-
-	select.append(popChoice);
-	popChoice.append(btnPop);
-
-	select.append(dateChoice);
-	dateChoice.append(btnDate);
-
-	select.append(titleChoice);
-	titleChoice.append(btnTitle);
-
-	containChoice.append(arrowDown);
-	containChoice.append(arrowUp);
-	arrowDown.append(arrowDownImg);
-	arrowUp.append(arrowUpImg);
-
-	filter.append(sortBy);
-	filter.append(select);
-
-	main.append(filter);
-}
 /**
  * 
  * @param {array} data 
@@ -505,35 +421,6 @@ export const displayMedias = (medias, photographer) => {
 	likeAddition(medias);
 };
 
-export const menuOn = () => {
-	const select = document.querySelector('.select');
-	select.style.height = '150px';
-	const arrowDown = document.querySelector('.arrowDown');
-	arrowDown.style.display = 'none';
-	const arrowUp = document.querySelector('.arrowUp');
-	arrowUp.style.display = 'block';
-	dateChoice.style.display = 'block';
-	titleChoice.style.display = 'block';
-	popChoice.classList.add('popChoice');
-	dateChoice.classList.add('dateChoice');
-	// split1.style.display = 'block';
-	// split2.style.display = 'block';
-};
-
-export const menuOff = () => {
-	const select = document.querySelector('.select');
-	select.style.height = '47px';
-	const arrowDown = document.querySelector('.arrowDown');
-	arrowDown.style.display = 'block';
-	const arrowUp = document.querySelector('.arrowUp');
-	arrowUp.style.display = 'none';
-	dateChoice.style.display = 'none';
-	titleChoice.style.display = 'none';
-	popChoice.classList.remove('popChoice');
-	dateChoice.classList.remove('dateChoice');
-	// split1.style.display = 'none';
-	// split2.style.display = 'none';
-};
 
 export const likeAddition = (medias) => {
 	let totalLike = 0;
@@ -599,114 +486,4 @@ const deletedMedia = () => {
 	domAlbum.innerHTML = '';
 };
 
-export const mediasSortBy = (medias) => {
-	const arrowDown = document.querySelector('.arrowDown');
-	const arrowUp = document.querySelector('.arrowUp');
-	//FLECHE_menu____
-	arrowDown.addEventListener('click', menuOn);
-	arrowUp.addEventListener('click', menuOff);
-	//FONCTION TRIER PAR
-	const buttons = document.querySelectorAll('.selectBtn');
-	const bucketPop = document.querySelector('#popChoice');
-	const bucketDate = document.querySelector('#dateChoice');
-	const bucketTitle = document.querySelector('#titleChoice');
-
-	for (let i = 0; i < buttons.length; i++) {
-		let self = buttons[i];
-
-		self.addEventListener('click', function () {
-			const album = document.querySelector('.album');
-			const infoBox = document.querySelector('.infoBox');
-
-			switch (self.textContent) {
-				case 'Popularité': {
-					let sortPop = [];
-					for (let i = 0; i < medias.length; i++) {
-						let likes = medias[i].likes;
-						sortPop.push(likes); //On mets les likes dans un tableau
-					}
-					sortPop.sort(function (a, b) {
-						return b - a;
-					});
-					deletedMedia();
-					let mediaToDisplay = [];
-					for (let i = 0; i < sortPop.length; i++) {
-						const likes = sortPop[i];
-						for (let j = 0; j < medias.length; j++) {
-							if (likes == medias[j].likes) {
-								mediaToDisplay.push(medias[j]);
-							}
-						}
-					}
-					displayMedias(mediaToDisplay);
-					album.append(infoBox);
-					menuOff();
-					self.classList.add('selected');
-					bucketPop.append(self); //pop[0]
-					bucketDate.append(buttons[1]); //date
-					bucketTitle.append(buttons[2]); //titre
-					lightbox.init();
-					break;
-				}
-
-				case 'Date': {
-					let sortDate = [];
-					for (let i = 0; i < medias.length; i++) {
-						sortDate.push(medias[i].date);
-					}
-					sortDate.sort();
-					deletedMedia();
-					let mediaToDisplay = [];
-					for (let i = 0; i < sortDate.length; i++) {
-						const date = sortDate[i];
-						for (let j = 0; j < medias.length; j++) { //medias.length = return 9
-							if (date == medias[j].date) {
-								mediaToDisplay.push(medias[j]);
-							}
-						}
-					}
-					displayMedias(mediaToDisplay);
-					album.append(infoBox);
-					menuOff();
-					self.classList.add('selected');
-					bucketPop.append(self); //date[1]
-					bucketDate.append(buttons[2]); //titre
-					bucketTitle.append(buttons[0]); //pop
-					lightbox.init();
-					break;
-				}
-
-				case 'Titre': {
-					let sortTitle = [];
-					for (let i = 0; i < medias.length; i++) {
-						sortTitle.push(medias[i].title);
-					}
-					sortTitle.sort();
-					deletedMedia();
-
-					let mediaToDisplay = [];
-					for (let i = 0; i < sortTitle.length; i++) {
-						const title = sortTitle[i];
-						for (let j = 0; j < medias.length; j++) {
-							if (title == medias[j].title) {
-								mediaToDisplay.push(medias[j]);
-							}
-						}
-					}
-					displayMedias(mediaToDisplay);
-					album.append(infoBox);
-					menuOff();
-					self.classList.add('selected');
-					bucketPop.append(self); //titre[2]
-					bucketDate.append(buttons[0]); //pop
-					bucketTitle.append(buttons[1]); //date
-					lightbox.init();
-					break;
-				}
-				default:
-					break;
-			}
-		});
-	}
-}
 

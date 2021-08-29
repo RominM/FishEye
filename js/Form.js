@@ -4,54 +4,43 @@ export class Form {
    }
    createForm(photographer) {
       const body = document.querySelector('body');
-      //******************* FORMULAIR *********************/
-      //_____________//create
-      //FORM________
+
       const bground = document.createElement('section');
       const content = document.createElement('div');
+      bground.classList.add('bground');
+      content.classList.add('content');
+      
       const cross = document.createElement('span');
+      cross.classList.add('cross');
+
       const divContact = document.createElement('div');
       const contactMe = document.createElement('span');
       const up = document.createElement('br');
+      contactMe.classList.add('contactMe');
+      contactMe.innerHTML = 'Contactez-moi ';
+
       const photographerName = document.createElement('h3');
       const modalbg = document.createElement('div');
+      photographerName.classList.add('titleName');
+      photographerName.innerHTML = this.photographer.name;
+      modalbg.classList.add('modalBody');
       //===================================================
       const form = document.createElement('form');
+      form.id = 'send';
       //===================================================
       const firstname = document.createElement('div');
       const lastname = document.createElement('div');
       const email = document.createElement('div');
       const txtFree = document.createElement('div');
+      firstname.classList.add('form-data');
+      lastname.classList.add('form-data');
+      email.classList.add('form-data');
+      txtFree.classList.add('form-data');
       //===================================================
       const labFirstname = document.createElement('label');
       const labLastname = document.createElement('label');
       const labEmail = document.createElement('label');
       const labTxtFree = document.createElement('label');
-      //===================================================
-      const inpFirstname = document.createElement('input');
-      const inpLastname = document.createElement('input');
-      const inpEmail = document.createElement('input');
-      const inpTxtFree = document.createElement('textarea');
-      //===================================================
-      const sendBtn = document.createElement('button');
-      //_____________//settings
-      //FORM________
-      bground.classList.add('bground');
-      content.classList.add('content');
-      cross.classList.add('cross');
-      contactMe.classList.add('contactMe');
-      contactMe.innerHTML = 'Contactez-moi ';
-      photographerName.classList.add('titleName');
-      photographerName.innerHTML = this.photographer.name;
-      modalbg.classList.add('modalBody');
-      //==================================================
-      form.id = 'send';
-      //==================================================
-      firstname.classList.add('form-data');
-      lastname.classList.add('form-data');
-      email.classList.add('form-data');
-      txtFree.classList.add('form-data');
-      //==================================================
       labFirstname.innerHTML = 'Prénom';
       labFirstname.setAttribute('for', 'first');
       labLastname.innerHTML = 'Nom';
@@ -60,24 +49,24 @@ export class Form {
       labEmail.setAttribute('for', 'email');
       labTxtFree.innerHTML = 'Votre message';
       labTxtFree.setAttribute('for', 'txtFree');
-      //==================================================
+      //===================================================
+      const inpFirstname = document.createElement('input');
+      const inpLastname = document.createElement('input');
+      const inpEmail = document.createElement('input');
+      const inpTxtFree = document.createElement('textarea');
       inpFirstname.id = 'first';
       inpFirstname.type = 'textarea';
-      // inpFirstname.setAttribute('autofocus', 'true');
-      // inpFirstname.autofocus = 'true';
-      // inpFirstname.autofocus = true;
       inpLastname.id = 'last';
       inpLastname.type = 'textarea';
       inpEmail.id = 'email';
       inpEmail.type = 'textarea';
       inpTxtFree.id = 'txtFree';
-      // inpTxtFree.type = 'textarea';
-      //==================================================
+      //===================================================
+      const sendBtn = document.createElement('button');
       sendBtn.type = 'submit';
       sendBtn.classList.add('send');
       sendBtn.innerHTML = 'Envoyer';
-      //_____________//indent
-      //FORM________
+      //==================================================
       body.append(bground);
       bground.append(content);
       bground.append(modalbg);
@@ -103,7 +92,7 @@ export class Form {
       email.append(inpEmail);
       txtFree.append(labTxtFree);
       txtFree.append(inpTxtFree);
-   
+   //STATE______________//
       var state = {
          firstName: {
             data: '',
@@ -118,8 +107,7 @@ export class Form {
             data: '',
          }
       };
-      //FORMULAIRE_________//
-      //__________________//input_value
+   //FUNCTION___________//
       const checkFirstname = () => {
          state.firstName.data = inpFirstname.value;
       };
@@ -162,12 +150,10 @@ export class Form {
       this.closeForm();
    }
    
-   static openForm() {
+   openForm() {//PAS EN STATIC
       //FORM_context___
       const contact = document.querySelector('.contact');
-      const contact2 = document.querySelector('.contact2');
       contact.addEventListener('click', this.openForm);
-      contact2.addEventListener('click', this.openForm);
    
       const bground = document.querySelector('.bground');
       const main = document.querySelector('main');
@@ -178,7 +164,7 @@ export class Form {
       input.focus();
    };
    
-   static closeForm() {
+   closeForm() {//PAS EN STATIC
       const cross = document.querySelector('.cross');
       cross.addEventListener('click', this.closeForm);
       const bground = document.querySelector('.bground');

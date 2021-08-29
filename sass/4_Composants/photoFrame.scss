@@ -68,19 +68,3 @@ main {
     }
 }
 
-.contact2 {
-    display: none;
-    position: fixed;
-    bottom: 10%;
-    right: 50%;
-    transform: translate(50%, -50%);
-    border: none;
-    width: 40%;
-    margin: auto 0px;
-    height: 40px;
-    border-radius: 3px;
-    background-color: $firebrick;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.2em;
-}

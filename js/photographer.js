@@ -1,5 +1,6 @@
 import { lightbox } from "./lightbox.js";
-import { paramUrl, createHeaderPage, photographerFrame, dropBoxSortBy, getMedias, getPhotographer, createAlbum, displayMedias, menuOn, menuOff, likeAddition, createTagsOnPage, mediasSortBy, incrementPic, displayTotalLike } from "./utils.js";
+import { dropBoxSortBy, menuOff, menuOn, mediasSortBy } from "./DropBox.js";
+import { paramUrl, createHeaderPage, photographerFrame, getMedias, getPhotographer, createAlbum, displayMedias, likeAddition, createTagsOnPage, incrementPic, displayTotalLike } from "./utils.js";
 import { Form } from "./Form.js";
 
 const url_id = paramUrl('id');
@@ -12,7 +13,7 @@ const medias = getMedias(data, url_id);
 const photographer = getPhotographer(data, url_id);
 
 const form = new Form(photographer);
-
+console.log(form);
 //DOM Elements
 createHeaderPage();
 photographerFrame(data);
@@ -21,8 +22,8 @@ createTagsOnPage(photographer);
 dropBoxSortBy();
 createAlbum(photographer);
 displayMedias(medias, photographer);
-menuOn();
 menuOff();
+menuOn();
 mediasSortBy(medias);
 lightbox.init();
 displayTotalLike(medias);

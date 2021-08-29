@@ -9,19 +9,15 @@
                 margin: 0;
             }
         }
-
-        .contact {
-            display: none;
-        }
-
-        .contact2 {
-            display: block;
-        }
-
         .album {
             justify-content: center;
         }
-
+        .contact {
+            position: fixed;
+            bottom: 10%;
+            right: 50%;
+            transform: translate(50%, -50%);
+        }
     }
 
     @media screen and (max-width: 775px) {
