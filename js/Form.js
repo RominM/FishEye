@@ -4,27 +4,27 @@ export class Form {
    }
    createForm(photographer) {
       const body = document.querySelector('body');
-
+   //Background
       const bground = document.createElement('section');
       const content = document.createElement('div');
       bground.classList.add('bground');
       content.classList.add('content');
-      
+   //Cross (Escape)
       const cross = document.createElement('span');
       cross.classList.add('cross');
-
+   //Texte Format
       const divContact = document.createElement('div');
       const contactMe = document.createElement('span');
       const up = document.createElement('br');
       contactMe.classList.add('contactMe');
-      contactMe.innerHTML = 'Contactez-moi ';
-
+      contactMe.innerHTML = 'Contactez-moi';
+   //This.photographer.name
       const photographerName = document.createElement('h3');
       const modalbg = document.createElement('div');
       photographerName.classList.add('titleName');
       photographerName.innerHTML = this.photographer.name;
       modalbg.classList.add('modalBody');
-      //===================================================
+   //FORMULARE
       const form = document.createElement('form');
       form.id = 'send';
       //===================================================
@@ -66,7 +66,7 @@ export class Form {
       sendBtn.type = 'submit';
       sendBtn.classList.add('send');
       sendBtn.innerHTML = 'Envoyer';
-      //==================================================
+
       body.append(bground);
       bground.append(content);
       bground.append(modalbg);

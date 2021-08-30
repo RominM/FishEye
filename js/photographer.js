@@ -1,6 +1,8 @@
+import { paramUrl, getMedias, getPhotographer } from "./toolBox.js";
+import { DropBox } from "./DropBox.js";
+import { DomPage } from "./DomPage.js";
+import { displayMedias, likeAddition, createTagsOnPage, incrementPic, displayTotalLike } from "./utils.js";
 import { lightbox } from "./lightbox.js";
-import { dropBoxSortBy, displayToDropBox, mediasSortBy } from "./dropBox.js";
-import { paramUrl, createHeaderPage, photographerFrame, getMedias, getPhotographer, createAlbum, displayMedias, likeAddition, createTagsOnPage, incrementPic, displayTotalLike } from "./utils.js";
 import { Form } from "./Form.js";
 
 const url_id = paramUrl('id');
@@ -11,24 +13,31 @@ const data = JSON.parse(dataFromLocalStorage);
 const medias = getMedias(data, url_id);
 //Récupération des medias en fonction de l'id du photographe//=====================================================================
 const photographer = getPhotographer(data, url_id);
-
-const form = new Form(photographer);
 //DOM Elements
-createHeaderPage();
-photographerFrame(data);
+const domPage = new DomPage(data, photographer);
+domPage.createHeaderPage();
+domPage.photographerFrame(data);
+domPage.createAlbum(photographer);
+
 likeAddition(medias);
 createTagsOnPage(photographer);
-dropBoxSortBy();
-createAlbum(photographer);
-displayMedias(medias, photographer);
-displayToDropBox();
+// DropBox
+const drop = new DropBox(medias);
+drop.createDropBox();
+drop.mediasSortBy();
+drop.dropBoxStatus();
+drop.displayToDropBox();
 
-mediasSortBy(medias);
+displayMedias(medias, photographer);
+// displayToDropBox();
+
+// mediasSortBy(medias);
 lightbox.init();
 displayTotalLike(medias);
 incrementPic(medias);
 
-
+// Formular
+const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
 

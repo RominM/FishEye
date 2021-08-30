@@ -11,3 +11,4 @@ fetch('./data.json') // le 'fetch' est une promesse mais ne donnera la reponse q
 		initIndex(response2);
 	});
 	
+	

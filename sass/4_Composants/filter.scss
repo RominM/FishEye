@@ -4,6 +4,7 @@
     height: 50px;
     margin: auto;
     display: flex;
+    z-index: 2;
     .txtSort {
         font-size: 1.2em;
         margin-right: 40px;
@@ -35,10 +36,8 @@
                 right: 10%;
                 transform: translate(-50%,-50%);
                 width: 10px;
-                // z-index: 15;
                 cursor: pointer;
                 transform: rotate(90deg);
-                transition: .3s;
             }
             .arrowUp {
                 display: none;
@@ -46,7 +45,6 @@
                 top: 65%;
                 right: 16%;
                 transform: translate(-50%,-50%);
-                z-index: 140000;
                 transform: rotate(180deg);
             }
         }
@@ -59,14 +57,15 @@
             background-color: $firebrick;
             border-radius: 5px;
             box-shadow: 2px 2px 12px $darkGrey;
-            transition: .3s;
+            transition: .5s;
             .dropli {
                 display: block;
                 width: 25px;
                 height: 50px;
                 cursor: pointer;
-                transition: .7s;
+                animation: fadeInUp 5s;
                 color: #fff;
+                transition: .3s;
                 .liPop::after {
                     content: '';
                     display: inline-block;
@@ -88,7 +87,7 @@
                 opacity: 0;
                 padding: 0;
                 margin: 0 auto;
-                transition: .3s;
+                transition: .1s;
             }
             .selectBtn {
                 border: none;
