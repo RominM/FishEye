@@ -3,7 +3,7 @@
  * @property {string[]} images Chemins des images de la Lightbox
  * @property {string} url Image actuellement affichée
  */
-export class lightbox {
+export class Lightbox {
 	// initialisation de la lightbox
 	// Objectif :
 	// greffer un comportement sur tous les liens qui menent à des images (ET DES VIDEOS !!!). 
@@ -15,7 +15,7 @@ export class lightbox {
 
 		links.forEach(link => link.addEventListener('click', e => {
 			e.preventDefault(); // strop le comportement par defaut
-			new lightbox(e.currentTarget.getAttribute('href'), gallery); // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
+			new Lightbox(e.currentTarget.getAttribute('href'), gallery); // permet de selectionner le lien sur lequel j'appuie et je recupere l'attribut "href"(urel du lien)
 		}));
 	}
 
@@ -133,4 +133,4 @@ export class lightbox {
 		return lightbox;
 	}
 }
-lightbox.init();
+Lightbox.init();

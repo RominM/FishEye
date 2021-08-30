@@ -2,7 +2,7 @@ import { paramUrl, getMedias, getPhotographer } from "./toolBox.js";
 import { DropBox } from "./DropBox.js";
 import { DomPage } from "./DomPage.js";
 import { displayMedias, likeAddition, createTagsOnPage, incrementPic, displayTotalLike } from "./utils.js";
-import { lightbox } from "./lightbox.js";
+import { Lightbox } from "./Lightbox.js";
 import { Form } from "./Form.js";
 
 const url_id = paramUrl('id');
@@ -29,14 +29,12 @@ drop.dropBoxStatus();
 drop.displayToDropBox();
 
 displayMedias(medias, photographer);
-// displayToDropBox();
-
-// mediasSortBy(medias);
-lightbox.init();
+Lightbox.init();
 displayTotalLike(medias);
 incrementPic(medias);
 
 // Formular
+
 const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
