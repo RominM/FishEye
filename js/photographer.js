@@ -24,21 +24,18 @@ domPage.createAlbum(photographer);
 // DropBox
 const drop = new DropBox(medias);
 drop.createDropBox();
-drop.mediasSortBy();
 drop.dropBoxStatus();
-drop.displayToDropBox();
 // Gallery
 const gallery = new Gallery(medias, photographer);
 gallery.displayMedias();
-gallery.displayTotalLike();
-gallery.likeAddition();
-gallery.incrementPic();
+gallery.stateFunction();
 // Lightbox
 Lightbox.init();
 // Formular
 const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
+console.log(form);
 
 createTagsOnPage(photographer);
 deletedMedia();

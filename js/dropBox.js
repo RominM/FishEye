@@ -5,62 +5,62 @@ export class DropBox {
 	// CREAT DOM ELEMENTS
 	createDropBox = () => {
 		const main = document.querySelector('main');
-	
+
 		const filter = document.createElement('div');
 		filter.classList.add('filter');
-	//Trier par
+		//Trier par
 		const txtSort = document.createElement('span');
 		txtSort.classList.add('txtSort');
 		txtSort.innerHTML = 'Trier par';
-	//DropBox
+		//DropBox
 		const dropBox = document.createElement('div');
 		dropBox.classList.add('dropBox');
-	//Liste
+		//Liste
 		const dropUl = document.createElement('ul');
 		dropUl.classList.add('dropUl');
-	//Choix#1 : POPULARITE
+		//Choix#1 : POPULARITE
 		const liPop = document.createElement('li');
 		const btnPop = document.createElement('button');
 		liPop.classList.add('dropli');
 		liPop.id = 'liPop';
 		btnPop.innerHTML = 'Popularité';
 		btnPop.classList.add('selectBtn');
-	
+
 		const split1 = document.createElement('hr');
 		split1.classList.add('split1');
-	//Choix#2 : DATE
+		//Choix#2 : DATE
 		const liDate = document.createElement('li');
 		const btnDate = document.createElement('button');
 		liDate.classList.add('dropli');
 		liDate.id = 'liDate';
 		btnDate.innerHTML = 'Date';
 		btnDate.classList.add('selectBtn');
-	
+
 		const split2 = document.createElement('hr');
 		split2.classList.add('split2');
-	//Choix#3 : TITRE
+		//Choix#3 : TITRE
 		const liTitle = document.createElement('li');
 		const btnTitle = document.createElement('button');
 		liTitle.classList.add('dropli');
 		liTitle.id = 'liTitle';
 		btnTitle.innerHTML = 'Titre';
 		btnTitle.classList.add('selectBtn');
-	//fleches
+		//fleches
 		const arrowsBtn = document.createElement('button');
 		arrowsBtn.classList.add('arrowsBtn');
 		//DOWN
 		const arrowDown = document.createElement('div');
 		const arrowDownImg = document.createElement('img');
-		arrowDown.classList.add('arrowDown','arrowDrop');
+		arrowDown.classList.add('arrowDown', 'arrowDrop');
 		arrowDownImg.src = 'FishEye_Photos/arrow-white.svg';
 		arrowDownImg.alt = 'flèche vers le bas';
 		//UP
 		const arrowUp = document.createElement('div');
 		const arrowUpImg = document.createElement('img');
-		arrowUp.classList.add('arrowUp','arrowDrop');
+		arrowUp.classList.add('arrowUp', 'arrowDrop');
 		arrowUpImg.src = 'FishEye_Photos/arrow-white.svg';
 		arrowUpImg.alt = 'flèche vers le haut';
-	//Choice container
+		//Choice container
 		const contains = document.createElement('span');
 		contains.classList.add('contains');
 		contains.innerHTML = btnPop.innerHTML;
@@ -69,7 +69,7 @@ export class DropBox {
 		arrowsBtn.append(arrowUp);
 		arrowDown.append(arrowDownImg);
 		arrowUp.append(arrowUpImg);
-		
+
 		dropUl.append(liPop);
 		liPop.append(btnPop);
 		dropUl.append(split1);
@@ -78,15 +78,21 @@ export class DropBox {
 		dropUl.append(split2);
 		dropUl.append(liTitle);
 		liTitle.append(btnTitle);
-	
+
 		dropBox.append(dropUl);
 		dropBox.append(arrowsBtn);
 		dropBox.append(contains);
-		
+
 		filter.append(txtSort);
 		filter.append(dropBox);
-	
+
 		main.append(filter);
+	}
+	dropBoxStatus() {
+		this.mediasSortBy();
+		this.displayToDropBox();
+		this.dropDown();
+		this.dropUp();
 	}
 	// FUNCTION SORT MEDIA BY CHOICE SELECTED
 	mediasSortBy = (medias) => {
@@ -94,14 +100,14 @@ export class DropBox {
 		const bucketPop = document.querySelector('#liPop');
 		const bucketDate = document.querySelector('#liDate');
 		const bucketTitle = document.querySelector('#liTitle');
-		
+
 		for (let i = 0; i < buttons.length; i++) {
 			let self = buttons[i];
 
 			self.addEventListener('click', function () {
 				const album = document.querySelector('.album');
 				const infoBox = document.querySelector('.infoBox');
-				
+
 				switch (self.textContent) {
 					case 'Popularité': {
 						const txtSort = document.querySelector('.contains');
@@ -167,7 +173,7 @@ export class DropBox {
 					case 'Titre': {
 						const txtSort = document.querySelector('.contains');
 						txtSort.innerHTML = 'Titre';
-	
+
 						let sortTitle = [];
 						for (let i = 0; i < this.medias.length; i++) {
 							sortTitle.push(this.medias[i].title);
@@ -199,11 +205,6 @@ export class DropBox {
 			});
 		}
 	}
-	
-	dropBoxStatus() {
-		this.dropDown();
-		this.dropUp();
-	}
 	// ANIMATED DROPBOX
 	displayToDropBox = () => {
 		const arrowDown = document.querySelector('.arrowDown');
@@ -211,53 +212,51 @@ export class DropBox {
 		const arrowUp = document.querySelector('.arrowUp');
 		arrowUp.addEventListener('click', this.dropUp);
 	}
-	
 	dropDown = () => {
 		const dropUl = document.querySelector('.dropUl');
 		dropUl.classList.add('droped');
-	
+
 		const arrowDown = document.querySelector('.arrowDown');
 		const arrowUp = document.querySelector('.arrowUp');
 		arrowDown.style.display = 'none';
 		arrowUp.style.display = 'block';
-	
+
 		const liPop = document.querySelector('#liPop');
 		liPop.style.opacity = '1';
 		const liDate = document.querySelector('#liDate');
 		liDate.style.opacity = '1';
 		const liTitle = document.querySelector('#liTitle');
 		liTitle.style.opacity = '1';
-	
+
 		const split1 = document.querySelector('.split1');
 		split1.style.opacity = '1';
 		const split2 = document.querySelector('.split2');
 		split2.style.opacity = '1';
-	
+
 		const arrowsBtn = document.querySelector('.arrowsBtn');
 		arrowsBtn.style.borderBottom = 'solid 1px #fff';
 	}
-	
 	dropUp = () => {
 		const dropUl = document.querySelector('.dropUl');
 		dropUl.classList.remove('droped');
-	
+
 		const arrowDown = document.querySelector('.arrowDown');
 		const arrowUp = document.querySelector('.arrowUp');
 		arrowDown.style.display = 'block';
 		arrowUp.style.display = 'none';
-	
+
 		const liPop = document.querySelector('#liPop');
 		liPop.style.opacity = '0';
 		const liDate = document.querySelector('#liDate');
 		liDate.style.opacity = '0';
 		const liTitle = document.querySelector('#liTitle');
 		liTitle.style.opacity = '0';
-	
+
 		const split1 = document.querySelector('.split1');
 		split1.style.opacity = '0';
 		const split2 = document.querySelector('.split2');
 		split2.style.opacity = '0';
-	
+
 		const arrowsBtn = document.querySelector('.arrowsBtn');
 		arrowsBtn.style.borderBottom = 'none';
 	}

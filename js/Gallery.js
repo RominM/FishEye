@@ -3,13 +3,6 @@ export class Gallery {
       this.medias = medias;
       this.photographer = photographer;
    }
-   likeAddition = (medias) => {
-      let totalLike = 0;
-      medias.forEach(media => {
-         totalLike += media.likes;
-      })
-      return totalLike;
-   };
    displayMedias = (medias, photographer) => {
       //POUR CHAQUE MEDIA
       this.medias.forEach(media => {
@@ -84,11 +77,23 @@ export class Gallery {
       });
       likeAddition(medias);
    };
-   displayTotalLike = (medias) => {
+   stateFunction() {
+      this.likeAddition();
+      this.displayTotalLike();
+      this.incrementPic();
+   }
+   likeAddition(medias){
+      let totalLike = 0;
+      medias.forEach(media => {
+         totalLike += media.likes;
+      })
+      return totalLike;
+   };
+   displayTotalLike(medias){
       const likeCounter = document.querySelector('.infoBox__likeCounter');
       likeCounter.innerHTML = likeAddition(medias);
    };
-   incrementPic = (medias) => {
+   incrementPic(medias){
       const blocksLike = document.querySelectorAll('.blockLike');
       blocksLike.forEach(block => {
          const heart = block.querySelector('.heart');
