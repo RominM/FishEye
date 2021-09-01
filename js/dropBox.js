@@ -266,4 +266,8 @@ export class DropBox {
 		const arrowsBtn = document.querySelector('.arrowsBtn');
 		arrowsBtn.style.borderBottom = 'none';
 	}
+	deletedMedia(){
+      // const domAlbum = document.querySelector('.album');
+      // domAlbum.innerHTML = '';
+   };
 }

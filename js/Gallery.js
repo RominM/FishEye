@@ -3,12 +3,7 @@ export class Gallery {
       this.medias = medias;
       this.photographer = photographer;
    }
-   stateFunction(medias) {
-      this.likeAddition(medias);
-      this.displayTotalLike(medias);
-      this.incrementPic(medias);
-      this.deletedMedia();
-   }
+
    displayMedias = (medias, photographer) => {
       //POUR CHAQUE MEDIA
       this.medias.forEach(media => {
@@ -83,43 +78,35 @@ export class Gallery {
       });
       // likeAddition(medias);
    };
-   likeAddition(medias){
+   getTotalLike(){
+      const totalLikeDomSpan = document.querySelectorAll('.like');
       let totalLike = 0;
-      this.medias.forEach(media => {
-         totalLike += media.likes;
+      totalLikeDomSpan.forEach(span => {
+         totalLike += parseInt(span.innerHTML)
       })
-      return totalLike;
+      return totalLike
    };
-   displayTotalLike(medias){
-      // const likeCounter = document.querySelector('.infoBox__likeCounter');
-      // likeCounter.innerHTML = likeAddition(medias);
-   };
-   incrementPic(medias){
-      const blocksLike = document.querySelectorAll('.blockLike');
-      blocksLike.forEach(block => {
-         const heart = block.querySelector('.heart');
-   
+   displayTotalLike() {
+      const likeCounter = document.querySelector('.infoBox__likeCounter');
+      likeCounter.innerHTML = this.getTotalLike();
+   }
+   heartListener() {
+      this.displayTotalLike();
+      const hearts = document.querySelectorAll('.heart');
+
+      hearts.forEach(heart => {
          heart.addEventListener('click', () => {
-            const like = block.querySelector('.like');
-            const likeNmb = parseInt(like.innerHTML);
-   
-            if (heart.classList.contains('clicked') == false) {
-               heart.classList.add('clicked');
-               likeAddition(medias);
-               totalLike += 1;
-               like.innerHTML = likeNmb + 1;
-               displayTotalLike();
+            const like = heart.parentElement.querySelector('.like');
+
+            if(heart.classList.contains('clicked')){
+               like.innerHTML = parseInt(like.innerHTML)-1;
+               heart.classList.remove('clicked');  
             } else {
-               heart.classList.remove('clicked');
-               totalLike -= 1;
-               like.innerHTML = likeNmb - 1;
-               displayTotalLike();
+               like.innerHTML = parseInt(like.innerHTML)+1;
+               heart.classList.add('clicked');  
             }
-         });
-      });
-   };
-   deletedMedia(){
-      // const domAlbum = document.querySelector('.album');
-      // domAlbum.innerHTML = '';
-   };
+            this.displayTotalLike();
+         } )
+      })
+   }
 }

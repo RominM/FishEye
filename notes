@@ -1,15 +1,3 @@
-//Home Page//
-__________________________
-**Fixer le trie par tags**
-PROBLEME :
-click sur un tag ne fonctionne qu'une seule fois et ne se desactive que lorsqu'on click sur lui même.
-RESULTAT :
-Le tag activer devrait également se desactiver si on click sur n'importe quel autre tag.
-La fonction doit pouvoir être joué à l'infini.
-SOLUTION :
-sortir de la boucle à chaque click pour reinitialiser la fonction (Peut être avec un "return"?).
-===============================================================================================
-
 //Photographer Page//
 _______________________________________________
 **Fixer la navigation clavier pour la DropBox**

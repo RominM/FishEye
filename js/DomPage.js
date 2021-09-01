@@ -134,3 +134,14 @@ export class DomPage {
       blackHeart.append(blackHeartImg);
    }
 }
+
+
+
+
+
+
+
+
+
+
+

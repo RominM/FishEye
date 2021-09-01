@@ -26,13 +26,14 @@ const drop = new DropBox(medias);
 drop.createDropBox();
 drop.mediasSortBy();
 drop.dropBoxStatus();
+// Gallery
+const gallery = new Gallery(medias, photographer);
+gallery.displayMedias();
+gallery.getTotalLike();
+gallery.heartListener();
 // Lightbox
 Lightbox.init();
 // Formular
 const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
-// Gallery
-const gallery = new Gallery(medias, photographer);
-gallery.displayMedias();
-gallery.stateFunction();
