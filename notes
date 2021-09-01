@@ -16,7 +16,7 @@ _______________________________________________
 PROBLEME :
 - Impossible d'ouvrir la DropBox via le clavier car la tabulation ne va pas sur l'attribut possedant le .addEventListener
 RESULTAT :
-- Soit utiliser le bouton(arrowBtn) comme .addEventListener car la tabulation fonction.
+- Soit utiliser le bouton(arrowBtn) comme .addEventListener car la tabulation fonctionne.
 - Soit trouver un moyen de rendre la tabulation accessible sur les fleches.
 SOLUTION :
 Aucune voie pour le moment.
@@ -30,7 +30,7 @@ RESULTAT :
 SOLUTION :
 - Lien avec la class Gallery
 ________________________________________
-**Trie des photos part non fonctionnel**
+**Trie des photos par 'Popularité','Date','Titre' non fonctionnel**
 - PROBLEME :
 Ne peu pas lire la propriété .length des boucles dans la fonction mediaSortBy()
 Ajout de medias supplementaire lors du trie par Date

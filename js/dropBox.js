@@ -97,13 +97,14 @@ export class DropBox {
 	// FUNCTION SORT MEDIA BY CHOICE SELECTED
 	mediasSortBy = (medias) => {
 		const buttons = document.querySelectorAll('.selectBtn');
-		const bucketPop = document.querySelector('#liPop');
-		const bucketDate = document.querySelector('#liDate');
-		const bucketTitle = document.querySelector('#liTitle');
-
+		const liPop = document.querySelector('#liPop');
+		const liDate = document.querySelector('#liDate');
+		const liTitle = document.querySelector('#liTitle');
 		for (let i = 0; i < buttons.length; i++) {
 			let self = buttons[i];
-
+			
+			const medias = this.medias;
+			
 			self.addEventListener('click', function () {
 				const album = document.querySelector('.album');
 				const infoBox = document.querySelector('.infoBox');
@@ -114,20 +115,25 @@ export class DropBox {
 						txtSort.innerHTML = 'Popularité';
 
 						let sortPop = [];
-						for (let i = 0; i < this.medias.length; i++) {
-							let likes = this.medias[i].likes;
+						for (let i = 0; i < medias.length; i++) {
+							let likes = medias[i].likes;
 							sortPop.push(likes); //On mets les likes dans un tableau
 						}
 						sortPop.sort(function (a, b) {
 							return b - a;
 						});
+						
+						const deletedMedia = () => {
+							const domAlbum = document.querySelector('.album');
+							domAlbum.innerHTML = '';
+						};
 						deletedMedia();
 						let mediaToDisplay = [];
 						for (let i = 0; i < sortPop.length; i++) {
 							const likes = sortPop[i];
-							for (let j = 0; j < this.medias.length; j++) {
-								if (likes == this.medias[j].likes) {
-									mediaToDisplay.push(this.medias[j]);
+							for (let j = 0; j < medias.length; j++) {
+								if (likes == medias[j].likes) {
+									mediaToDisplay.push(medias[j]);
 								}
 							}
 						}
@@ -135,9 +141,9 @@ export class DropBox {
 						album.append(infoBox);
 						dropUp();
 						self.classList.add('selected');
-						bucketPop.append(self); //pop[0]
-						bucketDate.append(buttons[1]); //date
-						bucketTitle.append(buttons[2]); //titre
+						liPop.append(self); //pop[0]
+						liDate.append(buttons[1]); //date
+						liTitle.append(buttons[2]); //titre
 						lightbox.init();
 						break;
 					}
@@ -146,7 +152,7 @@ export class DropBox {
 						txtSort.innerHTML = 'Date';
 
 						let sortDate = [];
-						for (let i = 0; i < this.medias.length; i++) {
+						for (let i = 0; i < medias.length; i++) {
 							sortDate.push(this.medias[i].date);
 						}
 						sortDate.sort();
@@ -164,9 +170,9 @@ export class DropBox {
 						album.append(infoBox);
 						dropUp();
 						self.classList.add('selected');
-						bucketPop.append(self); //date[1]
-						bucketDate.append(buttons[2]); //titre
-						bucketTitle.append(buttons[0]); //pop
+						liPop.append(self); //date[1]
+						liDate.append(buttons[2]); //titre
+						liTitle.append(buttons[0]); //pop
 						lightbox.init();
 						break;
 					}
@@ -175,7 +181,7 @@ export class DropBox {
 						txtSort.innerHTML = 'Titre';
 
 						let sortTitle = [];
-						for (let i = 0; i < this.medias.length; i++) {
+						for (let i = 0; i < medias.length; i++) {
 							sortTitle.push(this.medias[i].title);
 						}
 						sortTitle.sort();
@@ -193,9 +199,9 @@ export class DropBox {
 						album.append(infoBox);
 						dropUp();
 						self.classList.add('selected');
-						bucketPop.append(self); //titre[2]
-						bucketDate.append(buttons[0]); //pop
-						bucketTitle.append(buttons[1]); //date
+						liPop.append(self); //titre[2]
+						liDate.append(buttons[0]); //pop
+						liTitle.append(buttons[1]); //date
 						lightbox.init();
 						break;
 					}

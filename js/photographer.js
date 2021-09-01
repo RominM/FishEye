@@ -4,7 +4,6 @@ import { DropBox } from "./DropBox.js";
 import { Gallery } from "./Gallery.js";
 import { Lightbox } from "./Lightbox.js";
 import { Form } from "./Form.js";
-import { deletedMedia } from "./utils.js";
 //================================================//
 // Récupération des data dans le local Storage
 const dataFromLocalStorage = sessionStorage.getItem('data');
@@ -25,6 +24,7 @@ domPage.createAlbum(photographer);
 // DropBox
 const drop = new DropBox(medias);
 drop.createDropBox();
+drop.mediasSortBy();
 drop.dropBoxStatus();
 // Lightbox
 Lightbox.init();
@@ -32,9 +32,6 @@ Lightbox.init();
 const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
-
-// createTagsOnPage(photographer);
-deletedMedia();
 // Gallery
 const gallery = new Gallery(medias, photographer);
 gallery.displayMedias();

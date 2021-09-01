@@ -3,6 +3,12 @@ export class Gallery {
       this.medias = medias;
       this.photographer = photographer;
    }
+   stateFunction(medias) {
+      this.likeAddition(medias);
+      this.displayTotalLike(medias);
+      this.incrementPic(medias);
+      this.deletedMedia();
+   }
    displayMedias = (medias, photographer) => {
       //POUR CHAQUE MEDIA
       this.medias.forEach(media => {
@@ -77,11 +83,6 @@ export class Gallery {
       });
       // likeAddition(medias);
    };
-   stateFunction(medias) {
-      this.likeAddition(medias);
-      this.displayTotalLike(medias);
-      this.incrementPic(medias);
-   }
    likeAddition(medias){
       let totalLike = 0;
       this.medias.forEach(media => {
@@ -116,5 +117,9 @@ export class Gallery {
             }
          });
       });
+   };
+   deletedMedia(){
+      // const domAlbum = document.querySelector('.album');
+      // domAlbum.innerHTML = '';
    };
 }
