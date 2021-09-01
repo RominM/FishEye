@@ -146,52 +146,57 @@ const onClickTagsListHeader = (data) => {
 	tags.forEach(tag => { // pour chaque tag
 		tag.addEventListener('click', () => { // Quand je click sur un tag...
 
-			const tagId = tag.id; //id du boutton selectionné
-			const photoArray = data.photographers;
-			const photographerAsked = [];
-
-			for (let i = 0; i < photoArray.length; i++) { // parcourir chacune des cards pour verifier les tags
-				const photoTag = photoArray[i].tags; // tableau des tags de chaque photographe
-
-				for (let j = 0; j < photoTag.length; j++) { // parcourir chacun des tableau des tags de chaque photographe
-					const eachTag = photoTag[j]; // chaque tags de chaque photographe
-
-					if (tagId == eachTag) { // si (id du btn sélectionné) correspond au (tag de chaque photographe)
-						photographerAsked.push(photoArray[i]);
-						tag.classList.add('selectedTag');
-					}
-				}
-			}
-			// afficher les photographes demandé
-			const cardToDisplay = [];
-
-			getCards.forEach(card => {
-				card.style.display = 'none';
-			});
-
-			for (let i = 0; i < getCards.length; i++) {
-				const cardId = getCards[i].id;
-				for (let j = 0; j < photographerAsked.length; j++) {
-					const photographerId = photographerAsked[j].id;
-					if (photographerId == cardId) {
-						cardToDisplay.push(getCards[i]);
-					}
-				}
-			}
-			for (let i = 0; i < cardToDisplay.length; i++) {
-				document.getElementById(cardToDisplay[i].id).style.display = 'block';
-			}
-
 			//Reset les cards si on click a nouveaux sur le tag selectionné
-			const tagSelected = document.querySelector('.selectedTag');
-			if (tagSelected.classList.contains('selectedTag')) {
-				tag.addEventListener('click', () => {
+			if (tag.classList.contains('selectedTag')) {
 					tag.classList.remove('selectedTag');
 
 					getCards.forEach(card => {
 						card.style.display = 'block';
-					});
 				});
+			} else {
+
+				const tagId = tag.id; //id du boutton selectionné
+				const photographersList = data.photographers;
+				const photographerAsked = [];
+
+				const selectedTag = document.querySelector('.selectedTag');
+				if (selectedTag !== null) {
+					selectedTag.classList.remove('selectedTag');
+
+				}
+
+				for (let i = 0; i < photographersList.length; i++) { // parcourir chacune des cards pour verifier les tags
+					const photographerTags = photographersList[i].tags; // tableau des tags de chaque photographe
+	
+					for (let j = 0; j < photographerTags.length; j++) { // parcourir chacun des tableau des tags de chaque photographe
+						const eachTag = photographerTags[j]; // chaque tags de chaque photographe
+	
+						if (tagId == eachTag) { // si (id du btn sélectionné) correspond au (tag de chaque photographe)
+							photographerAsked.push(photographersList[i]);
+							tag.classList.add('selectedTag');// on ajoute une class
+						}
+					}
+				}
+				// afficher les photographes demandé
+				const cardToDisplay = [];
+	
+				getCards.forEach(card => {
+					card.style.display = 'none';
+				});
+	
+				for (let i = 0; i < getCards.length; i++) {
+					const cardId = getCards[i].id;
+					for (let j = 0; j < photographerAsked.length; j++) {
+						const photographerId = photographerAsked[j].id;
+						if (photographerId == cardId) {
+							cardToDisplay.push(getCards[i]);
+						}
+					}
+				}
+				for (let i = 0; i < cardToDisplay.length; i++) {
+					document.getElementById(cardToDisplay[i].id).style.display = 'block';
+				}
+	
 			}
 		});
 	});
