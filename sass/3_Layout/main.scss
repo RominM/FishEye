@@ -7,12 +7,14 @@ main {
 }
 
 .hidden {
-    display: none; 
+    grid-column: 2;
+    grid-row: 1;
     background-color: $salmon;
     border-radius: 5px;
     height: 25px;
     width: 180px;
-    margin: 15px auto;
+    margin: auto;
+    margin-bottom: 15px;
     padding-top: 10px;
     text-align: center;
     a {

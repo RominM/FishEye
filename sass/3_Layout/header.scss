@@ -7,11 +7,11 @@ header {
     grid-template-rows: auto auto;
     padding: 0 10px 0px 10px;
     width: 85%;
-    margin: 25px auto;
+    margin: 20px auto;
     .logo {
         grid-area: logo;
         grid-column: 1;
-        grid-row: 1;
+        grid-row: 2;
         max-width: 260px;
         min-width: 180px;
         img {
@@ -22,13 +22,13 @@ header {
         grid-area: topNav;
         margin: auto;
         grid-column: 2;
-        grid-row: 1;
+        grid-row: 2;
 
     }
     h1 {
         grid-area: h1;
         grid-column: 3;
-        grid-row: 1;
+        grid-row: 2;
         max-width: 260px;
         margin: auto 20px;
         color: $firebrick;

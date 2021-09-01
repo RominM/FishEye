@@ -75,23 +75,23 @@ export class Gallery {
          blockLike.append(like);
          blockLike.append(heart);
       });
-      likeAddition(medias);
+      // likeAddition(medias);
    };
-   stateFunction() {
-      this.likeAddition();
-      this.displayTotalLike();
-      this.incrementPic();
+   stateFunction(medias) {
+      this.likeAddition(medias);
+      this.displayTotalLike(medias);
+      this.incrementPic(medias);
    }
    likeAddition(medias){
       let totalLike = 0;
-      medias.forEach(media => {
+      this.medias.forEach(media => {
          totalLike += media.likes;
       })
       return totalLike;
    };
    displayTotalLike(medias){
-      const likeCounter = document.querySelector('.infoBox__likeCounter');
-      likeCounter.innerHTML = likeAddition(medias);
+      // const likeCounter = document.querySelector('.infoBox__likeCounter');
+      // likeCounter.innerHTML = likeAddition(medias);
    };
    incrementPic(medias){
       const blocksLike = document.querySelectorAll('.blockLike');

@@ -1,10 +1,10 @@
-import { paramUrl, getMedias, getPhotographer } from "./toolBox.js";
+import { paramUrl, getMedias, getPhotographer } from "./tool.js";
 import { DomPage } from "./DomPage.js";
 import { DropBox } from "./DropBox.js";
 import { Gallery } from "./Gallery.js";
 import { Lightbox } from "./Lightbox.js";
 import { Form } from "./Form.js";
-import { createTagsOnPage, deletedMedia } from "./utils.js";
+import { deletedMedia } from "./utils.js";
 //================================================//
 // Récupération des data dans le local Storage
 const dataFromLocalStorage = sessionStorage.getItem('data');
@@ -20,22 +20,22 @@ const photographer = getPhotographer(data, url_id);
 const domPage = new DomPage(data, photographer);
 domPage.createHeaderPage();
 domPage.photographerFrame(data);
+domPage.createTagsOnPage(photographer);
 domPage.createAlbum(photographer);
 // DropBox
 const drop = new DropBox(medias);
 drop.createDropBox();
 drop.dropBoxStatus();
-// Gallery
-const gallery = new Gallery(medias, photographer);
-gallery.displayMedias();
-gallery.stateFunction();
 // Lightbox
 Lightbox.init();
 // Formular
 const form = new Form(photographer);
 form.createForm();
 form.handleStatus();
-console.log(form);
 
-createTagsOnPage(photographer);
+// createTagsOnPage(photographer);
 deletedMedia();
+// Gallery
+const gallery = new Gallery(medias, photographer);
+gallery.displayMedias();
+gallery.stateFunction();

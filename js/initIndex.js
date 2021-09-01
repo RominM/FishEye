@@ -8,18 +8,22 @@ export const initIndex = (data) => {
 	createHeader(data)
 	onClickTagsListHeader(data)
 };
-
+// CREATE HEADER
 const createHeader = (data) => {
-
-	// EXEMPLE TYPE DE RANGEMENT VU AVEC BASTIEN
-	const body = document.querySelector("body");
 	const header = document.querySelector("header");
 
 	const hidden = document.createElement('div');
 	hidden.classList.add('hidden');
+	hidden.hidden = true;
 	const hiddenLink = document.createElement('a');
 	hiddenLink.href = '#main';
 	hiddenLink.innerHTML = 'Passer au contenu';
+	// MOUSEOVER
+	const main = document.querySelector('main');
+	main.addEventListener('mouseover', function() {
+		hidden.hidden = false;
+	})
+
 
 	const logoLink = document.createElement('a');
 	const logo = document.createElement('img');
@@ -60,8 +64,8 @@ const createHeader = (data) => {
 		li.append(btn);
 		ul.append(li);
 	}
-
-	hidden.append(hiddenLink);
+	
+	header.append(hidden);
 
 	logoLink.append(logo);
 	nav.append(ul);
@@ -70,11 +74,10 @@ const createHeader = (data) => {
 	header.append(nav);
 	header.append(h1);
 
-	body.append(hidden);
+	hidden.append(hiddenLink);
 }
-
+// PHOTOGRAPHERS CARDS
 const createCard = (photographerData) => {
-	// ON FABRIQUE LES BALISES
 	const card = document.createElement('a');
 	card.classList.add('cards');
 	card.href = 'photographer.html?id=' + photographerData.id;
@@ -108,7 +111,6 @@ const createCard = (photographerData) => {
 	const ul = document.createElement('ul');
 	ul.classList.add('tagDesign');
 
-	// ON REMPLI LES BALISES
 	card.append(image);
 
 	para.append(place);
@@ -132,16 +134,15 @@ const createCard = (photographerData) => {
 
 	card.append(cardDescription);
 
-	// ON INSÈRE TOUT DANS LE DOM
 	const main = document.querySelector('main');
 	main.append(card);
 }
-
+// SORT PHOTOGRAPHERS BY TAGS
 const onClickTagsListHeader = (data) => {
 	//Quand je click sur un tag, si la card avec l'id: (photoId) ne contient pas le tag, alors tu passes cette card en Display = 'none';
 	const tags = document.querySelectorAll('.tagDesign__tag'); // tags sur lesquels clicker
 	const getCards = document.querySelectorAll('.cards'); // cards des photographes
-
+	
 	tags.forEach(tag => { // pour chaque tag
 		tag.addEventListener('click', () => { // Quand je click sur un tag...
 

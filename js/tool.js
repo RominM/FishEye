@@ -3,7 +3,6 @@ export const paramUrl = (param) => {
 	const urlParams = new URLSearchParams(queryString);
 	return urlParams.get(param);
 };
-
 /**
  * 
  * @param {array} data 

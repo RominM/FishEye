@@ -1,10 +1,45 @@
+//Home Page//
+__________________________
+**Fixer le trie par tags**
+PROBLEME :
+click sur un tag ne fonctionne qu'une seule fois et ne se desactive que lorsqu'on click sur lui même.
+RESULTAT :
+Le tag activer devrait également se desactiver si on click sur n'importe quel autre tag.
+La fonction doit pouvoir être joué à l'infini.
+SOLUTION :
+sortir de la boucle à chaque click pour reinitialiser la fonction (Peut être avec un "return"?).
+===============================================================================================
 
-/Navigation fleche (changer en bouton) / changer en <select><option1><option2>...
-
-/'Trier par: Date' ajoute des images qui on le même nombre de likes en double (aucune explication...?)
-
-/Trie des Tags sur la premiere page toujours pas operationel
-
-/Finir le rangement
-
-/"Hidden" ne fonctionne plus  .... $%?@£µ* !!!
+//Photographer Page//
+_______________________________________________
+**Fixer la navigation clavier pour la DropBox**
+PROBLEME :
+- Impossible d'ouvrir la DropBox via le clavier car la tabulation ne va pas sur l'attribut possedant le .addEventListener
+RESULTAT :
+- Soit utiliser le bouton(arrowBtn) comme .addEventListener car la tabulation fonction.
+- Soit trouver un moyen de rendre la tabulation accessible sur les fleches.
+SOLUTION :
+Aucune voie pour le moment.
+__________________________________________
+**Disparition de la <div class="infoBox>**
+PROBLEME :
+- La <div> contenant les likes et le tarifs du photographe n'est pas visible
+RESULTAT :
+- InfoxBox invisible
+- Fonction d'incrementation incrementPic() non fonctionnel
+SOLUTION :
+- Lien avec la class Gallery
+________________________________________
+**Trie des photos part non fonctionnel**
+- PROBLEME :
+Ne peu pas lire la propriété .length des boucles dans la fonction mediaSortBy()
+Ajout de medias supplementaire lors du trie par Date
+RESULTAT :
+Disparition des medias car la lecture de la fonction deletedMedia() mais s'arrête après
+Lors du trie par Date, les medias comprenant le même nombre de like sont inséré 2 fois
+SOLUTION :
+- Lien avec la class DropBox
+- Comportement inexplicable
+_____
+**Bug
+- La Lightbox ne fonctionne plus

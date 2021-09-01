@@ -10,5 +10,3 @@ fetch('./data.json') // le 'fetch' est une promesse mais ne donnera la reponse q
 		sessionStorage.setItem('data', JSON.stringify(response2));
 		initIndex(response2);
 	});
-	
-	
