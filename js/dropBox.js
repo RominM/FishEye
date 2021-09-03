@@ -106,8 +106,7 @@ export class DropBox {
 
 			const album = document.querySelector('.album');
 			const main = document.querySelector('main');
-			//_____________//create
-			//MEDIA
+
 			const albumPhoto = document.createElement('figure');
 			albumPhoto.classList.add('albumPhoto');
 			const divPhoto = document.createElement('div');
@@ -233,7 +232,7 @@ export class DropBox {
 		domAlbum.innerHTML = '';
 	};
 	// FUNCTION SORT MEDIA BY CHOICE SELECTED
-	mediasSortBy = () => {
+	mediasSortBy = (media) => {
 		const btns = document.querySelectorAll('.selectBtn');
 		const btnPop = document.querySelector('#btnPop');
 		const btnDate = document.querySelector('#btnDate');
@@ -242,39 +241,50 @@ export class DropBox {
 
 		const album = document.querySelector('.album');
 		const infoBox = document.querySelector('.infoBox');
-		
+
 		for (let i = 0; i < btns.length; i++) {
 			let self = btns[i];
-			
+
 			const medias = this.medias;
 			const dropUp = this.dropUp;
 			const deletedMedia = this.deletedMedia;
 			const displayMedias = this.displayMedias;
 			self.addEventListener('click', function () {
-
 				switch (self) {
 					// POPULARITE
 					case btnPop:
 						txtSort.innerHTML = 'Popularité';
 						self.classList.add('selected');
 						dropUp(); // fermeture de la dropBox
-						deletedMedia(); // suppression des medias
-						album.append(infoBox);
+						// deletedMedia(); // suppression des medias
+
+
+
+
+
 						let sortPop = [];
 						for (let i = 0; i < medias.length; i++) {
 							let likes = medias[i].likes;
-							sortPop.push(likes);
+							sortPop.push(likes); //On mets les likes dans un tableau
 						}
-						//trie des likes par ordre croissant
 						sortPop.sort(function (a, b) {
 							return b - a;
 						});
-
+						deletedMedia();
+						let mediaToDisplay = [];
+						for (let i = 0; i < sortPop.length; i++) {
+							const likes = sortPop[i];
+							for (let j = 0; j < medias.length; j++) {
+								if (likes == medias[j].likes) {
+									mediaToDisplay.push(medias[j]);
+								}
+							}
+						}
+						displayMedias(mediaToDisplay);
+						album.append(infoBox);
 						// appeler displayMedia mais avec les medias triés
-						displayMedias();
-						console.log(sortPop);
 						break
-					// DATE
+						// DATE
 					case btnDate:
 						txtSort.innerHTML = 'Date';
 						dropUp(); // fermeture de la dropBox
@@ -292,7 +302,7 @@ export class DropBox {
 						displayMedias();
 						console.log(sortDate);
 						break
-					//TITRE
+						//TITRE
 					case btnTitle:
 						txtSort.innerHTML = 'Titre';
 						dropUp(); // fermeture de la dropBox
@@ -309,7 +319,7 @@ export class DropBox {
 							const titles = sortTitle[i];
 							for (let j = 0; j < sortMedias.length; j++) {
 								const mediaSorted = sortMedias[j];
-								if(titles == mediaSorted) {
+								if (titles == mediaSorted) {
 									sortTitle.push(mediaSorted)
 								}
 							}
@@ -318,147 +328,128 @@ export class DropBox {
 						displayMedias();
 						console.log(sortTitle);
 						break
-						default:
-							displayMedias();
+					default:
+						displayMedias();
 				}
 			})
 		}
 	}
+
+
+	// 	mediasSortBy = (medias) => {
+	// 		const buttons = document.querySelectorAll('.selectBtn');
+	// 		const liPop = document.querySelector('#liPop');
+	// 		const liDate = document.querySelector('#liDate');
+	// 		const liTitle = document.querySelector('#liTitle');
+	// 		for (let i = 0; i < buttons.length; i++) {
+	// 			let self = buttons[i];
+
+	// 			const medias = this.medias;
+	// 			const dropUp = this.dropUp;
+	// 			const deletedMedia = this.deletedMedia;
+	// 			const displayMedias = this.displayMedias;
+
+	// 			self.addEventListener('click', function () {
+	// 				const album = document.querySelector('.album');
+	// 				const infoBox = document.querySelector('.infoBox');
+
+	// 				switch (self.textContent) {
+	// 					case 'Popularité': {
+	// 						const txtSort = document.querySelector('.contains');
+	// 						txtSort.innerHTML = 'Popularité';
+
+	// 						let sortPop = [];
+	// 						for (let i = 0; i < medias.length; i++) {
+	// 							let likes = medias[i].likes;
+	// 							sortPop.push(likes); //On mets les likes dans un tableau
+	// 						}
+	// 						sortPop.sort(function (a, b) {
+	// 							return b - a;
+	// 						});
+	// 						deletedMedia();
+	// 						let mediaToDisplay = [];
+	// 						for (let i = 0; i < sortPop.length; i++) {
+	// 							const likes = sortPop[i];
+	// 							for (let j = 0; j < medias.length; j++) {
+	// 								if (likes == medias[j].likes) {
+	// 									mediaToDisplay.push(medias[j]);
+	// 								}
+	// 							}
+	// 						}
+	// 						displayMedias(mediaToDisplay);
+	// 						album.append(infoBox);
+	// 						dropUp();
+	// 						self.classList.add('selected');
+	// 						liPop.append(self); //pop[0]
+	// 						liDate.append(buttons[1]); //date
+	// 						liTitle.append(buttons[2]); //titre
+	// 						// lightbox.init();
+	// 						break;
+	// 					}
+	// 					case 'Date': {
+	// 						const txtSort = document.querySelector('.contains');
+	// 						txtSort.innerHTML = 'Date';
+
+	// 						let sortDate = [];
+	// 						for (let i = 0; i < medias.length; i++) {
+	// 							sortDate.push(medias[i].date);
+	// 						}
+	// 						sortDate.sort();
+	// 						this.deletedMedia;
+	// 						let mediaToDisplay = [];
+	// 						for (let i = 0; i < sortDate.length; i++) {
+	// 							const date = sortDate[i];
+	// 							for (let j = 0; j < medias.length; j++) { //medias.length = return 9
+	// 								if (date == medias[j].date) {
+	// 									mediaToDisplay.push(medias[j]);
+	// 								}
+	// 							}
+	// 						}
+
+	// 						displayMedias()
+	// 						// (mediaToDisplay);
+	// 						album.append(infoBox);
+	// 						dropUp();
+	// 						self.classList.add('selected');
+	// 						// liPop.append(self); //date[1]
+	// 						// liDate.append(buttons[2]); //titre
+	// 						// liTitle.append(buttons[0]); //pop
+	// 						// lightbox.init();
+	// 						break;
+	// 					}
+	// 					case 'Titre': {
+	// 						const txtSort = document.querySelector('.contains');
+	// 						txtSort.innerHTML = 'Titre';
+
+	// 						let sortTitle = [];
+	// 						for (let i = 0; i < medias.length; i++) {
+	// 							sortTitle.push(medias[i].title);
+	// 						}
+	// 						sortTitle.sort();
+	// 						deletedMedia();
+	// 						let mediaToDisplay = [];
+	// 						for (let i = 0; i < sortTitle.length; i++) {
+	// 							const title = sortTitle[i];
+	// 							for (let j = 0; j < medias.length; j++) {
+	// 								if (title == medias[j].title) {
+	// 									mediaToDisplay.push(medias[j]);
+	// 								}
+	// 							}
+	// 						}
+	// 						displayMedias(mediaToDisplay);
+	// 						album.append(infoBox);
+	// 						dropUp();
+	// 						self.classList.add('selected');
+	// 						liPop.append(self); //titre[2]
+	// 						liDate.append(buttons[0]); //pop
+	// 						liTitle.append(buttons[1]); //date
+	// 						// lightbox.init();
+	// 						break;
+	// 					}
+	// 					default:
+	// 						break;
+	// 				}
+	// 			});
+	// 		}
+	// 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// mediasSortBy = (medias) => {
-// 	const buttons = document.querySelectorAll('.selectBtn');
-// 	const liPop = document.querySelector('#liPop');
-// 	const liDate = document.querySelector('#liDate');
-// 	const liTitle = document.querySelector('#liTitle');
-// 	for (let i = 0; i < buttons.length; i++) {
-// 		let self = buttons[i];
-
-// 		const medias = this.medias;
-// 		// const photographer = this.photographer;
-
-// 		self.addEventListener('click', function () {
-// 			const album = document.querySelector('.album');
-// 			const infoBox = document.querySelector('.infoBox');
-
-// 			switch (self.textContent) {
-// 				case 'Popularité': {
-// 					const txtSort = document.querySelector('.contains');
-// 					txtSort.innerHTML = 'Popularité';
-
-// 					let sortPop = [];
-// 					for (let i = 0; i < medias.length; i++) {
-// 						let likes = medias[i].likes;
-// 						sortPop.push(likes); //On mets les likes dans un tableau
-// 					}
-// 					sortPop.sort(function (a, b) {
-// 						return b - a;
-// 					});
-// 					this.deletedMedia();
-// 					let mediaToDisplay = [];
-// 					for (let i = 0; i < sortPop.length; i++) {
-// 						const likes = sortPop[i];
-// 						for (let j = 0; j < medias.length; j++) {
-// 							if (likes == medias[j].likes) {
-// 								mediaToDisplay.push(medias[j]);
-// 							}
-// 						}
-// 					}
-// 					displayMedias(mediaToDisplay);
-// 					album.append(infoBox);
-// 					dropUp();
-// 					self.classList.add('selected');
-// 					liPop.append(self); //pop[0]
-// 					liDate.append(buttons[1]); //date
-// 					liTitle.append(buttons[2]); //titre
-// 					lightbox.init();
-// 					break;
-// 				}
-// 				case 'Date': {
-// 					const txtSort = document.querySelector('.contains');
-// 					txtSort.innerHTML = 'Date';
-
-// 					let sortDate = [];
-// 					for (let i = 0; i < medias.length; i++) {
-// 						sortDate.push(medias[i].date);
-// 					}
-// 					sortDate.sort();
-// 					this.deletedMedia;
-// 					let mediaToDisplay = [];
-// 					for (let i = 0; i < sortDate.length; i++) {
-// 						const date = sortDate[i];
-// 						for (let j = 0; j < medias.length; j++) { //medias.length = return 9
-// 							if (date == medias[j].date) {
-// 								mediaToDisplay.push(medias[j]);
-// 							}
-// 						}
-// 					}
-
-// 					this.displayMedias
-// 					// (mediaToDisplay);
-// 					album.append(infoBox);
-// 					this.dropUp;
-// 					self.classList.add('selected');
-// 					// liPop.append(self); //date[1]
-// 					// liDate.append(buttons[2]); //titre
-// 					// liTitle.append(buttons[0]); //pop
-// 					lightbox.init();
-// 					break;
-// 				}
-// 				case 'Titre': {
-// 					const txtSort = document.querySelector('.contains');
-// 					txtSort.innerHTML = 'Titre';
-
-// 					let sortTitle = [];
-// 					for (let i = 0; i < medias.length; i++) {
-// 						sortTitle.push(this.medias[i].title);
-// 					}
-// 					sortTitle.sort();
-// 					deletedMedia();
-// 					let mediaToDisplay = [];
-// 					for (let i = 0; i < sortTitle.length; i++) {
-// 						const title = sortTitle[i];
-// 						for (let j = 0; j < this.medias.length; j++) {
-// 							if (title == this.medias[j].title) {
-// 								mediaToDisplay.push(this.medias[j]);
-// 							}
-// 						}
-// 					}
-// 					displayMedias(mediaToDisplay);
-// 					album.append(infoBox);
-// 					dropUp();
-// 					self.classList.add('selected');
-// 					liPop.append(self); //titre[2]
-// 					liDate.append(buttons[0]); //pop
-// 					liTitle.append(buttons[1]); //date
-// 					lightbox.init();
-// 					break;
-// 				}
-// 				default:
-// 					break;
-// 			}
-// 		});
-// 	}
-// }

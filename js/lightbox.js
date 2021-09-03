@@ -31,7 +31,6 @@ export class Lightbox {
 		this.onKeyUp = this.onKeyUp.bind(this);
 		document.body.appendChild(this.element);
 		document.addEventListener('keyup', this.onKeyUp);
-		console.log(url);
 	}
 
 	//*********lOADIMAGE************//
@@ -128,8 +127,6 @@ export class Lightbox {
 		lightbox.querySelector('.lightbox__closeLB').addEventListener('click', this.close.bind(this));
 		lightbox.querySelector('.lightbox__nextLB').addEventListener('click', this.next.bind(this));
 		lightbox.querySelector('.lightbox__prevLB').addEventListener('click', this.prev.bind(this));
-		// body.style.overflow = "hidden";
-		console.log(url);// ajout d'un console log car url en param grisé (???)
 		return lightbox;
 	}
 }
