@@ -22,7 +22,7 @@ domPage.photographerFrame(data);
 domPage.createTagsOnPage(photographer);
 domPage.createAlbum(photographer);
 // DropBox
-const drop = new DropBox(medias);
+const drop = new DropBox(medias, photographer);
 drop.createDropBox();
 drop.mediasSortBy();
 drop.dropBoxStatus();
