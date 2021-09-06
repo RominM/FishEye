@@ -38,6 +38,7 @@ main {
             }
 
             .contact {
+                position: relative;
                 border: none;
                 width: 150px;
                 margin: auto 0px;
@@ -48,6 +49,22 @@ main {
                 cursor: pointer;
                 font-size: 1.2em;
             }
+            .contact:after {
+                position: absolute;
+                background: none repeat scroll 0 0 transparent;
+                bottom: 15px;
+                content: "";
+                display: block;
+                height: 1px;
+                position: absolute;
+                background: #fff;
+                transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                width: 0;
+                margin-left: 9px;
+              }
+              .contact:hover:after { 
+                width: 80%;
+              }
         }
 
         .descript {

@@ -60,7 +60,7 @@ export class DomPage {
       const contact = document.createElement('button');
       contact.classList.add('contact');
       contact.innerHTML = 'Contactez-moi';
-      contact.title = 'Contactez-moi';
+      contact.title = 'Contactez-moi !';
    
       const photographerFace = document.createElement('div');
       photographerFace.classList.add('photographerFace');
