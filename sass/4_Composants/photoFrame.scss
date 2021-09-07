@@ -23,25 +23,22 @@ main {
     .zoneTxt {
         width: 70%;
         margin: auto 10px;
-
         .divTitle {
             display: flex;
             justify-content: flex-start;
             min-height: 40px;
             flex-wrap: nowrap;
-
             h2 {
                 width: 63%;
                 font-size: 4.3vw;
                 white-space: nowrap;
                 margin: 0;
             }
-
             .contact {
-                position: relative;
+                // position: relative;
                 border: none;
                 width: 150px;
-                margin: auto 0px;
+                margin: auto 0;
                 height: 60px;
                 border-radius: 5px;
                 background-color: $firebrick;
@@ -49,22 +46,22 @@ main {
                 cursor: pointer;
                 font-size: 1.2em;
             }
-            .contact:after {
-                position: absolute;
-                background: none repeat scroll 0 0 transparent;
-                bottom: 15px;
-                content: "";
-                display: block;
-                height: 1px;
-                position: absolute;
-                background: #fff;
-                transition: width 0.3s ease 0s, left 0.3s ease 0s;
-                width: 0;
-                margin-left: 9px;
-              }
-              .contact:hover:after { 
-                width: 80%;
-              }
+            // .contact:after {
+            //     position: absolute;
+            //     background: none repeat scroll 0 0 transparent;
+            //     bottom: 15px;
+            //     content: "";
+            //     display: block;
+            //     height: 1px;
+            //     position: absolute;
+            //     background: #fff;
+            //     transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            //     width: 0;
+            //     margin-left: 9px;
+            //   }
+            //   .contact:hover:after { 
+            //     width: 80%;
+            //   }
         }
 
         .descript {

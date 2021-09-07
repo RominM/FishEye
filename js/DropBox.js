@@ -104,6 +104,7 @@ export class DropBox {
 		this.medias.forEach(media => {
 			const photographer = this.photographer;
 
+			console.log('coucou');
 			const album = document.querySelector('.album');
 			const main = document.querySelector('main');
 
