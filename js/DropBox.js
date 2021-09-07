@@ -259,9 +259,6 @@ export class DropBox {
 						// deletedMedia(); // suppression des medias
 
 
-
-
-
 						let sortPop = [];
 						for (let i = 0; i < medias.length; i++) {
 							let likes = medias[i].likes;
@@ -329,7 +326,6 @@ export class DropBox {
 						console.log(sortTitle);
 						break
 					default:
-						displayMedias();
 				}
 			})
 		}
@@ -451,5 +447,5 @@ export class DropBox {
 	// 				}
 	// 			});
 	// 		}
-	// 	}
+		// }
 }
