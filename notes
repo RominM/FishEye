@@ -1,33 +1,9 @@
 //Photographer Page//
-_______________________________________________
-**Fixer la navigation clavier pour la DropBox**
-PROBLEME :
-- Impossible d'ouvrir la DropBox via le clavier car la tabulation ne va pas sur l'attribut possedant le .addEventListener
-RESULTAT :
-- Soit utiliser le bouton(arrowBtn) comme .addEventListener car la tabulation fonctionne.
-- Soit trouver un moyen de rendre la tabulation accessible sur les fleches.
-SOLUTION :
-Aucune voie pour le moment.
-__________________________________________
-**Disparition de la <div class="infoBox>**
-PROBLEME :
-- La <div> contenant les likes et le tarifs du photographe n'est pas visible
-RESULTAT :
-- InfoxBox invisible
-- Fonction d'incrementation incrementPic() non fonctionnel
-SOLUTION :
-- Lien avec la class Gallery
 ________________________________________
 **Trie des photos par 'Popularité','Date','Titre' non fonctionnel**
-- PROBLEME :
-Ne peu pas lire la propriété .length des boucles dans la fonction mediaSortBy()
-Ajout de medias supplementaire lors du trie par Date
-RESULTAT :
-Disparition des medias car la lecture de la fonction deletedMedia() mais s'arrête après
-Lors du trie par Date, les medias comprenant le même nombre de like sont inséré 2 fois
-SOLUTION :
-- Lien avec la class DropBox
-- Comportement inexplicable
-_____
-**Bug
-- La Lightbox ne fonctionne plus
+- PROBLEME : 
+Trie non fonctionnel
+- RESULTAT :
+Reception des tries dans la console mais displayMedia() ne prend pas en compte ce trie et affiche les medias normalement (via .json)
+- SOLUTION :
+Aucune tentive concluante.
