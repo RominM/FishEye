@@ -30,6 +30,9 @@
 
         .album {
             text-align: center;
+            .infoBox {
+                display: none;
+            }
         }
     }
 
@@ -74,7 +77,7 @@
                 .divTitle {
                     h2 {
                         margin: 0;
-                        font-size: 6.5vw;
+                        font-size: 6vw;
                     }
                 }
                 .descript {

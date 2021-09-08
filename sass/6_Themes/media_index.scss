@@ -1,10 +1,9 @@
 //____________________________
 //MEDIA_______________________
 
-@media screen and (max-width: 700px) {
-    .banner {
+@media screen and (max-width: 850px) {
+    header {
         grid-template-columns: auto 0 auto;
-        // grid-template-rows: auto 120px;
         padding: 25px 0px 25px 5px;
         .topNav {
             grid-row-start: 2;
@@ -14,12 +13,16 @@
             .tagDesign {
                 width: auto;
                 height: auto;
-                font-size: 4vw;
+                font-size: 2.5vw;
             }
+        }
+        h1 {
+            grid-row: 1;
+            text-align: end;
         }
         .mainHeader {
             text-align: end;
-            grid-column: 3;
+            grid-column: 4;
             font-size: 2.3vw;
             padding-right: 10px;
         }
