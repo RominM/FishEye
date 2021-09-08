@@ -13,91 +13,67 @@ export class DropBox {
 		const txtSort = document.createElement('span');
 		txtSort.classList.add('txtSort');
 		txtSort.innerHTML = 'Trier par';
-		//DropBox
-		const dropBox = document.createElement('div');
-		dropBox.classList.add('dropBox');
-		//Liste
-		const dropUl = document.createElement('ul');
-		dropUl.classList.add('dropUl');
-		//Choix#1 : POPULARITE
-		const liPop = document.createElement('li');
-		const btnPop = document.createElement('button');
-		liPop.classList.add('dropli');
-		liPop.id = 'liPop';
-		btnPop.innerHTML = 'Popularité';
-		btnPop.classList.add('selectBtn');
-		btnPop.id = 'btnPop';
 
-		const split1 = document.createElement('hr');
-		split1.classList.add('split1');
-		//Choix#2 : DATE
-		const liDate = document.createElement('li');
-		const btnDate = document.createElement('button');
-		liDate.classList.add('dropli');
-		liDate.id = 'liDate';
-		btnDate.innerHTML = 'Date';
-		btnDate.classList.add('selectBtn');
-		btnDate.id = 'btnDate';
+		// ==============================================
+		// 					 Début SESSION
+		// ==============================================
+		const options = ['Popularité', 'Date', 'Titre'];
+		const selectContainer = document.createElement('div');
+		selectContainer.classList.add('selectContainer');
+		const select = document.createElement('select');
+		const arrow = document.createElement('img');
+		arrow.classList.add('arrow', 'arrowDown');
+		arrow.src = 'FishEye_Photos/arrow-white.svg';
+		arrow.alt = 'bouton select';
 
-		const split2 = document.createElement('hr');
-		split2.classList.add('split2');
-		//Choix#3 : TITRE
-		const liTitle = document.createElement('li');
-		const btnTitle = document.createElement('button');
-		liTitle.classList.add('dropli');
-		liTitle.id = 'liTitle';
-		btnTitle.innerHTML = 'Titre';
-		btnTitle.classList.add('selectBtn');
-		btnTitle.id = 'btnTitle';
-		//fleches
-		const arrowsBtn = document.createElement('button');
-		arrowsBtn.classList.add('arrowsBtn');
-		//DOWN
-		const arrowDown = document.createElement('div');
-		const arrowDownImg = document.createElement('img');
-		arrowDown.classList.add('arrowDown', 'arrowDrop');
-		arrowDownImg.src = 'FishEye_Photos/arrow-white.svg';
-		arrowDownImg.alt = 'flèche vers le bas';
-		//UP
-		const arrowUp = document.createElement('div');
-		const arrowUpImg = document.createElement('img');
-		arrowUp.classList.add('arrowUp', 'arrowDrop');
-		arrowUpImg.src = 'FishEye_Photos/arrow-white.svg';
-		arrowUpImg.alt = 'flèche vers le haut';
-		//Choice container
-		const contains = document.createElement('span');
-		contains.classList.add('contains');
-		contains.innerHTML = btnPop.innerHTML;
+		options.forEach(option => {
+			const op = document.createElement('option');
+			op.text = option;
+			op.value = option;
+			select.append(op);
+		});
 
-		arrowsBtn.append(arrowDown);
-		arrowsBtn.append(arrowUp);
-		arrowDown.append(arrowDownImg);
-		arrowUp.append(arrowUpImg);
+		select.addEventListener('click', (e) => {
+			this.turnArrow();
+			if (arrow.classList.contains('arrowDown')) {
+				const choice = e.target.value
+				
 
-		dropUl.append(liPop);
-		liPop.append(btnPop);
-		dropUl.append(split1);
-		dropUl.append(liDate);
-		liDate.append(btnDate);
-		dropUl.append(split2);
-		dropUl.append(liTitle);
-		liTitle.append(btnTitle);
+				// A FINIR !
 
-		dropBox.append(dropUl);
-		dropBox.append(arrowsBtn);
-		dropBox.append(contains);
+
+			}
+		})
+
+		selectContainer.append(select)
+		selectContainer.append(arrow)
 
 		filter.append(txtSort);
-		filter.append(dropBox);
+		filter.append(selectContainer);
 
 		main.append(filter);
 	}
+
+	turnArrow() {
+		const arrow = document.querySelector('.arrow');
+		if (arrow.classList.contains('arrowDown')) {
+			arrow.classList.add('arrowUp');
+			arrow.classList.remove('arrowDown');
+		}
+		else {
+			arrow.classList.add('arrowDown');
+			arrow.classList.remove('arrowUp');
+		}
+	}
+
 	dropBoxStatus() {
 		this.mediasSortBy();
-		this.displayToDropBox();
-		this.dropDown();
-		this.dropUp();
 	}
+
+	// ==============================================
+	// 					FIN SESSION
+	// ==============================================
+
 	// AFFICHAGE DES MEDIAS
 	displayMedias = (medias, photographer) => {
 		//POUR CHAQUE MEDIA
@@ -173,61 +149,7 @@ export class DropBox {
 			blockLike.append(heart);
 		});
 	};
-	// ANIMATED DROPBOX
-	displayToDropBox = () => {
-		const arrowDown = document.querySelector('.arrowDown');
-		arrowDown.addEventListener('click', this.dropDown);
-		const arrowUp = document.querySelector('.arrowUp');
-		arrowUp.addEventListener('click', this.dropUp);
-	}
-	dropDown = () => {
-		const dropUl = document.querySelector('.dropUl');
-		dropUl.classList.add('droped');
 
-		const arrowDown = document.querySelector('.arrowDown');
-		const arrowUp = document.querySelector('.arrowUp');
-		arrowDown.style.display = 'none';
-		arrowUp.style.display = 'block';
-
-		const liPop = document.querySelector('#liPop');
-		liPop.style.opacity = '1';
-		const liDate = document.querySelector('#liDate');
-		liDate.style.opacity = '1';
-		const liTitle = document.querySelector('#liTitle');
-		liTitle.style.opacity = '1';
-
-		const split1 = document.querySelector('.split1');
-		split1.style.opacity = '1';
-		const split2 = document.querySelector('.split2');
-		split2.style.opacity = '1';
-
-		const arrowsBtn = document.querySelector('.arrowsBtn');
-		arrowsBtn.style.borderBottom = 'solid 1px #fff';
-	}
-	dropUp() {
-		const dropUl = document.querySelector('.dropUl');
-		dropUl.classList.remove('droped');
-
-		const arrowDown = document.querySelector('.arrowDown');
-		const arrowUp = document.querySelector('.arrowUp');
-		arrowDown.style.display = 'block';
-		arrowUp.style.display = 'none';
-
-		const liPop = document.querySelector('#liPop');
-		liPop.style.opacity = '0';
-		const liDate = document.querySelector('#liDate');
-		liDate.style.opacity = '0';
-		const liTitle = document.querySelector('#liTitle');
-		liTitle.style.opacity = '0';
-
-		const split1 = document.querySelector('.split1');
-		split1.style.opacity = '0';
-		const split2 = document.querySelector('.split2');
-		split2.style.opacity = '0';
-
-		const arrowsBtn = document.querySelector('.arrowsBtn');
-		arrowsBtn.style.borderBottom = 'none';
-	}
 	deletedMedia = () => {
 		const domAlbum = document.querySelector('.album');
 		domAlbum.innerHTML = '';
@@ -247,7 +169,6 @@ export class DropBox {
 			let self = btns[i];
 
 			const medias = this.medias;
-			const dropUp = this.dropUp;
 			const deletedMedia = this.deletedMedia;
 			const displayMedias = this.displayMedias;
 			self.addEventListener('click', function () {
@@ -256,7 +177,6 @@ export class DropBox {
 					case btnPop:
 						txtSort.innerHTML = 'Popularité';
 						self.classList.add('selected');
-						dropUp(); // fermeture de la dropBox
 						// deletedMedia(); // suppression des medias
 
 
@@ -285,7 +205,6 @@ export class DropBox {
 						// DATE
 					case btnDate:
 						txtSort.innerHTML = 'Date';
-						dropUp(); // fermeture de la dropBox
 						deletedMedia(); // suppression des medias
 						album.append(infoBox);
 						let sortDate = [];
@@ -303,7 +222,6 @@ export class DropBox {
 						//TITRE
 					case btnTitle:
 						txtSort.innerHTML = 'Titre';
-						dropUp(); // fermeture de la dropBox
 						deletedMedia(); // suppression des medias
 						album.append(infoBox);
 						let sortTitle = [];
@@ -331,122 +249,4 @@ export class DropBox {
 			})
 		}
 	}
-
-
-	// 	mediasSortBy = (medias) => {
-	// 		const buttons = document.querySelectorAll('.selectBtn');
-	// 		const liPop = document.querySelector('#liPop');
-	// 		const liDate = document.querySelector('#liDate');
-	// 		const liTitle = document.querySelector('#liTitle');
-	// 		for (let i = 0; i < buttons.length; i++) {
-	// 			let self = buttons[i];
-
-	// 			const medias = this.medias;
-	// 			const dropUp = this.dropUp;
-	// 			const deletedMedia = this.deletedMedia;
-	// 			const displayMedias = this.displayMedias;
-
-	// 			self.addEventListener('click', function () {
-	// 				const album = document.querySelector('.album');
-	// 				const infoBox = document.querySelector('.infoBox');
-
-	// 				switch (self.textContent) {
-	// 					case 'Popularité': {
-	// 						const txtSort = document.querySelector('.contains');
-	// 						txtSort.innerHTML = 'Popularité';
-
-	// 						let sortPop = [];
-	// 						for (let i = 0; i < medias.length; i++) {
-	// 							let likes = medias[i].likes;
-	// 							sortPop.push(likes); //On mets les likes dans un tableau
-	// 						}
-	// 						sortPop.sort(function (a, b) {
-	// 							return b - a;
-	// 						});
-	// 						deletedMedia();
-	// 						let mediaToDisplay = [];
-	// 						for (let i = 0; i < sortPop.length; i++) {
-	// 							const likes = sortPop[i];
-	// 							for (let j = 0; j < medias.length; j++) {
-	// 								if (likes == medias[j].likes) {
-	// 									mediaToDisplay.push(medias[j]);
-	// 								}
-	// 							}
-	// 						}
-	// 						displayMedias(mediaToDisplay);
-	// 						album.append(infoBox);
-	// 						dropUp();
-	// 						self.classList.add('selected');
-	// 						liPop.append(self); //pop[0]
-	// 						liDate.append(buttons[1]); //date
-	// 						liTitle.append(buttons[2]); //titre
-	// 						// lightbox.init();
-	// 						break;
-	// 					}
-	// 					case 'Date': {
-	// 						const txtSort = document.querySelector('.contains');
-	// 						txtSort.innerHTML = 'Date';
-
-	// 						let sortDate = [];
-	// 						for (let i = 0; i < medias.length; i++) {
-	// 							sortDate.push(medias[i].date);
-	// 						}
-	// 						sortDate.sort();
-	// 						this.deletedMedia;
-	// 						let mediaToDisplay = [];
-	// 						for (let i = 0; i < sortDate.length; i++) {
-	// 							const date = sortDate[i];
-	// 							for (let j = 0; j < medias.length; j++) { //medias.length = return 9
-	// 								if (date == medias[j].date) {
-	// 									mediaToDisplay.push(medias[j]);
-	// 								}
-	// 							}
-	// 						}
-
-	// 						displayMedias()
-	// 						// (mediaToDisplay);
-	// 						album.append(infoBox);
-	// 						dropUp();
-	// 						self.classList.add('selected');
-	// 						// liPop.append(self); //date[1]
-	// 						// liDate.append(buttons[2]); //titre
-	// 						// liTitle.append(buttons[0]); //pop
-	// 						// lightbox.init();
-	// 						break;
-	// 					}
-	// 					case 'Titre': {
-	// 						const txtSort = document.querySelector('.contains');
-	// 						txtSort.innerHTML = 'Titre';
-
-	// 						let sortTitle = [];
-	// 						for (let i = 0; i < medias.length; i++) {
-	// 							sortTitle.push(medias[i].title);
-	// 						}
-	// 						sortTitle.sort();
-	// 						deletedMedia();
-	// 						let mediaToDisplay = [];
-	// 						for (let i = 0; i < sortTitle.length; i++) {
-	// 							const title = sortTitle[i];
-	// 							for (let j = 0; j < medias.length; j++) {
-	// 								if (title == medias[j].title) {
-	// 									mediaToDisplay.push(medias[j]);
-	// 								}
-	// 							}
-	// 						}
-	// 						displayMedias(mediaToDisplay);
-	// 						album.append(infoBox);
-	// 						dropUp();
-	// 						self.classList.add('selected');
-	// 						liPop.append(self); //titre[2]
-	// 						liDate.append(buttons[0]); //pop
-	// 						liTitle.append(buttons[1]); //date
-	// 						// lightbox.init();
-	// 						break;
-	// 					}
-	// 					default:
-	// 						break;
-	// 				}
-	// 			});
-	// 		}
-		// }
 }

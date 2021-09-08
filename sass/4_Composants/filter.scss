@@ -1,115 +1,51 @@
 .filter {
-    position: relative;
-    width: 90%;
-    height: 50px;
-    margin: auto;
     display: flex;
-    z-index: 2;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 0 5%;
     .txtSort {
-        font-size: 1.2em;
-        margin-right: 40px;
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 20px;
     }
-    .dropBox {
-        position: relative;
-        color : #fff;
-        font-size: 1.25em;
-        .contains {
-            position: absolute;
-            top: 45%;
-            left: 40%;
-            transform: translate(-50%,-50%);
-        }
-        .arrowsBtn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
+
+    .selectContainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: $firebrick;
+        border-radius: 5px;
+        padding-right: 15px;
+        
+        select {
             cursor: pointer;
+            background: $firebrick;
+            height: 45px;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 20px;
             border: none;
-            background-color: transparent;
-            .arrowDown img,
-            .arrowUp img {
-                position: absolute;
-                top: 30%;
-                right: 10%;
-                transform: translate(-50%,-50%);
-                width: 10px;
-                cursor: pointer;
+            appearance: none;
+            padding: 0 40px 0 15px;
+            outline: 0;
+        }
+        
+        .arrow {
+            cursor: pointer;
+            width: 10px;
+            margin-left: -25px;
+            transition: 0.1s;
+            pointer-events: none;
+
+            &.arrowDown {
                 transform: rotate(90deg);
             }
-            .arrowUp {
-                display: none;
-                position: absolute;
-                top: 65%;
-                right: 16%;
-                transform: translate(-50%,-50%);
-                transform: rotate(180deg);
+            &.arrowUp {
+                transform: rotate(270deg);
             }
-        }
-        .dropUl {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            width: 150px;
-            height: 45px;
-            background-color: $firebrick;
-            border-radius: 5px;
-            box-shadow: 2px 2px 12px $darkGrey;
-            transition: .2s;
-            .dropli {
-                display: block;
-                width: 25px;
-                height: 50px;
-                cursor: pointer;
-                color: #fff;
-                transition: .3s;
-                .liPop::after {
-                    content: '';
-                    display: inline-block;
-                    vertical-align: middle;
-                    width: 100px;
-                    height: 1.5px;
-                    background-color: #000;
-                    margin-left: 25px;
-                    margin-bottom: 17px;
-                }
-                .liDate::after {
-                    @extend .liPop;
-                }
-            }
-            hr {
-                width: 80%;
-                height: 2px;
-                border: 0 none;
-                background-color: #fff;
-                opacity: 0;
-                padding: 0;
-                margin: 0 auto;
-                transition: .2s;
-            }
-            .selectBtn {
-                border: none;
-                text-align: start;
-                margin: 10px;
-                width: 100px;
-                height: 35px;
-                background-color: transparent;
-                font-size: 0.9em;
-                cursor: pointer;
-                color: #fff;
-            }
-            #liPop, #liDate, #liTitle {
-                opacity: 0;
-            }
-            #liPop:hover, #liDate:hover, #liTitle:hover {
-                transform: translateX(15px);
-            }
-        }
-        .droped {
-            height: 160px;
-            padding-top: 50px;
         }
     }
 }

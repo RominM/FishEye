@@ -7,3 +7,5 @@ Trie non fonctionnel
 Reception des tries dans la console mais displayMedia() ne prend pas en compte ce trie et affiche les medias normalement (via .json)
 - SOLUTION :
 Aucune tentive concluante.
+
+Fixer probleme lightbox tabulation
