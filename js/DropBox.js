@@ -39,9 +39,83 @@ export class DropBox {
 				const choice = e.target.value
 				console.log(choice);
 
-				// A FINIR !
+				const album = document.querySelector('.album');
+				const infoBox = document.querySelector('.infoBox');
+		
+				switch (choice) {
+					// POPULARITE
+					case 'Popularité':
+						// txtSort.innerHTML = 'Popularité';
+						// self.classList.add('selected');
+						// deletedMedia(); // suppression des medias
 
 
+						let sortPop = [];
+						for (let i = 0; i < this.medias.length; i++) {
+							let likes = this.medias[i].likes;
+							sortPop.push(likes); //On mets les likes dans un tableau
+						}
+						sortPop.sort(function (a, b) {
+							return b - a;
+						});
+						this.deletedMedia();
+						let mediaToDisplay = [];
+						for (let i = 0; i < sortPop.length; i++) {
+							const likes = sortPop[i];
+							for (let j = 0; j < this.medias.length; j++) {
+								if (likes == this.medias[j].likes) {
+									mediaToDisplay.push(this.medias[j]);
+								}
+							}
+						}
+						this.displayMedias(mediaToDisplay);
+						album.append(infoBox);
+						// appeler displayMedia mais avec les medias triés
+						break
+						// DATE
+					case btnDate:
+						txtSort.innerHTML = 'Date';
+						deletedMedia(); // suppression des medias
+						album.append(infoBox);
+						let sortDate = [];
+						for (let i = 0; i < medias.length; i++) {
+							let dates = medias[i].date;
+							sortDate.push(dates);
+						}
+						sortDate.sort(); // Trie des dates de la plus ancienne à la plus recentes
+						sortDate.reverse(); // Inverse l'ordre du trie précedent
+
+						// appeler displayMedia mais avec les medias triés
+						displayMedias();
+						console.log(sortDate);
+						break
+						//TITRE
+					case btnTitle:
+						txtSort.innerHTML = 'Titre';
+						deletedMedia(); // suppression des medias
+						album.append(infoBox);
+						let sortTitle = [];
+						for (let i = 0; i < medias.length; i++) {
+							let title = medias[i].title;
+							sortTitle.push(title);
+						}
+						sortTitle.sort(); // Trie par ordre alphabethique
+						let sortMedias = [];
+						for (let i = 0; i < sortTitle.length; i++) {
+							const titles = sortTitle[i];
+							for (let j = 0; j < sortMedias.length; j++) {
+								const mediaSorted = sortMedias[j];
+								if (titles == mediaSorted) {
+									sortTitle.push(mediaSorted)
+								}
+							}
+						}
+						// appeler displayMedia mais avec les medias triés
+						displayMedias();
+						console.log(sortTitle);
+						break
+					default:
+				}
 			}
 		})
 
@@ -65,6 +139,10 @@ export class DropBox {
 			arrow.classList.remove('arrowUp');
 		}
 	}
+	deletedMedia() {
+		const domAlbum = document.querySelector('.album');
+		domAlbum.innerHTML = '';
+	};
 
 	dropBoxStatus() {
 		this.mediasSortBy();
@@ -74,13 +152,46 @@ export class DropBox {
 	// 					FIN SESSION
 	// ==============================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	// AFFICHAGE DES MEDIAS
 	displayMedias = (medias, photographer) => {
 		//POUR CHAQUE MEDIA
 		this.medias.forEach(media => {
 			const photographer = this.photographer;
 
-			console.log('coucou');
+			console.log('displayMedias est joué');
 			const album = document.querySelector('.album');
 			const main = document.querySelector('main');
 
