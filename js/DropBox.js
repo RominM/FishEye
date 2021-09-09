@@ -27,17 +27,17 @@ export class DropBox {
 		arrow.alt = 'bouton select';
 
 		options.forEach(option => {
-			const op = document.createElement('option');
-			op.text = option;
-			op.value = option;
-			select.append(op);
+			const opt = document.createElement('option');
+			opt.text = option;
+			opt.value = option;
+			select.append(opt);
 		});
 
 		select.addEventListener('click', (e) => {
 			this.turnArrow();
 			if (arrow.classList.contains('arrowDown')) {
 				const choice = e.target.value
-				
+				console.log(choice);
 
 				// A FINIR !
 
