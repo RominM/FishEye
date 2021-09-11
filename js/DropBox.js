@@ -1,3 +1,5 @@
+import { Lightbox } from "./Lightbox.js";
+
 export class DropBox {
 	constructor(medias, photographer) {
 		this.medias = medias;
@@ -47,7 +49,6 @@ export class DropBox {
 							if (a.likes > b.likes) return -1;
 							return 0;
 						 });
-						// appeler displayMedia mais avec les medias triés
 						this.displayMedias(sortPop);
 						break
 						// DATE
@@ -57,8 +58,6 @@ export class DropBox {
 							if (a.date > b.date) return -1;
 							return 0;
 						 });
-						console.log(sortDate);
-						// appeler displayMedia mais avec les medias triés
 						this.displayMedias(sortDate);
 						break
 						//TITRE
@@ -68,12 +67,11 @@ export class DropBox {
 							if (a.title > b.title) return 1;
 							return 0;
 						 });						
-						 console.log(sortTitle);
-						// appeler displayMedia mais avec les medias triés
 						this.displayMedias(sortTitle);
 						break
 					default:
 				}
+				Lightbox.init();
 				album.append(infoBox);
 			}
 		})
