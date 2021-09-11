@@ -31,9 +31,10 @@
             appearance: none;
             padding: 0 40px 0 15px;
             outline: 0;
-            // option {
-            // text-decoration: underline 1px;
-            // }
+            option {
+                border:none;
+                border-bottom: 1px solid white;
+            }
         }
         
         .arrow {
@@ -44,10 +45,10 @@
             pointer-events: none;
 
             &.arrowDown {
-                transform: rotate(270deg);
+                transform: rotate(90deg);
             }
             &.arrowUp {
-                transform: rotate(90deg);
+                transform: rotate(270deg);
             }
         }
     }

@@ -24,8 +24,6 @@ domPage.createAlbum(photographer);
 // DropBox
 const drop = new DropBox(medias, photographer);
 drop.createDropBox();
-drop.mediasSortBy();
-drop.dropBoxStatus();
 // Gallery
 const gallery = new Gallery(medias, photographer);
 gallery.displayMedias();

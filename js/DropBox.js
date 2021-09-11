@@ -37,66 +37,54 @@ export class DropBox {
 			this.turnArrow();
 			if (arrow.classList.contains('arrowDown')) {
 				const choice = e.target.value
-				console.log(choice);
-
 				const album = document.querySelector('.album');
 				const infoBox = document.querySelector('.infoBox');
-		
+				this.deletedMedia(); // suppression des medias
+				
+				// FUNCTION SORT MEDIA BY CHOICE SELECTED
 				switch (choice) {
-					// POPULARITE
+						// POPULARITE
 					case 'Popularité':
-						// txtSort.innerHTML = 'Popularité';
-						// self.classList.add('selected');
-						// deletedMedia(); // suppression des medias
-
-
-						let sortPop = [];
+						let mediaToDisplay = [];
 						for (let i = 0; i < this.medias.length; i++) {
 							let likes = this.medias[i].likes;
-							sortPop.push(likes); //On mets les likes dans un tableau
+							mediaToDisplay.push(likes); //On mets les likes dans un tableau
 						}
-						sortPop.sort(function (a, b) {
+						mediaToDisplay.sort(function (a, b) {
 							return b - a;
 						});
-						this.deletedMedia();
-						let mediaToDisplay = [];
-						for (let i = 0; i < sortPop.length; i++) {
-							const likes = sortPop[i];
+						let sortPop = [];
+						for (let i = 0; i < mediaToDisplay.length; i++) {
+							const likes = mediaToDisplay[i];
 							for (let j = 0; j < this.medias.length; j++) {
 								if (likes == this.medias[j].likes) {
-									mediaToDisplay.push(this.medias[j]);
+									sortPop.push(this.medias[j]);
 								}
 							}
 						}
-						this.displayMedias(mediaToDisplay);
-						album.append(infoBox);
+						console.log(sortPop);
 						// appeler displayMedia mais avec les medias triés
+						this.displayMedias(sortPop);
 						break
 						// DATE
-					case btnDate:
-						txtSort.innerHTML = 'Date';
-						deletedMedia(); // suppression des medias
-						album.append(infoBox);
+					case 'Date':
 						let sortDate = [];
-						for (let i = 0; i < medias.length; i++) {
-							let dates = medias[i].date;
+						for (let i = 0; i < this.medias.length; i++) {
+							let dates = this.medias[i].date;
 							sortDate.push(dates);
 						}
 						sortDate.sort(); // Trie des dates de la plus ancienne à la plus recentes
 						sortDate.reverse(); // Inverse l'ordre du trie précedent
 
-						// appeler displayMedia mais avec les medias triés
-						displayMedias();
 						console.log(sortDate);
+						// appeler displayMedia mais avec les medias triés
+						this.displayMedias(sortDate);
 						break
 						//TITRE
-					case btnTitle:
-						txtSort.innerHTML = 'Titre';
-						deletedMedia(); // suppression des medias
-						album.append(infoBox);
+					case 'Titre':
 						let sortTitle = [];
-						for (let i = 0; i < medias.length; i++) {
-							let title = medias[i].title;
+						for (let i = 0; i < this.medias.length; i++) {
+							let title = this.medias[i].title;
 							sortTitle.push(title);
 						}
 						sortTitle.sort(); // Trie par ordre alphabethique
@@ -110,12 +98,13 @@ export class DropBox {
 								}
 							}
 						}
-						// appeler displayMedia mais avec les medias triés
-						displayMedias();
 						console.log(sortTitle);
+						// appeler displayMedia mais avec les medias triés
+						this.displayMedias(sortTitle);
 						break
 					default:
 				}
+				album.append(infoBox);
 			}
 		})
 
@@ -143,55 +132,12 @@ export class DropBox {
 		const domAlbum = document.querySelector('.album');
 		domAlbum.innerHTML = '';
 	};
-
-	dropBoxStatus() {
-		this.mediasSortBy();
-	}
-
-	// ==============================================
-	// 					FIN SESSION
-	// ==============================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// AFFICHAGE DES MEDIAS
 	displayMedias = (medias, photographer) => {
 		//POUR CHAQUE MEDIA
 		this.medias.forEach(media => {
 			const photographer = this.photographer;
 
-			console.log('displayMedias est joué');
 			const album = document.querySelector('.album');
 			const main = document.querySelector('main');
 
@@ -261,103 +207,8 @@ export class DropBox {
 		});
 	};
 
-	deletedMedia = () => {
-		const domAlbum = document.querySelector('.album');
-		domAlbum.innerHTML = '';
-	};
-	// FUNCTION SORT MEDIA BY CHOICE SELECTED
-	mediasSortBy = (media) => {
-		const btns = document.querySelectorAll('.selectBtn');
-		const btnPop = document.querySelector('#btnPop');
-		const btnDate = document.querySelector('#btnDate');
-		const btnTitle = document.querySelector('#btnTitle');
-		const txtSort = document.querySelector('.contains');
-
-		const album = document.querySelector('.album');
-		const infoBox = document.querySelector('.infoBox');
-
-		for (let i = 0; i < btns.length; i++) {
-			let self = btns[i];
-
-			const medias = this.medias;
-			const deletedMedia = this.deletedMedia;
-			const displayMedias = this.displayMedias;
-			self.addEventListener('click', function () {
-				switch (self) {
-					// POPULARITE
-					case btnPop:
-						txtSort.innerHTML = 'Popularité';
-						self.classList.add('selected');
-						// deletedMedia(); // suppression des medias
-
-
-						let sortPop = [];
-						for (let i = 0; i < medias.length; i++) {
-							let likes = medias[i].likes;
-							sortPop.push(likes); //On mets les likes dans un tableau
-						}
-						sortPop.sort(function (a, b) {
-							return b - a;
-						});
-						deletedMedia();
-						let mediaToDisplay = [];
-						for (let i = 0; i < sortPop.length; i++) {
-							const likes = sortPop[i];
-							for (let j = 0; j < medias.length; j++) {
-								if (likes == medias[j].likes) {
-									mediaToDisplay.push(medias[j]);
-								}
-							}
-						}
-						displayMedias(mediaToDisplay);
-						album.append(infoBox);
-						// appeler displayMedia mais avec les medias triés
-						break
-						// DATE
-					case btnDate:
-						txtSort.innerHTML = 'Date';
-						deletedMedia(); // suppression des medias
-						album.append(infoBox);
-						let sortDate = [];
-						for (let i = 0; i < medias.length; i++) {
-							let dates = medias[i].date;
-							sortDate.push(dates);
-						}
-						sortDate.sort(); // Trie des dates de la plus ancienne à la plus recentes
-						sortDate.reverse(); // Inverse l'ordre du trie précedent
-
-						// appeler displayMedia mais avec les medias triés
-						displayMedias();
-						console.log(sortDate);
-						break
-						//TITRE
-					case btnTitle:
-						txtSort.innerHTML = 'Titre';
-						deletedMedia(); // suppression des medias
-						album.append(infoBox);
-						let sortTitle = [];
-						for (let i = 0; i < medias.length; i++) {
-							let title = medias[i].title;
-							sortTitle.push(title);
-						}
-						sortTitle.sort(); // Trie par ordre alphabethique
-						let sortMedias = [];
-						for (let i = 0; i < sortTitle.length; i++) {
-							const titles = sortTitle[i];
-							for (let j = 0; j < sortMedias.length; j++) {
-								const mediaSorted = sortMedias[j];
-								if (titles == mediaSorted) {
-									sortTitle.push(mediaSorted)
-								}
-							}
-						}
-						// appeler displayMedia mais avec les medias triés
-						displayMedias();
-						console.log(sortTitle);
-						break
-					default:
-				}
-			})
-		}
-	}
+	// deletedMedia = () => {
+	// 	const domAlbum = document.querySelector('.album');
+	// 	domAlbum.innerHTML = '';
+	// };
 }
