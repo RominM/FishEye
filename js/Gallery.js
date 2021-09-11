@@ -6,6 +6,7 @@ export class Gallery {
 
    displayMedias = (medias, photographer) => {
       //POUR CHAQUE MEDIA
+      
       this.medias.forEach(media => {
 
          const album = document.querySelector('.album');
