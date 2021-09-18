@@ -4,27 +4,27 @@ export class Form {
    }
    createForm(photographer) {
       const body = document.querySelector('body');
-   //Background
+      //Background
       const bground = document.createElement('section');
       const content = document.createElement('div');
       bground.classList.add('bground');
       content.classList.add('content');
-   //Cross (Escape)
+      //Cross (Escape)
       const cross = document.createElement('span');
       cross.classList.add('cross');
-   //Texte Format
+      //Texte Format
       const divContact = document.createElement('div');
       const contactMe = document.createElement('span');
       const up = document.createElement('br');
       contactMe.classList.add('contactMe');
       contactMe.innerHTML = 'Contactez-moi';
-   //This.photographer.name
+      //This.photographer.name
       const photographerName = document.createElement('h3');
       const modalbg = document.createElement('div');
       photographerName.classList.add('titleName');
       photographerName.innerHTML = this.photographer.name;
       modalbg.classList.add('modalBody');
-   //FORMULARE
+      //FORMULARE
       const form = document.createElement('form');
       form.id = 'send';
       //===================================================
@@ -59,7 +59,7 @@ export class Form {
       inpLastname.id = 'last';
       inpLastname.type = 'textarea';
       inpEmail.id = 'email';
-      inpEmail.type = 'textarea';
+      inpEmail.type = 'email';
       inpTxtFree.id = 'txtFree';
       //===================================================
       const sendBtn = document.createElement('button');
@@ -92,7 +92,7 @@ export class Form {
       email.append(inpEmail);
       txtFree.append(labTxtFree);
       txtFree.append(inpTxtFree);
-   //STATE______________//
+      //STATE______________//
       var state = {
          firstName: {
             data: '',
@@ -107,37 +107,21 @@ export class Form {
             data: '',
          }
       };
-   //FUNCTION___________//
-      const checkFirstname = () => {
-         state.firstName.data = inpFirstname.value;
-      };
-   
-      const checkLastname = () => {
-         state.lastName.data = inpLastname.value;
-      };
-   
-      const checkEmail = () => {
-         state.email.data = inpEmail.value;
-      };
-   
-      const checkTxtFree = () => {
-         state.txtFree.data = inpTxtFree.value;
-      };
-   
+
       const checkForm = () => {
          const sendBtn = document.querySelector('.send');
          sendBtn.addEventListener('click', (event) => {
             //STOP FOR CHECK
             event.preventDefault();
+
+            state.firstName.data = inpFirstname.value;
+            state.lastName.data = inpLastname.value;
+            state.email.data = inpEmail.value;
+            state.txtFree.data = inpTxtFree.value;
             console.log(state);
-   
-            checkFirstname();
-            checkLastname();
-            checkEmail();
-            checkTxtFree();
-   
+
             this.closeForm();
-   
+
             const form = document.querySelector('#send');
             form.reset();
          });
@@ -149,22 +133,22 @@ export class Form {
       this.openForm();
       this.closeForm();
    }
-   
-   openForm() {//PAS EN STATIC
+
+   openForm() {
       //FORM_context___
       const contact = document.querySelector('.contact');
       contact.addEventListener('click', this.openForm);
-   
+
       const bground = document.querySelector('.bground');
       const main = document.querySelector('main');
       bground.style.display = 'block';
       main.style.opacity = 0.3;
-   
+
       const input = document.querySelector('#first');
       input.focus();
    };
-   
-   closeForm() {//PAS EN STATIC
+
+   closeForm() {
       const cross = document.querySelector('.cross');
       cross.addEventListener('click', this.closeForm);
       const bground = document.querySelector('.bground');
