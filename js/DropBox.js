@@ -9,7 +9,7 @@ export class DropBox extends Gallery {
 		this.photographer = photographer;
 	}
 	// CREAT DOM ELEMENTS
-	createDropBox = () => {
+	createDropBox() {
 		const main = document.querySelector('main');
 
 		const filter = document.createElement('div');

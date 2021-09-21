@@ -34,7 +34,6 @@ export class Lightbox {
 	}
 
 	//*********lOADIMAGE************//
-
 	/**
 	 * @param {string} url url de l'image
 	 */

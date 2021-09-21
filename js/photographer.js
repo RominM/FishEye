@@ -1,4 +1,4 @@
-import { paramUrl, getMedias, getPhotographer } from "./tool.js";
+import { paramUrl, getMedias, getPhotographer } from "./tools.js";
 import { DomPage } from "./DomPage.js";
 import { DropBox } from "./DropBox.js";
 import { Gallery } from "./Gallery.js";

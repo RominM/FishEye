@@ -1,4 +1,4 @@
-import { paramUrl, getPhotographer } from "./tool.js";
+import { paramUrl, getPhotographer } from "./tools.js";
 
 export class DomPage {
    constructor(data, photographer) {

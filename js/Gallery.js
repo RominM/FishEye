@@ -4,15 +4,13 @@ export class Gallery {
       this.photographer = photographer;
    }
 
-   displayMedias = (medias, photographer) => {
+   displayMedias (medias, photographer) {
       //POUR CHAQUE MEDIA
-      
       this.medias.forEach(media => {
 
          const album = document.querySelector('.album');
          const main = document.querySelector('main');
-         //_____________//create
-         //MEDIA
+
          const albumPhoto = document.createElement('figure');
          albumPhoto.classList.add('albumPhoto');
          const divPhoto = document.createElement('div');

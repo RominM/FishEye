@@ -27,6 +27,7 @@ export class Form {
       //FORMULARE
       const form = document.createElement('form');
       form.id = 'send';
+      form.method = 'POST';
       //===================================================
       const firstname = document.createElement('div');
       const lastname = document.createElement('div');
@@ -58,8 +59,9 @@ export class Form {
       inpFirstname.type = 'textarea';
       inpLastname.id = 'last';
       inpLastname.type = 'textarea';
-      inpEmail.id = 'email';
       inpEmail.type = 'email';
+      inpEmail.id = 'email';
+      inpEmail.required = true;
       inpTxtFree.id = 'txtFree';
       //===================================================
       const sendBtn = document.createElement('button');
@@ -95,16 +97,16 @@ export class Form {
       //STATE______________//
       var state = {
          firstName: {
-            data: '',
+            data: ''
          },
          lastName: {
-            data: '',
+            data: ''
          },
          email: {
-            data: '',
+            data: ''
          },
          txtFree: {
-            data: '',
+            data: ''
          }
       };
 
@@ -114,26 +116,32 @@ export class Form {
             //STOP FOR CHECK
             event.preventDefault();
 
-            state.firstName.data = inpFirstname.value;
-            state.lastName.data = inpLastname.value;
-            state.email.data = inpEmail.value;
-            state.txtFree.data = inpTxtFree.value;
-            console.log(state);
+            if(inpEmail.value.match(/^([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)) {
+               state.firstName.data = inpFirstname.value;
+               state.lastName.data = inpLastname.value;
+               state.email.data = inpEmail.value;
+               state.txtFree.data = inpTxtFree.value;
 
-            this.closeForm();
+               this.closeForm();
+               const form = document.querySelector('#send');
+               form.reset();
+               console.log(state);
+            } else {
+               state.firstName.data = inpFirstname.value;
+               state.lastName.data = inpLastname.value;
+               state.email.data = inpEmail.value;
+               state.txtFree.data = inpTxtFree.value;
 
-            const form = document.querySelector('#send');
-            form.reset();
+               console.log('error');
+            }
          });
       }
       checkForm();
-   }
-
+   };
    handleStatus() {
       this.openForm();
       this.closeForm();
-   }
-
+   };
    openForm() {
       //FORM_context___
       const contact = document.querySelector('.contact');
@@ -147,7 +155,6 @@ export class Form {
       const input = document.querySelector('#first');
       input.focus();
    };
-
    closeForm() {
       const cross = document.querySelector('.cross');
       cross.addEventListener('click', this.closeForm);
