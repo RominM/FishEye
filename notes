@@ -1,11 +1,1 @@
-//Photographer Page//
-________________________________________
-**Trie des photos par 'Popularité','Date','Titre' non fonctionnel**
-- PROBLEME : 
-Trie non fonctionnel
-- RESULTAT :
-Reception des tries dans la console mais displayMedia() ne prend pas en compte ce trie et affiche les medias normalement (via .json)
-- SOLUTION :
-Aucune tentive concluante.
-
-Fixer probleme lightbox tabulation
+Verifier autoprefixer et eslint

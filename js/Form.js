@@ -68,18 +68,7 @@ export class Form {
       sendBtn.type = 'submit';
       sendBtn.classList.add('send');
       sendBtn.innerHTML = 'Envoyer';
-
-      body.append(bground);
-      bground.append(content);
-      bground.append(modalbg);
-      modalbg.append(form);
-      content.append(photographerName);
-      content.append(cross);
-      content.append(divContact);
-      divContact.append(contactMe);
-      divContact.append(up);
-      divContact.append(photographerName);
-      //================================
+      
       form.append(firstname);
       form.append(lastname);
       form.append(email);
@@ -94,6 +83,17 @@ export class Form {
       email.append(inpEmail);
       txtFree.append(labTxtFree);
       txtFree.append(inpTxtFree);
+      //================================
+      body.append(bground);
+      bground.append(content);
+      bground.append(modalbg);
+      modalbg.append(form);
+      content.append(photographerName);
+      content.append(cross);
+      content.append(divContact);
+      divContact.append(contactMe);
+      divContact.append(up);
+      divContact.append(photographerName);
       //STATE______________//
       var state = {
          firstName: {
